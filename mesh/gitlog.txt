@@ -1,0 +1,1935 @@
+commit 7bcfc822a096715255c1bbc68fcb16cfd0f181c2
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 24 10:38:31 2022 -0700
+
+    added mesh folder
+
+diff --git a/mesh.py b/mesh/mesh.py
+similarity index 100%
+rename from mesh.py
+rename to mesh/mesh.py
+diff --git a/mesh_hex.py b/mesh/mesh_hex.py
+similarity index 100%
+rename from mesh_hex.py
+rename to mesh/mesh_hex.py
+diff --git a/mesh_quad.py b/mesh/mesh_quad.py
+similarity index 100%
+rename from mesh_quad.py
+rename to mesh/mesh_quad.py
+diff --git a/mesh_quad_cross.py b/mesh/mesh_quad_cross.py
+similarity index 100%
+rename from mesh_quad_cross.py
+rename to mesh/mesh_quad_cross.py
+diff --git a/mesh_tri.py b/mesh/mesh_tri.py
+similarity index 100%
+rename from mesh_tri.py
+rename to mesh/mesh_tri.py
+diff --git a/render.py b/mesh/render.py
+similarity index 100%
+rename from render.py
+rename to mesh/render.py
+diff --git a/vectors.py b/mesh/vectors.py
+similarity index 100%
+rename from vectors.py
+rename to mesh/vectors.py
+
+commit 7bfec7cd0a61473f0b9e6894a28a2d02d11b5d0e
+Author: Daxonus <elias@dobrin.net>
+Date:   Wed Jun 22 12:42:51 2022 -0700
+
+    added requirements
+
+diff --git a/render.py b/render.py
+index 19270b1..85b6d92 100644
+--- a/render.py
++++ b/render.py
+@@ -1,8 +1,7 @@
+-from math import pi, tau
++from math import tau
+ import cairo
+ from PIL import Image
+ import numpy as np
+-import matplotlib.pyplot as plt
+ from mesh import Mesh
+ from vectors import Vector
+ 
+diff --git a/requirements.txt b/requirements.txt
+new file mode 100644
+index 0000000..cf2d46c
+--- /dev/null
++++ b/requirements.txt
+@@ -0,0 +1,3 @@
++numpy==1.22.4
++Pillow==9.1.1
++pycairo==1.21.0
+\ No newline at end of file
+
+commit 8a328e2410da3ba9ce5c0cdd44366f89d7baa4c2
+Author: Daxonus <elias@dobrin.net>
+Date:   Wed Jun 22 10:19:07 2022 -0700
+
+    cleanup
+
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+index 13566b8..0000000
+--- a/.idea/.gitignore
++++ /dev/null
+@@ -1,8 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+-# Datasource local storage ignored files
+-/dataSources/
+-/dataSources.local.xml
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+deleted file mode 100644
+index ef634de..0000000
+--- a/.idea/inspectionProfiles/Project_Default.xml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <profile version="1.0">
+-    <option name="myName" value="Project Default" />
+-    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+-      <option name="ignoredPackages">
+-        <value>
+-          <list size="2">
+-            <item index="0" class="java.lang.String" itemvalue="mazelib" />
+-            <item index="1" class="java.lang.String" itemvalue="euclid" />
+-          </list>
+-        </value>
+-      </option>
+-    </inspection_tool>
+-  </profile>
+-</component>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+deleted file mode 100644
+index 105ce2d..0000000
+--- a/.idea/inspectionProfiles/profiles_settings.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <settings>
+-    <option name="USE_PROJECT_PROFILE" value="false" />
+-    <version value="1.0" />
+-  </settings>
+-</component>
+\ No newline at end of file
+diff --git a/.idea/mesh.iml b/.idea/mesh.iml
+deleted file mode 100644
+index fa7a615..0000000
+--- a/.idea/mesh.iml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="PYTHON_MODULE" version="4">
+-  <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-  <component name="PyDocumentationSettings">
+-    <option name="format" value="PLAIN" />
+-    <option name="myDocStringFormat" value="Plain" />
+-  </component>
+-</module>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+index dc9ea49..0000000
+--- a/.idea/misc.xml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
+-</project>
+\ No newline at end of file
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+index 979507c..0000000
+--- a/.idea/modules.xml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/mesh.iml" filepath="$PROJECT_DIR$/.idea/mesh.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+index 94a25f7..0000000
+--- a/.idea/vcs.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+diff --git a/__pycache__/mesh.cpython-310.pyc b/__pycache__/mesh.cpython-310.pyc
+deleted file mode 100644
+index 45fbcfa..0000000
+Binary files a/__pycache__/mesh.cpython-310.pyc and /dev/null differ
+diff --git a/__pycache__/render.cpython-310.pyc b/__pycache__/render.cpython-310.pyc
+deleted file mode 100644
+index fd27548..0000000
+Binary files a/__pycache__/render.cpython-310.pyc and /dev/null differ
+diff --git a/__pycache__/vectors.cpython-310.pyc b/__pycache__/vectors.cpython-310.pyc
+deleted file mode 100644
+index 57c1320..0000000
+Binary files a/__pycache__/vectors.cpython-310.pyc and /dev/null differ
+
+commit 6ca89fe0200c73edb89a98df27c616aabef23865
+Merge: 7f8ef47 a80134f
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Jun 11 08:33:59 2022 -0700
+
+    Merge branch 'main' of https://github.com/Elixonus/mesh
+
+commit 7f8ef47e40a7dfb94db118d5a15c783717d7b0ba
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Jun 11 08:33:56 2022 -0700
+
+    removed density code
+
+diff --git a/__pycache__/mesh.cpython-310.pyc b/__pycache__/mesh.cpython-310.pyc
+new file mode 100644
+index 0000000..45fbcfa
+Binary files /dev/null and b/__pycache__/mesh.cpython-310.pyc differ
+diff --git a/__pycache__/render.cpython-310.pyc b/__pycache__/render.cpython-310.pyc
+new file mode 100644
+index 0000000..fd27548
+Binary files /dev/null and b/__pycache__/render.cpython-310.pyc differ
+diff --git a/__pycache__/vectors.cpython-310.pyc b/__pycache__/vectors.cpython-310.pyc
+new file mode 100644
+index 0000000..57c1320
+Binary files /dev/null and b/__pycache__/vectors.cpython-310.pyc differ
+diff --git a/render.py b/render.py
+index 2d90376..19270b1 100644
+--- a/render.py
++++ b/render.py
+@@ -44,23 +44,3 @@ def render(mesh: Mesh) -> None:
+ 
+     image = Image.fromarray(np.array(surface.get_data()).reshape((1000, 1000, 4)), mode="RGBA")
+     image.show()
+-
+-    densities = np.empty((100, 100))
+-    for x in range(100):
+-        for y in range(100):
+-            search_radius = 4
+-            search_area = pi * search_radius ** 2
+-            search_point = Vector(minimum.x + (x / (100 - 1)) * (maximum.x - minimum.x),
+-                                  minimum.y + (y / (100 - 1)) * (maximum.y - minimum.y))
+-            search_count = 0
+-            for node in nodes:
+-                if search_point.dist(node.point) < search_radius:
+-                    try:
+-                        search_count += 1 / search_point.dist(node.point)
+-                    except ZeroDivisionError:
+-                        continue
+-            density = search_count / search_area
+-            densities[x][y] = density
+-    fig, ax = plt.subplots()
+-    ax.imshow(densities, vmin=np.percentile(densities, 0), vmax=np.percentile(densities, 80))
+-    plt.show()
+\ No newline at end of file
+
+commit 2c9ba290481f65341fd71c9bfb4a4a4524d1286d
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 10 17:10:07 2022 -0700
+
+    density plot does not make sense in this context
+
+diff --git a/render.py b/render.py
+index 8276223..2d90376 100644
+--- a/render.py
++++ b/render.py
+@@ -48,12 +48,19 @@ def render(mesh: Mesh) -> None:
+     densities = np.empty((100, 100))
+     for x in range(100):
+         for y in range(100):
+-            search_radius = 2
++            search_radius = 4
+             search_area = pi * search_radius ** 2
+             search_point = Vector(minimum.x + (x / (100 - 1)) * (maximum.x - minimum.x),
+                                   minimum.y + (y / (100 - 1)) * (maximum.y - minimum.y))
+             search_count = 0
+             for node in nodes:
+                 if search_point.dist(node.point) < search_radius:
+-                    search_count += 1
+-    density =
+\ No newline at end of file
++                    try:
++                        search_count += 1 / search_point.dist(node.point)
++                    except ZeroDivisionError:
++                        continue
++            density = search_count / search_area
++            densities[x][y] = density
++    fig, ax = plt.subplots()
++    ax.imshow(densities, vmin=np.percentile(densities, 0), vmax=np.percentile(densities, 80))
++    plt.show()
+\ No newline at end of file
+
+commit b22e204744d68a8fe286e2a69b6d4037dea5eda5
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 10 16:57:24 2022 -0700
+
+    calculating densities for meshes now
+
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+index 0000000..13566b8
+--- /dev/null
++++ b/.idea/.gitignore
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+index 0000000..ef634de
+--- /dev/null
++++ b/.idea/inspectionProfiles/Project_Default.xml
+@@ -0,0 +1,15 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="ignoredPackages">
++        <value>
++          <list size="2">
++            <item index="0" class="java.lang.String" itemvalue="mazelib" />
++            <item index="1" class="java.lang.String" itemvalue="euclid" />
++          </list>
++        </value>
++      </option>
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+index 0000000..105ce2d
+--- /dev/null
++++ b/.idea/inspectionProfiles/profiles_settings.xml
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+diff --git a/.idea/mesh.iml b/.idea/mesh.iml
+new file mode 100644
+index 0000000..fa7a615
+--- /dev/null
++++ b/.idea/mesh.iml
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++  <component name="PyDocumentationSettings">
++    <option name="format" value="PLAIN" />
++    <option name="myDocStringFormat" value="Plain" />
++  </component>
++</module>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+index 0000000..dc9ea49
+--- /dev/null
++++ b/.idea/misc.xml
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+index 0000000..979507c
+--- /dev/null
++++ b/.idea/modules.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/mesh.iml" filepath="$PROJECT_DIR$/.idea/mesh.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+index 0000000..94a25f7
+--- /dev/null
++++ b/.idea/vcs.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/render.py b/render.py
+index 85b6d92..8276223 100644
+--- a/render.py
++++ b/render.py
+@@ -1,7 +1,8 @@
+-from math import tau
++from math import pi, tau
+ import cairo
+ from PIL import Image
+ import numpy as np
++import matplotlib.pyplot as plt
+ from mesh import Mesh
+ from vectors import Vector
+ 
+@@ -43,3 +44,16 @@ def render(mesh: Mesh) -> None:
+ 
+     image = Image.fromarray(np.array(surface.get_data()).reshape((1000, 1000, 4)), mode="RGBA")
+     image.show()
++
++    densities = np.empty((100, 100))
++    for x in range(100):
++        for y in range(100):
++            search_radius = 2
++            search_area = pi * search_radius ** 2
++            search_point = Vector(minimum.x + (x / (100 - 1)) * (maximum.x - minimum.x),
++                                  minimum.y + (y / (100 - 1)) * (maximum.y - minimum.y))
++            search_count = 0
++            for node in nodes:
++                if search_point.dist(node.point) < search_radius:
++                    search_count += 1
++    density =
+\ No newline at end of file
+
+commit a80134f43baab4f3741e8e39831d23c297aacee6
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Jun 9 21:50:43 2022 -0700
+
+    Create .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..b6e4761
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,129 @@
++# Byte-compiled / optimized / DLL files
++__pycache__/
++*.py[cod]
++*$py.class
++
++# C extensions
++*.so
++
++# Distribution / packaging
++.Python
++build/
++develop-eggs/
++dist/
++downloads/
++eggs/
++.eggs/
++lib/
++lib64/
++parts/
++sdist/
++var/
++wheels/
++pip-wheel-metadata/
++share/python-wheels/
++*.egg-info/
++.installed.cfg
++*.egg
++MANIFEST
++
++# PyInstaller
++#  Usually these files are written by a python script from a template
++#  before PyInstaller builds the exe, so as to inject date/other infos into it.
++*.manifest
++*.spec
++
++# Installer logs
++pip-log.txt
++pip-delete-this-directory.txt
++
++# Unit test / coverage reports
++htmlcov/
++.tox/
++.nox/
++.coverage
++.coverage.*
++.cache
++nosetests.xml
++coverage.xml
++*.cover
++*.py,cover
++.hypothesis/
++.pytest_cache/
++
++# Translations
++*.mo
++*.pot
++
++# Django stuff:
++*.log
++local_settings.py
++db.sqlite3
++db.sqlite3-journal
++
++# Flask stuff:
++instance/
++.webassets-cache
++
++# Scrapy stuff:
++.scrapy
++
++# Sphinx documentation
++docs/_build/
++
++# PyBuilder
++target/
++
++# Jupyter Notebook
++.ipynb_checkpoints
++
++# IPython
++profile_default/
++ipython_config.py
++
++# pyenv
++.python-version
++
++# pipenv
++#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
++#   However, in case of collaboration, if having platform-specific dependencies or dependencies
++#   having no cross-platform support, pipenv may install dependencies that don't work, or not
++#   install all needed dependencies.
++#Pipfile.lock
++
++# PEP 582; used by e.g. github.com/David-OConnor/pyflow
++__pypackages__/
++
++# Celery stuff
++celerybeat-schedule
++celerybeat.pid
++
++# SageMath parsed files
++*.sage.py
++
++# Environments
++.env
++.venv
++env/
++venv/
++ENV/
++env.bak/
++venv.bak/
++
++# Spyder project settings
++.spyderproject
++.spyproject
++
++# Rope project settings
++.ropeproject
++
++# mkdocs documentation
++/site
++
++# mypy
++.mypy_cache/
++.dmypy.json
++dmypy.json
++
++# Pyre type checker
++.pyre/
+
+commit 7b5b7425469e78b24b6086ddf610e8c355691cbf
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Jun 9 21:49:42 2022 -0700
+
+    cleanup
+
+diff --git a/.gitignore b/.gitignore
+deleted file mode 100644
+index b6e4761..0000000
+--- a/.gitignore
++++ /dev/null
+@@ -1,129 +0,0 @@
+-# Byte-compiled / optimized / DLL files
+-__pycache__/
+-*.py[cod]
+-*$py.class
+-
+-# C extensions
+-*.so
+-
+-# Distribution / packaging
+-.Python
+-build/
+-develop-eggs/
+-dist/
+-downloads/
+-eggs/
+-.eggs/
+-lib/
+-lib64/
+-parts/
+-sdist/
+-var/
+-wheels/
+-pip-wheel-metadata/
+-share/python-wheels/
+-*.egg-info/
+-.installed.cfg
+-*.egg
+-MANIFEST
+-
+-# PyInstaller
+-#  Usually these files are written by a python script from a template
+-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+-*.manifest
+-*.spec
+-
+-# Installer logs
+-pip-log.txt
+-pip-delete-this-directory.txt
+-
+-# Unit test / coverage reports
+-htmlcov/
+-.tox/
+-.nox/
+-.coverage
+-.coverage.*
+-.cache
+-nosetests.xml
+-coverage.xml
+-*.cover
+-*.py,cover
+-.hypothesis/
+-.pytest_cache/
+-
+-# Translations
+-*.mo
+-*.pot
+-
+-# Django stuff:
+-*.log
+-local_settings.py
+-db.sqlite3
+-db.sqlite3-journal
+-
+-# Flask stuff:
+-instance/
+-.webassets-cache
+-
+-# Scrapy stuff:
+-.scrapy
+-
+-# Sphinx documentation
+-docs/_build/
+-
+-# PyBuilder
+-target/
+-
+-# Jupyter Notebook
+-.ipynb_checkpoints
+-
+-# IPython
+-profile_default/
+-ipython_config.py
+-
+-# pyenv
+-.python-version
+-
+-# pipenv
+-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+-#   install all needed dependencies.
+-#Pipfile.lock
+-
+-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+-__pypackages__/
+-
+-# Celery stuff
+-celerybeat-schedule
+-celerybeat.pid
+-
+-# SageMath parsed files
+-*.sage.py
+-
+-# Environments
+-.env
+-.venv
+-env/
+-venv/
+-ENV/
+-env.bak/
+-venv.bak/
+-
+-# Spyder project settings
+-.spyderproject
+-.spyproject
+-
+-# Rope project settings
+-.ropeproject
+-
+-# mkdocs documentation
+-/site
+-
+-# mypy
+-.mypy_cache/
+-.dmypy.json
+-dmypy.json
+-
+-# Pyre type checker
+-.pyre/
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+index 13566b8..0000000
+--- a/.idea/.gitignore
++++ /dev/null
+@@ -1,8 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+-# Datasource local storage ignored files
+-/dataSources/
+-/dataSources.local.xml
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+deleted file mode 100644
+index ef634de..0000000
+--- a/.idea/inspectionProfiles/Project_Default.xml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <profile version="1.0">
+-    <option name="myName" value="Project Default" />
+-    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+-      <option name="ignoredPackages">
+-        <value>
+-          <list size="2">
+-            <item index="0" class="java.lang.String" itemvalue="mazelib" />
+-            <item index="1" class="java.lang.String" itemvalue="euclid" />
+-          </list>
+-        </value>
+-      </option>
+-    </inspection_tool>
+-  </profile>
+-</component>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+deleted file mode 100644
+index 105ce2d..0000000
+--- a/.idea/inspectionProfiles/profiles_settings.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <settings>
+-    <option name="USE_PROJECT_PROFILE" value="false" />
+-    <version value="1.0" />
+-  </settings>
+-</component>
+\ No newline at end of file
+diff --git a/.idea/mesh.iml b/.idea/mesh.iml
+deleted file mode 100644
+index 8b8c395..0000000
+--- a/.idea/mesh.iml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="PYTHON_MODULE" version="4">
+-  <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-  <component name="PyDocumentationSettings">
+-    <option name="format" value="PLAIN" />
+-    <option name="myDocStringFormat" value="Plain" />
+-  </component>
+-</module>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+index dc9ea49..0000000
+--- a/.idea/misc.xml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
+-</project>
+\ No newline at end of file
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+index 979507c..0000000
+--- a/.idea/modules.xml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/mesh.iml" filepath="$PROJECT_DIR$/.idea/mesh.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+index 94a25f7..0000000
+--- a/.idea/vcs.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+
+commit 6fd93c523864a777679319d9e0f81a814f592048
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Jun 9 21:47:28 2022 -0700
+
+    changed rendering
+
+diff --git a/render.py b/render.py
+index de6f5fc..85b6d92 100644
+--- a/render.py
++++ b/render.py
+@@ -1,7 +1,8 @@
++from math import tau
+ import cairo
+ from PIL import Image
+ import numpy as np
+-from mesh import Mesh, QuadMesh, QuadCrossMesh, TriMesh, HexMesh
++from mesh import Mesh
+ from vectors import Vector
+ 
+ 
+@@ -32,5 +33,13 @@ def render(mesh: Mesh) -> None:
+         context.set_line_cap(cairo.LINE_CAP_ROUND)
+         context.stroke()
+ 
++    for node in nodes:
++        context.arc(node.point.x, node.point.y, 0.02 / camera_zoom, 0, tau)
++        context.set_source_rgb(1, 1, 1)
++        context.fill_preserve()
++        context.set_source_rgb(0, 0, 0)
++        context.set_line_width(0.01 / camera_zoom)
++        context.stroke()
++
+     image = Image.fromarray(np.array(surface.get_data()).reshape((1000, 1000, 4)), mode="RGBA")
+     image.show()
+
+commit 51d5fbab472b75c6d647df4ccf540ae8b85f3457
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Jun 9 21:45:01 2022 -0700
+
+    added demo files
+
+diff --git a/mesh_hex.py b/mesh_hex.py
+new file mode 100644
+index 0000000..6f03b06
+--- /dev/null
++++ b/mesh_hex.py
+@@ -0,0 +1,5 @@
++from mesh import HexMesh
++from render import render
++
++mesh = HexMesh((15, 15))
++render(mesh)
+diff --git a/mesh_quad.py b/mesh_quad.py
+new file mode 100644
+index 0000000..148f099
+--- /dev/null
++++ b/mesh_quad.py
+@@ -0,0 +1,5 @@
++from mesh import QuadMesh
++from render import render
++
++mesh = QuadMesh((15, 15))
++render(mesh)
+diff --git a/mesh_quad_cross.py b/mesh_quad_cross.py
+new file mode 100644
+index 0000000..bbaa85c
+--- /dev/null
++++ b/mesh_quad_cross.py
+@@ -0,0 +1,5 @@
++from mesh import QuadCrossMesh
++from render import render
++
++mesh = QuadCrossMesh((10, 10))
++render(mesh)
+diff --git a/mesh_tri.py b/mesh_tri.py
+new file mode 100644
+index 0000000..19c2275
+--- /dev/null
++++ b/mesh_tri.py
+@@ -0,0 +1,5 @@
++from mesh import TriMesh
++from render import render
++
++mesh = TriMesh((10, 10))
++render(mesh)
+diff --git a/render.png b/render.png
+deleted file mode 100644
+index eba4adc..0000000
+Binary files a/render.png and /dev/null differ
+diff --git a/render.py b/render.py
+index b1b8063..de6f5fc 100644
+--- a/render.py
++++ b/render.py
+@@ -1,19 +1,17 @@
+-from math import tau
+ import cairo
++from PIL import Image
++import numpy as np
+ from mesh import Mesh, QuadMesh, QuadCrossMesh, TriMesh, HexMesh
+ from vectors import Vector
+ 
+ 
+-mesh = HexMesh((13, 7))
+-
+-
+ def render(mesh: Mesh) -> None:
+     nodes = mesh.nodes
+     links = mesh.links
+     minimum = Vector(min(node.point.x for node in nodes), min(node.point.y for node in nodes))
+     maximum = Vector(max(node.point.x for node in nodes), max(node.point.y for node in nodes))
+     camera_position = (minimum + maximum) / 2
+-    camera_zoom = 0.9 / (max(maximum.x - minimum.x, maximum.y - minimum.y))
++    camera_zoom = 1.1 / (min(maximum.x - minimum.x, maximum.y - minimum.y))
+ 
+     surface = cairo.ImageSurface(cairo.FORMAT_RGB24, 1000, 1000)
+     context = cairo.Context(surface)
+@@ -34,14 +32,5 @@ def render(mesh: Mesh) -> None:
+         context.set_line_cap(cairo.LINE_CAP_ROUND)
+         context.stroke()
+ 
+-    for node in nodes:
+-        context.arc(node.point.x, node.point.y, 0.02 / camera_zoom, 0, tau)
+-        context.set_source_rgb(1, 1, 1)
+-        context.fill_preserve()
+-        context.set_source_rgb(0, 0, 0)
+-        context.set_line_width(0.01 / camera_zoom)
+-        context.stroke()
+-
+-    surface.write_to_png("render.png")
+-
+-render(mesh)
+\ No newline at end of file
++    image = Image.fromarray(np.array(surface.get_data()).reshape((1000, 1000, 4)), mode="RGBA")
++    image.show()
+
+commit 4f3641ec9981c2adc65124eb6340b7c4e00d2493
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Jun 9 21:19:46 2022 -0700
+
+    hexmesh working
+
+diff --git a/mesh.py b/mesh.py
+index d51b0ce..b1c78c5 100644
+--- a/mesh.py
++++ b/mesh.py
+@@ -27,7 +27,7 @@ class QuadMesh(Mesh):
+         for x in range(grid[0] + 1):
+             nodes_quad.append([])
+             for y in range(grid[1] + 1):
+-                node = Node(Vector(x / grid[0], y / grid[1]))
++                node = Node(Vector(x, y))
+                 nodes_quad[x].append(node)
+         nodes = [node for nodes_buffer in nodes_quad for node in nodes_buffer]
+         links = []
+@@ -48,7 +48,7 @@ class QuadCrossMesh(Mesh):
+         for x in range(grid[0] + 1):
+             nodes_quad.append([])
+             for y in range(grid[1] + 1):
+-                node = Node(Vector(x / grid[0], y / grid[1]))
++                node = Node(Vector(x, y))
+                 nodes_quad[x].append(node)
+         nodes = [node for nodes_buffer in nodes_quad for node in nodes_buffer]
+         links = []
+@@ -75,7 +75,7 @@ class TriMesh(Mesh):
+         for x in range(grid[0] + 1):
+             nodes_quad.append([])
+             for y in range(grid[1] + 1):
+-                node = Node(Vector((x + 0.5 * (y % 2)) / grid[0], y * sqrt(3) / (2 * grid[1])))
++                node = Node(Vector((x + 0.5 * (y % 2)), y * sqrt(3) / 2))
+                 nodes_quad[x].append(node)
+         nodes = [node for nodes_buffer in nodes_quad for node in nodes_buffer]
+         links = []
+@@ -102,6 +102,24 @@ class HexMesh(Mesh):
+         mesh = TriMesh(grid)
+         nodes = mesh.nodes
+         links = mesh.links
++        for x in range(grid[0] + 1):
++            for y in range(grid[1] + 1):
++                if (x % 3 == 1 and y % 2 == 0) or (x % 3 == 2 and y % 2 == 1):
++                    node = nodes[x * (grid[1] + 1) + y]
++                    removed_links = []
++                    for link in links:
++                        if link.nodes[0] is node or link.nodes[1] is node:
++                            removed_links.append(link)
++                    for link in removed_links:
++                        links.remove(link)
++        removed_nodes = nodes.copy()
++        for link in links:
++            if link.nodes[0] in removed_nodes:
++                removed_nodes.remove(link.nodes[0])
++            if link.nodes[1] in removed_nodes:
++                removed_nodes.remove(link.nodes[1])
++        for node in removed_nodes:
++            nodes.remove(node)
+         super().__init__(nodes, links)
+ 
+ 
+diff --git a/render.png b/render.png
+index 073fb11..eba4adc 100644
+Binary files a/render.png and b/render.png differ
+diff --git a/render.py b/render.py
+index d10b2e8..b1b8063 100644
+--- a/render.py
++++ b/render.py
+@@ -4,8 +4,7 @@ from mesh import Mesh, QuadMesh, QuadCrossMesh, TriMesh, HexMesh
+ from vectors import Vector
+ 
+ 
+-mesh = HexMesh((6, 6))
+-mesh.translate(Vector(-0.5, -0.5))
++mesh = HexMesh((13, 7))
+ 
+ 
+ def render(mesh: Mesh) -> None:
+@@ -14,7 +13,7 @@ def render(mesh: Mesh) -> None:
+     minimum = Vector(min(node.point.x for node in nodes), min(node.point.y for node in nodes))
+     maximum = Vector(max(node.point.x for node in nodes), max(node.point.y for node in nodes))
+     camera_position = (minimum + maximum) / 2
+-    camera_zoom = 0.7 / (max(maximum.x - minimum.x, maximum.y - minimum.y))
++    camera_zoom = 0.9 / (max(maximum.x - minimum.x, maximum.y - minimum.y))
+ 
+     surface = cairo.ImageSurface(cairo.FORMAT_RGB24, 1000, 1000)
+     context = cairo.Context(surface)
+@@ -31,12 +30,12 @@ def render(mesh: Mesh) -> None:
+         context.move_to(link.nodes[0].point.x, link.nodes[0].point.y)
+         context.line_to(link.nodes[1].point.x, link.nodes[1].point.y)
+         context.set_source_rgb(0, 0, 0)
+-        context.set_line_width(0.02 / camera_zoom)
++        context.set_line_width(0.015 / camera_zoom)
+         context.set_line_cap(cairo.LINE_CAP_ROUND)
+         context.stroke()
+ 
+     for node in nodes:
+-        context.arc(node.point.x, node.point.y, 0.05, 0, tau)
++        context.arc(node.point.x, node.point.y, 0.02 / camera_zoom, 0, tau)
+         context.set_source_rgb(1, 1, 1)
+         context.fill_preserve()
+         context.set_source_rgb(0, 0, 0)
+
+commit bbcd82c37a8ec6d88c993cafcae8b7ac4bb757c7
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Jun 9 20:21:34 2022 -0700
+
+    trying to create hexmesh
+
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+index 0000000..13566b8
+--- /dev/null
++++ b/.idea/.gitignore
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+index 0000000..ef634de
+--- /dev/null
++++ b/.idea/inspectionProfiles/Project_Default.xml
+@@ -0,0 +1,15 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="ignoredPackages">
++        <value>
++          <list size="2">
++            <item index="0" class="java.lang.String" itemvalue="mazelib" />
++            <item index="1" class="java.lang.String" itemvalue="euclid" />
++          </list>
++        </value>
++      </option>
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+index 0000000..105ce2d
+--- /dev/null
++++ b/.idea/inspectionProfiles/profiles_settings.xml
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+diff --git a/.idea/mesh.iml b/.idea/mesh.iml
+new file mode 100644
+index 0000000..8b8c395
+--- /dev/null
++++ b/.idea/mesh.iml
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++  <component name="PyDocumentationSettings">
++    <option name="format" value="PLAIN" />
++    <option name="myDocStringFormat" value="Plain" />
++  </component>
++</module>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+index 0000000..dc9ea49
+--- /dev/null
++++ b/.idea/misc.xml
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+index 0000000..979507c
+--- /dev/null
++++ b/.idea/modules.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/mesh.iml" filepath="$PROJECT_DIR$/.idea/mesh.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+index 0000000..94a25f7
+--- /dev/null
++++ b/.idea/vcs.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/mesh.py b/mesh.py
+index 5f7cc8e..d51b0ce 100644
+--- a/mesh.py
++++ b/mesh.py
+@@ -97,6 +97,14 @@ class TriMesh(Mesh):
+         super().__init__(nodes, links)
+ 
+ 
++class HexMesh(Mesh):
++    def __init__(self, grid: tuple[int, int]) -> None:
++        mesh = TriMesh(grid)
++        nodes = mesh.nodes
++        links = mesh.links
++        super().__init__(nodes, links)
++
++
+ class Node:
+     point: Vector
+ 
+diff --git a/render.png b/render.png
+index 6b2be2b..073fb11 100644
+Binary files a/render.png and b/render.png differ
+diff --git a/render.py b/render.py
+index 27c796a..d10b2e8 100644
+--- a/render.py
++++ b/render.py
+@@ -1,10 +1,10 @@
+ from math import tau
+ import cairo
+-from mesh import Mesh, QuadMesh, QuadCrossMesh, TriMesh
++from mesh import Mesh, QuadMesh, QuadCrossMesh, TriMesh, HexMesh
+ from vectors import Vector
+ 
+ 
+-mesh = TriMesh((4, 4))
++mesh = HexMesh((6, 6))
+ mesh.translate(Vector(-0.5, -0.5))
+ 
+ 
+
+commit 0803048b0badde6af9460789c34125589c984de7
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Jun 9 20:02:17 2022 -0700
+
+    added uniform triangle mesh
+
+diff --git a/mesh.py b/mesh.py
+index d7f15a2..5f7cc8e 100644
+--- a/mesh.py
++++ b/mesh.py
+@@ -1,4 +1,5 @@
+ from __future__ import annotations
++from math import sqrt
+ from vectors import Vector
+ 
+ 
+@@ -68,6 +69,34 @@ class QuadCrossMesh(Mesh):
+         super().__init__(nodes, links)
+ 
+ 
++class TriMesh(Mesh):
++    def __init__(self, grid: tuple[int, int]) -> None:
++        nodes_quad = []
++        for x in range(grid[0] + 1):
++            nodes_quad.append([])
++            for y in range(grid[1] + 1):
++                node = Node(Vector((x + 0.5 * (y % 2)) / grid[0], y * sqrt(3) / (2 * grid[1])))
++                nodes_quad[x].append(node)
++        nodes = [node for nodes_buffer in nodes_quad for node in nodes_buffer]
++        links = []
++        for x in range(grid[0]):
++            for y in range(grid[1] + 1):
++                link = Link(nodes=(nodes_quad[x][y], nodes_quad[x + 1][y]))
++                links.append(link)
++        for x in range(grid[0] + 1):
++            for y in range(grid[1]):
++                link = Link(nodes=(nodes_quad[x][y], nodes_quad[x][y + 1]))
++                links.append(link)
++        for x in range(grid[0]):
++            for y in range(grid[1]):
++                if y % 2 == 0:
++                    link = Link(nodes=(nodes_quad[x][y + 1], nodes_quad[x + 1][y]))
++                else:
++                    link = Link(nodes=(nodes_quad[x][y], nodes_quad[x + 1][y + 1]))
++                links.append(link)
++        super().__init__(nodes, links)
++
++
+ class Node:
+     point: Vector
+ 
+diff --git a/render.png b/render.png
+index 47bb0c6..6b2be2b 100644
+Binary files a/render.png and b/render.png differ
+diff --git a/render.py b/render.py
+index 4f3e0c9..27c796a 100644
+--- a/render.py
++++ b/render.py
+@@ -1,17 +1,21 @@
+ from math import tau
+ import cairo
+-from mesh import Mesh, QuadMesh, QuadCrossMesh
++from mesh import Mesh, QuadMesh, QuadCrossMesh, TriMesh
+ from vectors import Vector
+ 
+ 
+-camera_position = Vector(0, 0)
+-camera_zoom = 0.3
+-
+-mesh = QuadCrossMesh((3, 3))
++mesh = TriMesh((4, 4))
+ mesh.translate(Vector(-0.5, -0.5))
+ 
+ 
+ def render(mesh: Mesh) -> None:
++    nodes = mesh.nodes
++    links = mesh.links
++    minimum = Vector(min(node.point.x for node in nodes), min(node.point.y for node in nodes))
++    maximum = Vector(max(node.point.x for node in nodes), max(node.point.y for node in nodes))
++    camera_position = (minimum + maximum) / 2
++    camera_zoom = 0.7 / (max(maximum.x - minimum.x, maximum.y - minimum.y))
++
+     surface = cairo.ImageSurface(cairo.FORMAT_RGB24, 1000, 1000)
+     context = cairo.Context(surface)
+     context.scale(1000, 1000)
+@@ -23,14 +27,11 @@ def render(mesh: Mesh) -> None:
+     context.scale(camera_zoom, camera_zoom)
+     context.translate(-camera_position.x, -camera_position.y)
+ 
+-    nodes = mesh.nodes
+-    links = mesh.links
+-
+     for link in links:
+         context.move_to(link.nodes[0].point.x, link.nodes[0].point.y)
+         context.line_to(link.nodes[1].point.x, link.nodes[1].point.y)
+         context.set_source_rgb(0, 0, 0)
+-        context.set_line_width(0.04)
++        context.set_line_width(0.02 / camera_zoom)
+         context.set_line_cap(cairo.LINE_CAP_ROUND)
+         context.stroke()
+ 
+@@ -39,11 +40,8 @@ def render(mesh: Mesh) -> None:
+         context.set_source_rgb(1, 1, 1)
+         context.fill_preserve()
+         context.set_source_rgb(0, 0, 0)
+-        context.set_line_width(0.02)
++        context.set_line_width(0.01 / camera_zoom)
+         context.stroke()
+-        context.arc(node.point.x, node.point.y, 0.025, 0, tau)
+-        context.set_source_rgb(0, 0, 0)
+-        context.fill()
+ 
+     surface.write_to_png("render.png")
+ 
+
+commit 209216ed03666659db7aa86857907dff67c3b789
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Jun 6 11:24:52 2022 -0700
+
+    saved for later because it's too hard
+
+diff --git a/render.png b/render.png
+index a788033..47bb0c6 100644
+Binary files a/render.png and b/render.png differ
+diff --git a/render.py b/render.py
+index 550a7ca..4f3e0c9 100644
+--- a/render.py
++++ b/render.py
+@@ -5,11 +5,12 @@ from vectors import Vector
+ 
+ 
+ camera_position = Vector(0, 0)
+-camera_zoom = 0.8
++camera_zoom = 0.3
+ 
+ mesh = QuadCrossMesh((3, 3))
+ mesh.translate(Vector(-0.5, -0.5))
+ 
++
+ def render(mesh: Mesh) -> None:
+     surface = cairo.ImageSurface(cairo.FORMAT_RGB24, 1000, 1000)
+     context = cairo.Context(surface)
+@@ -29,18 +30,18 @@ def render(mesh: Mesh) -> None:
+         context.move_to(link.nodes[0].point.x, link.nodes[0].point.y)
+         context.line_to(link.nodes[1].point.x, link.nodes[1].point.y)
+         context.set_source_rgb(0, 0, 0)
+-        context.set_line_width(0.02)
++        context.set_line_width(0.04)
+         context.set_line_cap(cairo.LINE_CAP_ROUND)
+         context.stroke()
+ 
+     for node in nodes:
+-        context.arc(node.point.x, node.point.y, 0.035, 0, tau)
++        context.arc(node.point.x, node.point.y, 0.05, 0, tau)
+         context.set_source_rgb(1, 1, 1)
+         context.fill_preserve()
+         context.set_source_rgb(0, 0, 0)
+-        context.set_line_width(0.01)
++        context.set_line_width(0.02)
+         context.stroke()
+-        context.arc(node.point.x, node.point.y, 0.02, 0, tau)
++        context.arc(node.point.x, node.point.y, 0.025, 0, tau)
+         context.set_source_rgb(0, 0, 0)
+         context.fill()
+ 
+
+commit e864ab04305ab151c6280100c5c32f57b6d9b70f
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Jun 6 10:50:04 2022 -0700
+
+    first working render
+
+diff --git a/mesh.py b/mesh.py
+index 2f6f3fb..d7f15a2 100644
+--- a/mesh.py
++++ b/mesh.py
+@@ -30,14 +30,41 @@ class QuadMesh(Mesh):
+                 nodes_quad[x].append(node)
+         nodes = [node for nodes_buffer in nodes_quad for node in nodes_buffer]
+         links = []
+-        for x in range(grid[0] - 1):
+-            for y in range(grid[1]):
++        for x in range(grid[0]):
++            for y in range(grid[1] + 1):
+                 link = Link(nodes=(nodes_quad[x][y], nodes_quad[x + 1][y]))
+                 links.append(link)
++        for x in range(grid[0] + 1):
++            for y in range(grid[1]):
++                link = Link(nodes=(nodes_quad[x][y], nodes_quad[x][y + 1]))
++                links.append(link)
++        super().__init__(nodes, links)
++
++
++class QuadCrossMesh(Mesh):
++    def __init__(self, grid: tuple[int, int]) -> None:
++        nodes_quad = []
++        for x in range(grid[0] + 1):
++            nodes_quad.append([])
++            for y in range(grid[1] + 1):
++                node = Node(Vector(x / grid[0], y / grid[1]))
++                nodes_quad[x].append(node)
++        nodes = [node for nodes_buffer in nodes_quad for node in nodes_buffer]
++        links = []
+         for x in range(grid[0]):
+-            for y in range(grid[1] - 1):
++            for y in range(grid[1] + 1):
++                link = Link(nodes=(nodes_quad[x][y], nodes_quad[x + 1][y]))
++                links.append(link)
++        for x in range(grid[0] + 1):
++            for y in range(grid[1]):
+                 link = Link(nodes=(nodes_quad[x][y], nodes_quad[x][y + 1]))
+                 links.append(link)
++        for x in range(grid[0]):
++            for y in range(grid[1]):
++                link = Link(nodes=(nodes_quad[x][y], nodes_quad[x + 1][y + 1]))
++                links.append(link)
++                link = Link(nodes=(nodes_quad[x][y + 1], nodes_quad[x + 1][y]))
++                links.append(link)
+         super().__init__(nodes, links)
+ 
+ 
+diff --git a/render.png b/render.png
+index 8083870..a788033 100644
+Binary files a/render.png and b/render.png differ
+diff --git a/render.py b/render.py
+index 71df361..550a7ca 100644
+--- a/render.py
++++ b/render.py
+@@ -1,13 +1,14 @@
+ from math import tau
+ import cairo
+-from mesh import Mesh, QuadMesh
++from mesh import Mesh, QuadMesh, QuadCrossMesh
+ from vectors import Vector
+ 
+ 
+ camera_position = Vector(0, 0)
+-camera_zoom = 1
++camera_zoom = 0.8
+ 
+-mesh = QuadMesh((3, 3))
++mesh = QuadCrossMesh((3, 3))
++mesh.translate(Vector(-0.5, -0.5))
+ 
+ def render(mesh: Mesh) -> None:
+     surface = cairo.ImageSurface(cairo.FORMAT_RGB24, 1000, 1000)
+@@ -33,7 +34,13 @@ def render(mesh: Mesh) -> None:
+         context.stroke()
+ 
+     for node in nodes:
+-        context.arc(node.point.x, node.point.y, 0.05, 0, tau)
++        context.arc(node.point.x, node.point.y, 0.035, 0, tau)
++        context.set_source_rgb(1, 1, 1)
++        context.fill_preserve()
++        context.set_source_rgb(0, 0, 0)
++        context.set_line_width(0.01)
++        context.stroke()
++        context.arc(node.point.x, node.point.y, 0.02, 0, tau)
+         context.set_source_rgb(0, 0, 0)
+         context.fill()
+ 
+
+commit be0f5d6eb2dbfde77555ea2f2323d8124d86dd29
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Jun 6 10:40:59 2022 -0700
+
+    more progress made on render code
+
+diff --git a/render.png b/render.png
+new file mode 100644
+index 0000000..8083870
+Binary files /dev/null and b/render.png differ
+diff --git a/render.py b/render.py
+index 9afca9c..71df361 100644
+--- a/render.py
++++ b/render.py
+@@ -1,3 +1,4 @@
++from math import tau
+ import cairo
+ from mesh import Mesh, QuadMesh
+ from vectors import Vector
+@@ -24,8 +25,17 @@ def render(mesh: Mesh) -> None:
+     links = mesh.links
+ 
+     for link in links:
+-        context.move_to(link.nodes[0].point.x, link.nodes[1].point.y)
+-        context.move_to(link.nodes[0].point.x, link.nodes[1].point.y)
++        context.move_to(link.nodes[0].point.x, link.nodes[0].point.y)
++        context.line_to(link.nodes[1].point.x, link.nodes[1].point.y)
++        context.set_source_rgb(0, 0, 0)
++        context.set_line_width(0.02)
++        context.set_line_cap(cairo.LINE_CAP_ROUND)
++        context.stroke()
++
++    for node in nodes:
++        context.arc(node.point.x, node.point.y, 0.05, 0, tau)
++        context.set_source_rgb(0, 0, 0)
++        context.fill()
+ 
+     surface.write_to_png("render.png")
+ 
+
+commit 0e831f8c09fdd4b270c34ed31ba8405081c60a8e
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Jun 6 10:35:34 2022 -0700
+
+    working on mesh rendering code
+
+diff --git a/render.py b/render.py
+new file mode 100644
+index 0000000..9afca9c
+--- /dev/null
++++ b/render.py
+@@ -0,0 +1,32 @@
++import cairo
++from mesh import Mesh, QuadMesh
++from vectors import Vector
++
++
++camera_position = Vector(0, 0)
++camera_zoom = 1
++
++mesh = QuadMesh((3, 3))
++
++def render(mesh: Mesh) -> None:
++    surface = cairo.ImageSurface(cairo.FORMAT_RGB24, 1000, 1000)
++    context = cairo.Context(surface)
++    context.scale(1000, 1000)
++    context.rectangle(0, 0, 1, 1)
++    context.set_source_rgb(1, 1, 1)
++    context.fill()
++    context.translate(0.5, 0.5)
++    context.scale(1, -1)
++    context.scale(camera_zoom, camera_zoom)
++    context.translate(-camera_position.x, -camera_position.y)
++
++    nodes = mesh.nodes
++    links = mesh.links
++
++    for link in links:
++        context.move_to(link.nodes[0].point.x, link.nodes[1].point.y)
++        context.move_to(link.nodes[0].point.x, link.nodes[1].point.y)
++
++    surface.write_to_png("render.png")
++
++render(mesh)
+\ No newline at end of file
+
+commit 0399a909e40752d4cedf8d8f7d2847a8aae5948d
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Jun 6 10:14:00 2022 -0700
+
+    added libraries and initial commit
+
+diff --git a/mesh.py b/mesh.py
+new file mode 100644
+index 0000000..2f6f3fb
+--- /dev/null
++++ b/mesh.py
+@@ -0,0 +1,55 @@
++from __future__ import annotations
++from vectors import Vector
++
++
++class Mesh:
++    nodes: list[Node]
++    links: list[Link]
++
++    def __init__(self, nodes: list[Node], links: list[Link]) -> None:
++        self.nodes = nodes
++        self.links = links
++
++    def translate(self, vector: Vector) -> None:
++        for node in self.nodes:
++            node.point += vector
++
++    def scale(self, vector: Vector) -> None:
++        for node in self.nodes:
++            node.point.x *= vector.x
++            node.point.y *= vector.y
++
++
++class QuadMesh(Mesh):
++    def __init__(self, grid: tuple[int, int]) -> None:
++        nodes_quad = []
++        for x in range(grid[0] + 1):
++            nodes_quad.append([])
++            for y in range(grid[1] + 1):
++                node = Node(Vector(x / grid[0], y / grid[1]))
++                nodes_quad[x].append(node)
++        nodes = [node for nodes_buffer in nodes_quad for node in nodes_buffer]
++        links = []
++        for x in range(grid[0] - 1):
++            for y in range(grid[1]):
++                link = Link(nodes=(nodes_quad[x][y], nodes_quad[x + 1][y]))
++                links.append(link)
++        for x in range(grid[0]):
++            for y in range(grid[1] - 1):
++                link = Link(nodes=(nodes_quad[x][y], nodes_quad[x][y + 1]))
++                links.append(link)
++        super().__init__(nodes, links)
++
++
++class Node:
++    point: Vector
++
++    def __init__(self, point: Vector) -> None:
++        self.point = point
++
++
++class Link:
++    nodes: tuple[Node, Node]
++
++    def __init__(self, nodes: tuple[Node, Node]) -> None:
++        self.nodes = nodes
+diff --git a/vectors.py b/vectors.py
+new file mode 100644
+index 0000000..edfdee0
+--- /dev/null
++++ b/vectors.py
+@@ -0,0 +1,132 @@
++"""Python module for dealing with two-dimensional cartesian coordinates and vector operations."""
++
++from __future__ import annotations
++from math import hypot
++from collections.abc import Iterator
++
++
++class Vector:
++    """Two-dimensional vector represented in cartesian coordinates."""
++    x: float
++    y: float
++
++    def __init__(self, x: float, y: float) -> None:
++        """Instantiate a vector from cartesian coordinates."""
++        self.x = x
++        self.y = y
++
++    def __iter__(self) -> Iterator[float]:
++        """Iterate through the pair of coordinates."""
++        yield self.x
++        yield self.y
++
++    def __str__(self) -> str:
++        return f"({self.x}, {self.y})"
++
++    def __add__(self, vector: Vector, /) -> Vector:
++        """(+) Add caller vector with parameter vector, without modification to vector."""
++        return self.copy().add(vector)
++
++    def __iadd__(self, vector: Vector, /) -> Vector:
++        """(+=) Add caller vector with parameter vector, with modification to caller vector."""
++        return self.add(vector)
++
++    def __sub__(self, vector: Vector, /) -> Vector:
++        """(-) Subtract parameter vector from caller vector, without modification to vector."""
++        return self.copy().sub(vector)
++
++    def __isub__(self, vector: Vector, /) -> Vector:
++        """(-=) Subtract parameter vector from caller vector, with modification to caller vector."""
++        return self.sub(vector)
++
++    def __mul__(self, multiplier: float, /) -> Vector:
++        """(*) Multiply vector coordinates by a number, without modification to vector."""
++        return self.copy().mul(multiplier)
++
++    def __rmul__(self, multiplier: float, /) -> Vector:
++        """(*) Multiply vector coordinates by a number, without modification to vector."""
++        return self.copy().mul(multiplier)
++
++    def __imul__(self, multiplier: float, /) -> Vector:
++        """(*=) Multiply vector coordinates by a number, with modification to vector."""
++        return self.mul(multiplier)
++
++    def __truediv__(self, divisor: float, /) -> Vector:
++        """(/) Divide vector coordinates by a number, without modification to vector."""
++        return self.copy().div(divisor)
++
++    def __itruediv__(self, divisor: float, /) -> Vector:
++        """(/=) Divide vector coordinates by a number, with modification to vector."""
++        return self.div(divisor)
++
++    def __pos__(self) -> Vector:
++        """(+) Return the same vector instance."""
++        return self
++
++    def __neg__(self) -> Vector:
++        """(-) Flip the sign of vector coordinates, without modification to vector."""
++        return self.copy().mul(-1)
++
++    def __matmul__(self, vector: Vector, /) -> float:
++        """(@) Find the dot product of two vectors as vectors."""
++        return self.dot(vector)
++
++    def __mod__(self, vector: Vector, /) -> float:
++        """(%) Find the cross product of two vectors as vectors."""
++        return self.cross(vector)
++
++    def set(self, vector: Vector, /) -> Vector:
++        """Set coordinates of caller vector to match parameter vector."""
++        self.x = vector.x
++        self.y = vector.y
++        return self
++
++    def add(self, vector: Vector, /) -> Vector:
++        """Add caller vector with parameter vector, with modification to caller vector."""
++        self.x += vector.x
++        self.y += vector.y
++        return self
++
++    def sub(self, vector: Vector, /) -> Vector:
++        """Subtract parameter vector from caller vector, with modification to caller vector."""
++        self.x -= vector.x
++        self.y -= vector.y
++        return self
++
++    def mul(self, multiplier: float, /) -> Vector:
++        """Multiply vector coordinates by a number, with modification to vector."""
++        self.x *= multiplier
++        self.y *= multiplier
++        return self
++
++    def div(self, divisor: float, /) -> Vector:
++        """Divide vector coordinates by a number, with modification to vector."""
++        self.x /= divisor
++        self.y /= divisor
++        return self
++
++    def len(self) -> float:
++        """Find the distance to the origin."""
++        return hypot(self.x, self.y)
++
++    def dist(self, vector: Vector, /) -> float:
++        """Find the distance between two vectors."""
++        return hypot(self.x - vector.x, self.y - vector.y)
++
++    def dot(self, vector: Vector, /) -> float:
++        """Find the dot product of two vectors."""
++        return self.x * vector.x + self.y * vector.y
++
++    def cross(self, vector: Vector, /) -> float:
++        """Find the cross product of two vectors."""
++        return self.x * vector.y - self.y * vector.x
++
++    def copy(self) -> Vector:
++        """Copy the vector instance."""
++        return Vector(self.x, self.y)
++
++
++if __name__ == "__main__":
++    from time import sleep
++    print("Do not run me! This is just a dependency program")
++    sleep(5)
+\ No newline at end of file
+
+commit 4a94f47e081a4607ed55722bed5a5a5a885005f5
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Jun 6 09:49:54 2022 -0700
+
+    Initial commit
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..b6e4761
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,129 @@
++# Byte-compiled / optimized / DLL files
++__pycache__/
++*.py[cod]
++*$py.class
++
++# C extensions
++*.so
++
++# Distribution / packaging
++.Python
++build/
++develop-eggs/
++dist/
++downloads/
++eggs/
++.eggs/
++lib/
++lib64/
++parts/
++sdist/
++var/
++wheels/
++pip-wheel-metadata/
++share/python-wheels/
++*.egg-info/
++.installed.cfg
++*.egg
++MANIFEST
++
++# PyInstaller
++#  Usually these files are written by a python script from a template
++#  before PyInstaller builds the exe, so as to inject date/other infos into it.
++*.manifest
++*.spec
++
++# Installer logs
++pip-log.txt
++pip-delete-this-directory.txt
++
++# Unit test / coverage reports
++htmlcov/
++.tox/
++.nox/
++.coverage
++.coverage.*
++.cache
++nosetests.xml
++coverage.xml
++*.cover
++*.py,cover
++.hypothesis/
++.pytest_cache/
++
++# Translations
++*.mo
++*.pot
++
++# Django stuff:
++*.log
++local_settings.py
++db.sqlite3
++db.sqlite3-journal
++
++# Flask stuff:
++instance/
++.webassets-cache
++
++# Scrapy stuff:
++.scrapy
++
++# Sphinx documentation
++docs/_build/
++
++# PyBuilder
++target/
++
++# Jupyter Notebook
++.ipynb_checkpoints
++
++# IPython
++profile_default/
++ipython_config.py
++
++# pyenv
++.python-version
++
++# pipenv
++#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
++#   However, in case of collaboration, if having platform-specific dependencies or dependencies
++#   having no cross-platform support, pipenv may install dependencies that don't work, or not
++#   install all needed dependencies.
++#Pipfile.lock
++
++# PEP 582; used by e.g. github.com/David-OConnor/pyflow
++__pypackages__/
++
++# Celery stuff
++celerybeat-schedule
++celerybeat.pid
++
++# SageMath parsed files
++*.sage.py
++
++# Environments
++.env
++.venv
++env/
++venv/
++ENV/
++env.bak/
++venv.bak/
++
++# Spyder project settings
++.spyderproject
++.spyproject
++
++# Rope project settings
++.ropeproject
++
++# mkdocs documentation
++/site
++
++# mypy
++.mypy_cache/
++.dmypy.json
++dmypy.json
++
++# Pyre type checker
++.pyre/
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..9fe37c5
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2022 Elias Dobrin
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
