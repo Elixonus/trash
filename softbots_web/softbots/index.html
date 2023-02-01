@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/style.css">
+
+  <link rel="icon" href="./fav/favicon.ico" sizes="any">
+	<link rel="icon" href="./fav/favicon.svg" type="image/svg+xml">
+
+  <title>Softbot</title>
+</head>
+<body>
+
+  <!-- Left side sidebar area -->
+  <aside class="state__btns">
+
+    <h2>State</h2>
+
+    <div class="state__btn">
+      <input id="s_node" class="inp__radio" type="radio" name="state" value="node" checked>
+      <label class="btn" for="s_node">node</label>
+    </div>
+
+    <div class="state__btn">
+      <input id="s_link" class="inp__radio" type="radio" name="state" value="link">
+      <label class="btn" for="s_link">link</label>
+    </div>
+
+  </aside>
+
+  <!-- Top side area -->
+  <header class="view__btns">
+
+    <h2>View:</h2>
+
+    <div class="state__btn">
+      <input id="s_build" class="inp__radio" type="radio" name="view" value="build" checked>
+      <label class="btn" for="s_build">Build</label>
+    </div>
+    <div class="state__btn">
+      <input id="s_train" class="inp__radio" type="radio" name="view" value="train">
+      <label class="btn" for="s_train">Train</label>
+    </div>
+
+  </header>
+
+  <div id="canvas__wrap">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <aside>
+
+    <h1>Import/export</h1>
+    <a class="btn" id="export_bot" href="#.">Export BOT</a>
+
+    <label class="btn" id="import_bot_lab" for="import_bot">Import BOT</label>
+    <input id="import_bot" type="file" accept="application/JSON">
+
+    <p>To load these bots start a server</p>
+    <div id="bots__wrap">
+      <a href="./bots/box.json" class="bot__import">
+        <img 
+          src="./bots/imgs/box.png"
+          width="798"
+          height="798"
+          alt=""
+        >
+      </a>
+      <a href="./bots/e.json" class="bot__import">
+        <img 
+          src="./bots/imgs/e.png"
+          width="798"
+          height="798"
+          alt=""
+        >
+      </a>
+      <a href="./bots/e_fat.json" class="bot__import">
+        <img 
+          src="./bots/imgs/e_fat.png"
+          width="798"
+          height="798"
+          alt=""
+        >
+      </a>
+      <a href="./bots/stickman.json" class="bot__import">
+        <img 
+          src="./bots/imgs/stickman.png"
+          width="798"
+          height="798"
+          alt=""
+        >
+      </a>
+    </div>
+
+    <h1>Debug information</h1>
+    <output id="state_info"></output>
+  </aside>
+
+  <script src="./js/utils/utils.js" defer></script>
+
+  <script src="./js/build/build.js" defer></script>
+
+  <script src="./js/train/reinforce.js" defer></script>
+  <script src="./js/train/vector.js" defer></script>
+  <script src="./js/train/softbody.js" defer></script>
+  <script src="./js/train/softbot.js" defer></script>
+  <script src="./js/train/train.js" defer></script>
+
+  <script src="./js/main.js" defer></script>
+</body>
+</html>

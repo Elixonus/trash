@@ -1,0 +1,150 @@
+* {
+  font-family: 'Roboto';
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: max(8rem, 6vw) 1fr max(12rem, 10vw);
+  grid-template-rows: 4rem 1fr;
+  gap: 1rem;
+  /* align-items: center; */
+  justify-items: center;
+  background-color: #eeeeee;
+  padding: 1rem;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.state__btn {
+  display: grid;
+}
+
+.state__btn input {
+  appearance: none;
+  grid-area: 1 / 1;
+  margin: 0;
+  border: none;
+  background: none;
+}
+
+.btn {
+  font-size: .7rem;
+  padding: 1rem;
+  background-color: #FFF;
+  display: inline-block;
+  border-radius: .2rem;
+  transition: .4s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+  grid-area: 1 / 1;
+  text-align: center;
+  font-family: 'Press Start 2P';
+  border: 2px solid #000;
+  text-transform: uppercase;
+}
+
+.btn:hover, .btn:focus {
+  background-color: #b9b9b9;
+}
+
+input:checked + .btn {
+  background-color: #000;
+  color: #fff;
+}
+
+#bots__wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.bot__import {
+  width: calc(50% - .5rem);
+  display: block;
+  border-radius: .2rem;
+  border: 2px solid #000;
+}
+
+.bot__import:hover {
+  opacity: 0.6;
+}
+
+.bot__import img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.state__btns {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  flex-direction: column;
+  grid-row-end: span 2;
+  justify-content: center;
+}
+
+.view__btns {
+  display: flex;
+  gap: .4rem;
+  justify-content: center;
+  padding: .4rem;
+  align-items: center;
+}
+
+#state_info {
+  white-space: pre-wrap;
+}
+
+#canvas__wrap {
+  position: relative;
+  grid-area: 2 / 2;
+}
+
+#canvas__wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0px 0px 45px 21px rgba(0,0,0,.3);
+  pointer-events: none;
+}
+
+#canvas {
+  /* width: 100%; */
+  height: 100%;
+  border: 1px solid #000;
+  height: calc(100vh - 7rem);
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
+#test {
+  height: 1px;
+  width: 1px;
+  grid-area: 2 / 2;
+  align-self: center;
+  justify-self: center;
+  background-color: #f00;
+}
+
+
+#export_bot, #import_bot_lab {
+  width: 100%;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+#import_bot {
+  display: none;
+}

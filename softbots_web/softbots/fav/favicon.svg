@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260">
+<def>
+	<style>
+	.line { 
+		stroke: #000;
+		stroke-miterlimit: 10;
+		stroke-width: 9px;
+	}
+	@media (prefers-color-scheme: dark) {
+		.line { stroke: #DDD; }
+	}
+</style>
+</def>
+	<path class="line" style="stroke-width:22px" d="m73.166 45.594 138.855 101.934"/>
+	<path class="line" style="stroke:red;" d="m73.166 45.594 138.855 101.934"/>
+	<path class="line" d="m54.326 216.803 18.84-171.209"/>
+	<circle class="line" cx="54.326" cy="216.803" r="30.573" style="fill:#fff"/>
+	<circle class="line" cx="212.021" cy="147.528" r="30.573" style="fill:#fff"/>
+	<circle class="line" cx="73.166" cy="45.594" r="30.573" style="fill:#fff"/>
+</svg>
