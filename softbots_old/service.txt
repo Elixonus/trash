@@ -1,0 +1,58 @@
+GOALS
+=====
+Travel most to the right in one iteration.
+
+TERRAINS
+========
+Flat/rocky (depending on smoothing factor).
+
+NEURAL NETWORK
+==============
+Input data should not include terrain parameters such as smoothing factor as the goal is to 
+test softbots on different untrained terrains.
+Significance of input neurons should not change with terrain change.
+
+API
+===
+POST    softbots/bot - To create a bot and return the bid.
+GET     softbots/bot/:bid - To get a bot with bid.
+DELETE  softbots/bot/:bid - To delete a bot with bid and associated models.
+POST    softbots/bot/:bid/node?m&x&y
+PUT     softbots/bot/:bid/node/:nid?m&x&y
+GET     softbots/bot/:bid/node/:nid
+DELETE  softbots/bot/:bid/node/:nid
+POST    softbots/bot/:bid/link?n1&n2&l&s&d
+PUT     softbots/bot/:bid/link/:lid?n1&n2&l&s&d
+GET     softbots/bot/:bid/link/:lid
+DELETE  softbots/bot/:bid/link/:lid
+POST    softbots/bot/:bid/model - To create a model and return the mid.
+PUT     softbots/bot/:bid/model/:mid?lr - To train and save a model with mid and input of training parameters.
+GET     softbots/bot/:bid/model/:mid - To get a model with mid.
+DELETE  softbots/bot/:bid/model/:mid - To delete a bot with mid.
+
+STORAGE
+=======
+In each bot folder there is bot.json which contains the nodes and links data.
+In each model folder there is model.json which gives what scenario the corresponding bot was trained on
+as well as the bot id of the current model. As well as the pytorch saved model.
+
+softbots/
+  bots/
+    B098324232/
+      nodes/
+        N120938235
+      links/
+        L140983244
+      models/
+        M123902355/
+          model.json
+          model.pt
+        M143209832/
+          model.json
+          model.pt
+    B235987425/
+      nodes/
+        N130928423
+    B129304832/
+      nodes/
+        N120981340

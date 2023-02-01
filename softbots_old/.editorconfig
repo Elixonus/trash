@@ -1,0 +1,8 @@
+[*]
+indent_style = space
+
+[*.{py,txt}]
+tab_width = 4
+
+[*.{js,html}]
+tab_width = 2
