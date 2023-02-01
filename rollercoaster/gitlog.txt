@@ -1,0 +1,984 @@
+commit 639782a86de53356e02d59bc9c11a20c1e7f5091
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Jan 14 19:03:03 2023 -0800
+
+    Update screenshot.png
+
+diff --git a/screenshot.png b/screenshot.png
+index 3fd0384..3219eef 100644
+Binary files a/screenshot.png and b/screenshot.png differ
+
+commit 4e952bdc0fcfde590ce60ebf02dd3487414758ec
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Aug 15 16:23:26 2022 +0200
+
+    removed unnecessary code
+
+diff --git a/rollercoaster/rollercoaster.js b/rollercoaster/rollercoaster.js
+index 0c9ee75..88dc60f 100644
+--- a/rollercoaster/rollercoaster.js
++++ b/rollercoaster/rollercoaster.js
+@@ -92,10 +92,7 @@ function calculate()
+         }
+         
+         var v = Math.sqrt(2 * 9.88 * Math.abs(y - rails[0][1]));
+-        var a = Math.atan2(ry - rails[n - 1][1], rx - rails[n - 1][0]);
+-        var vx = v * Math.cos(a);
+-        var vy = v * Math.sin(a);
+-        
++        var a = Math.atan2(ry - rails[n - 1][1], rx - rails[n - 1][0]);        
+         break;
+     }
+     
+
+commit 0069781ef50888d747b28f90a99a16542a0da4aa
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Aug 15 16:22:19 2022 +0200
+
+    separated javascript
+
+diff --git a/rollercoaster/index.html b/rollercoaster/index.html
+index 3e5e6f9..fea70b4 100644
+--- a/rollercoaster/index.html
++++ b/rollercoaster/index.html
+@@ -33,7 +33,7 @@
+ 
+ 		    body
+ 			{
+-			    background-color: yellow;
++			    background-color: #ffff00;
+ 			}
+ 			
+             canvas
+@@ -43,23 +43,23 @@
+             
+             #kinetic
+             {
+-                color: red;
++                color: #ff0000;
+             }
+             
+             #potential
+             {
+-                color: blue;
++                color: #0000ff;
+             }
+             
+             #mechanical
+             {
+-                color: green;
++                color: #00ff00;
+             }
+             
+             #velocity
+             {
+-                color: yellow;
+-                background-color: gray;
++                color: #ff0000;
++                background-color: #999999;
+             }
+             
+             .hidden
+@@ -70,174 +70,6 @@
+             
+         </style>
+         
+-        <script>
+-            
+-            var rails1 = [[0, 250], [20, 40], [30, 30], [40, 40], [50, 60], [100, 140], [150, 180], [200, 200], [220, 180], [250, 50], [270, 20], [300, 0], [350, 20], [500, 300]];
+-            var rails2 = [[0, 250], [10, 248], [20, 245], [40, 235], [70, 210], [100, 150], [130, 90], [150, 60], [170, 40], [190, 30], [210, 25], [250, 23], [400, 23], [500, 23]];
+-            var rails3 = [[0, 250], [250, 125], [500, 50]];
+-            
+-            var mass = 10;
+-            var rollerCoaster = document.getElementById("rollerCoaster");
+-            var ctxRollerCoaster = rollerCoaster.getContext("2d");
+-            var rails = rails1;
+-            var bars = document.getElementById("bars");
+-            
+-            var energyGraph = document.getElementById("energyGraph");
+-            var ctxEnergyGraph = energyGraph.getContext("2d");
+-            ctxEnergyGraph.translate(50, 50);
+-            
+-            ctxRollerCoaster.translate(0, 150);
+-            ctxRollerCoaster.scale(1, -1);
+-            ctxRollerCoaster.translate(0, -150);
+-            
+-            function render()
+-            {
+-				var patternBars = ctxRollerCoaster.createPattern(bars, "repeat");
+-                ctxRollerCoaster.fillStyle = "#34aeeb";
+-                ctxRollerCoaster.fillRect(0, 0, 500, 300);
+-                
+-                ctxRollerCoaster.strokeStyle = "#000000";
+-                ctxRollerCoaster.lineWidth = 3;
+-                ctxRollerCoaster.fillStyle = patternBars;
+-                ctxRollerCoaster.beginPath();
+-                ctxRollerCoaster.moveTo(rails[0][0], rails[0][1]);
+-                
+-                for(var n = 1; n < rails.length; n++)
+-                {
+-                    ctxRollerCoaster.lineTo(rails[n][0], rails[n][1]);
+-                }
+-                
+-                ctxRollerCoaster.stroke();
+-                ctxRollerCoaster.lineTo(rails[rails.length - 1][0], 0);
+-                ctxRollerCoaster.lineTo(rails[0][0], 0);
+-                ctxRollerCoaster.closePath();
+-                ctxRollerCoaster.fill();
+-                
+-            }
+-            
+-/*            window.setTimeout(function()
+-            {
+-                render();
+-                
+-                window.setInterval(function()
+-                {
+-                    var parse = parseInt(document.getElementById("x").value);
+-                    
+-                    if(isNaN(parse))
+-                    {
+-                        parse = 0;
+-                    }
+-                    
+-                    document.getElementById("x").value = parse + 1;
+-                    render();
+-                    calculate();
+-                }, 1000 / 30);
+-            }, 2000);*/
+-            
+-            window.onload = function()
+-            {
+-                render();
+-                
+-                window.setInterval(function()
+-                {
+-                    var parse = parseInt(document.getElementById("x").value);
+-                    
+-                    if(isNaN(parse))
+-                    {
+-                        parse = 0;
+-                    }
+-                    
+-                    document.getElementById("x").value = parse + 1;
+-                    render();
+-                    calculate();
+-                }, 1000 / 30);
+-            }
+-            
+-            function calculate()
+-            {
+-                var x = parseInt(document.getElementById("x").value);
+-                
+-                if(x < rails[0][0] || x > rails[rails.length - 1][0])
+-                {
+-                    return;
+-                }
+-                
+-                var y;
+-                
+-                for(var n = 1; n < rails.length; n++)
+-                {
+-                    let rx = rails[n][0];
+-                    let ry = rails[n][1];
+-
+-                    if(x < rx)
+-                    {
+-                        y = interpolateLinear(rails[n - 1][1], ry, (x - rails[n - 1][0]) / (rx - rails[n - 1][0]));
+-                    }
+-                    
+-                    else if(x === rx)
+-                    {
+-                        y = ry;
+-                    }
+-                    
+-                    else
+-                    {
+-                        continue;
+-                    }
+-                    
+-                    var v = Math.sqrt(2 * 9.88 * Math.abs(y - rails[0][1]));
+-                    var a = Math.atan2(ry - rails[n - 1][1], rx - rails[n - 1][0]);
+-                    var vx = v * Math.cos(a);
+-                    var vy = v * Math.sin(a);
+-                    
+-                    break;
+-                }
+-                
+-                var kineticEnergy = Math.round(100 * (mass * Math.pow(v, 2) / 2)) / 100;
+-                var potentialEnergy = Math.round(100 * (mass * 9.88 * y)) / 100;
+-                var mechanicalEnergy = kineticEnergy + potentialEnergy;
+-                
+-                document.getElementById("kinetic").innerHTML = "Kinetic Energy = 1/2 * mv^2 = " + kineticEnergy + "J";
+-                document.getElementById("potential").innerHTML = "Potential Energy = mgh = " + potentialEnergy + "J";
+-                document.getElementById("mechanical").innerHTML = "Mechanical Energy = Kinetic Energy + Potential Energy = " + mechanicalEnergy + "J";
+-                document.getElementById("velocity").innerHTML = "Velocity = " + Math.round(100 * v) / 100 + " m/s";
+-                
+-				ctxEnergyGraph.fillStyle = "#ffffff";
+-				ctxEnergyGraph.fillRect(-energyGraph.width / 2, -energyGraph.width / 2, energyGraph.width, energyGraph.height);
+-                ctxEnergyGraph.fillStyle = "#ff0000";
+-                ctxEnergyGraph.beginPath();
+-                ctxEnergyGraph.arc(0, 0, 50, 0, 2 * Math.PI * (kineticEnergy / mechanicalEnergy));
+-                ctxEnergyGraph.lineTo(0, 0);
+-                ctxEnergyGraph.fill();
+-                
+-                ctxEnergyGraph.fillStyle = "#0000ff";
+-                ctxEnergyGraph.beginPath();
+-                ctxEnergyGraph.arc(0, 0, 50, 2 * Math.PI * (kineticEnergy / mechanicalEnergy), 2 * Math.PI);
+-                ctxEnergyGraph.lineTo(0, 0);
+-                ctxEnergyGraph.fill();
+-                
+-                render();
+-                ctxRollerCoaster.fillStyle = "#ff0000";
+-                ctxRollerCoaster.fillRect(x - 5, y - 5, 10, 10);
+-                
+-                ctxRollerCoaster.strokeStyle = "#ffff00";
+-                ctxRollerCoaster.beginPath();
+-                ctxRollerCoaster.translate(x, y);
+-                ctxRollerCoaster.rotate(a);
+-                ctxRollerCoaster.moveTo(0, 0);
+-                ctxRollerCoaster.lineTo(v, 0);
+-                ctxRollerCoaster.lineTo(v - 10, -10);
+-                ctxRollerCoaster.lineTo(v, 0);
+-                ctxRollerCoaster.lineTo(v - 10, 10);
+-                ctxRollerCoaster.stroke();
+-                ctxRollerCoaster.rotate(-a);
+-                ctxRollerCoaster.translate(-x, -y);
+-            }
+-            
+-            function interpolateLinear(startingValue, endingValue, t)
+-            {
+-                return (startingValue + (endingValue - startingValue) * t);
+-            }
+-            
+-        </script>
++        <script src="./rollercoaster.js"></script>
+     </body>
+ </html>
+\ No newline at end of file
+diff --git a/rollercoaster/rollercoaster.js b/rollercoaster/rollercoaster.js
+new file mode 100644
+index 0000000..0c9ee75
+--- /dev/null
++++ b/rollercoaster/rollercoaster.js
+@@ -0,0 +1,146 @@
++var rails1 = [[0, 250], [20, 40], [30, 30], [40, 40], [50, 60], [100, 140], [150, 180], [200, 200], [220, 180], [250, 50], [270, 20], [300, 0], [350, 20], [500, 300]];
++var rails2 = [[0, 250], [10, 248], [20, 245], [40, 235], [70, 210], [100, 150], [130, 90], [150, 60], [170, 40], [190, 30], [210, 25], [250, 23], [400, 23], [500, 23]];
++var rails3 = [[0, 250], [250, 125], [500, 50]];
++
++var mass = 10;
++var rollerCoaster = document.getElementById("rollerCoaster");
++var ctxRollerCoaster = rollerCoaster.getContext("2d");
++var rails = rails1;
++var bars = document.getElementById("bars");
++
++var energyGraph = document.getElementById("energyGraph");
++var ctxEnergyGraph = energyGraph.getContext("2d");
++ctxEnergyGraph.translate(50, 50);
++
++ctxRollerCoaster.translate(0, 150);
++ctxRollerCoaster.scale(1, -1);
++ctxRollerCoaster.translate(0, -150);
++
++function render()
++{
++    var patternBars = ctxRollerCoaster.createPattern(bars, "repeat");
++    ctxRollerCoaster.fillStyle = "#34aeeb";
++    ctxRollerCoaster.fillRect(0, 0, 500, 300);
++    
++    ctxRollerCoaster.strokeStyle = "#000000";
++    ctxRollerCoaster.lineWidth = 3;
++    ctxRollerCoaster.fillStyle = patternBars;
++    ctxRollerCoaster.beginPath();
++    ctxRollerCoaster.moveTo(rails[0][0], rails[0][1]);
++    
++    for(var n = 1; n < rails.length; n++)
++    {
++        ctxRollerCoaster.lineTo(rails[n][0], rails[n][1]);
++    }
++    
++    ctxRollerCoaster.stroke();
++    ctxRollerCoaster.lineTo(rails[rails.length - 1][0], 0);
++    ctxRollerCoaster.lineTo(rails[0][0], 0);
++    ctxRollerCoaster.closePath();
++    ctxRollerCoaster.fill();
++    
++}
++
++window.onload = function()
++{
++    render();
++    
++    window.setInterval(function()
++    {
++        var parse = parseInt(document.getElementById("x").value);
++        
++        if(isNaN(parse))
++        {
++            parse = 0;
++        }
++        
++        document.getElementById("x").value = parse + 1;
++        render();
++        calculate();
++    }, 1000 / 30);
++}
++
++function calculate()
++{
++    var x = parseInt(document.getElementById("x").value);
++    
++    if(x < rails[0][0] || x > rails[rails.length - 1][0])
++    {
++        return;
++    }
++    
++    var y;
++    
++    for(var n = 1; n < rails.length; n++)
++    {
++        let rx = rails[n][0];
++        let ry = rails[n][1];
++
++        if(x < rx)
++        {
++            y = interpolateLinear(rails[n - 1][1], ry, (x - rails[n - 1][0]) / (rx - rails[n - 1][0]));
++        }
++        
++        else if(x === rx)
++        {
++            y = ry;
++        }
++        
++        else
++        {
++            continue;
++        }
++        
++        var v = Math.sqrt(2 * 9.88 * Math.abs(y - rails[0][1]));
++        var a = Math.atan2(ry - rails[n - 1][1], rx - rails[n - 1][0]);
++        var vx = v * Math.cos(a);
++        var vy = v * Math.sin(a);
++        
++        break;
++    }
++    
++    var kineticEnergy = Math.round(100 * (mass * Math.pow(v, 2) / 2)) / 100;
++    var potentialEnergy = Math.round(100 * (mass * 9.88 * y)) / 100;
++    var mechanicalEnergy = kineticEnergy + potentialEnergy;
++    
++    document.getElementById("kinetic").innerHTML = "Kinetic Energy = 1/2 * mv^2 = " + kineticEnergy + "J";
++    document.getElementById("potential").innerHTML = "Potential Energy = mgh = " + potentialEnergy + "J";
++    document.getElementById("mechanical").innerHTML = "Mechanical Energy = Kinetic Energy + Potential Energy = " + mechanicalEnergy + "J";
++    document.getElementById("velocity").innerHTML = "Velocity = " + Math.round(100 * v) / 100 + " m/s";
++    
++    ctxEnergyGraph.fillStyle = "#ffffff";
++    ctxEnergyGraph.fillRect(-energyGraph.width / 2, -energyGraph.width / 2, energyGraph.width, energyGraph.height);
++    ctxEnergyGraph.fillStyle = "#ff0000";
++    ctxEnergyGraph.beginPath();
++    ctxEnergyGraph.arc(0, 0, 50, 0, 2 * Math.PI * (kineticEnergy / mechanicalEnergy));
++    ctxEnergyGraph.lineTo(0, 0);
++    ctxEnergyGraph.fill();
++    
++    ctxEnergyGraph.fillStyle = "#0000ff";
++    ctxEnergyGraph.beginPath();
++    ctxEnergyGraph.arc(0, 0, 50, 2 * Math.PI * (kineticEnergy / mechanicalEnergy), 2 * Math.PI);
++    ctxEnergyGraph.lineTo(0, 0);
++    ctxEnergyGraph.fill();
++    
++    render();
++    ctxRollerCoaster.fillStyle = "#ff0000";
++    ctxRollerCoaster.fillRect(x - 5, y - 5, 10, 10);
++    
++    ctxRollerCoaster.strokeStyle = "#ffff00";
++    ctxRollerCoaster.beginPath();
++    ctxRollerCoaster.translate(x, y);
++    ctxRollerCoaster.rotate(a);
++    ctxRollerCoaster.moveTo(0, 0);
++    ctxRollerCoaster.lineTo(v, 0);
++    ctxRollerCoaster.lineTo(v - 10, -10);
++    ctxRollerCoaster.lineTo(v, 0);
++    ctxRollerCoaster.lineTo(v - 10, 10);
++    ctxRollerCoaster.stroke();
++    ctxRollerCoaster.rotate(-a);
++    ctxRollerCoaster.translate(-x, -y);
++}
++
++function interpolateLinear(startingValue, endingValue, t)
++{
++    return (startingValue + (endingValue - startingValue) * t);
++}
+
+commit 8cba76f3078de11c5f541ef8a0598d12d638bb8b
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Aug 13 20:59:06 2022 +0200
+
+    added favicon
+
+diff --git a/rollercoaster/favicon.ico b/rollercoaster/favicon.ico
+new file mode 100644
+index 0000000..49a9bb4
+Binary files /dev/null and b/rollercoaster/favicon.ico differ
+diff --git a/rollercoaster/index.html b/rollercoaster/index.html
+index dcf312f..3e5e6f9 100644
+--- a/rollercoaster/index.html
++++ b/rollercoaster/index.html
+@@ -1,7 +1,10 @@
+ <!DOCTYPE HTML>
+-<html>
++<html lang="en">
+     <head>
++        <meta charset="utf-8"/>
++        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <title>Roller Coaster!</title>
++        <link rel="icon" type="image/x-icon" href="./favicon.ico">
+     </head>
+     
+     <body>
+
+commit 6e4607ae09cf9ab777dee91d337feec9db28387f
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Aug 9 19:16:35 2022 +0200
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index 08a8bc9..7141081 100644
+--- a/README.md
++++ b/README.md
+@@ -1,4 +1,4 @@
+-# rollercoasterJS
++# rollercoaster
+ Simple kinematics simulation with conversion between kinetic and potential energy.
+ 
+ ![Screenshot](screenshot.png)
+
+commit 46f199657bc3e505599a12c05b6e03c5f111918b
+Author: Daxonus <elias@dobrin.net>
+Date:   Wed Jun 22 10:59:09 2022 -0700
+
+    update file structure
+
+diff --git a/bars.jpg b/rollercoaster/bars.jpg
+similarity index 100%
+rename from bars.jpg
+rename to rollercoaster/bars.jpg
+diff --git a/index.html b/rollercoaster/index.html
+similarity index 100%
+rename from index.html
+rename to rollercoaster/index.html
+
+commit 8875183c388b23d20c90bd09da99d851014aa8db
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 11:41:08 2022 -0700
+
+    Update index.html
+
+diff --git a/index.html b/index.html
+index ab5cec2..dcf312f 100644
+--- a/index.html
++++ b/index.html
+@@ -18,10 +18,16 @@
+         <br>
+         <canvas id="rollerCoaster" width="500" height="300"></canvas>
+         
+-        <img id="bars" class="hidden" src="./bars.jpg">
++        <img id="bars" class="hidden" src="bars.jpg">
+         
+         <style>
+-		
++
++            *
++            {
++                margin: 0;
++                padding: 0;
++            }
++
+ 		    body
+ 			{
+ 			    background-color: yellow;
+@@ -56,6 +62,7 @@
+             .hidden
+             {
+                 visibility: hidden;
++                pointer-events: none;
+             }
+             
+         </style>
+
+commit 61810eb30b427c363940d6e4b0d3623f52b3a437
+Author: Elixonus <elias@dobrin.net>
+Date:   Wed May 11 13:35:07 2022 -0700
+
+    Update LICENSE
+
+diff --git a/LICENSE b/LICENSE
+index 9fe37c5..3d0d604 100644
+--- a/LICENSE
++++ b/LICENSE
+@@ -1,6 +1,6 @@
+ MIT License
+ 
+-Copyright (c) 2022 Elias Dobrin
++Copyright (c) 2020 Elias Dobrin
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+
+commit ab0d3ddef63bf938cc1bbc31969651614a82c533
+Author: Elixonus <elias@dobrin.net>
+Date:   Fri May 6 18:53:57 2022 -0700
+
+    Create LICENSE
+
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..9fe37c5
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2022 Elias Dobrin
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
+
+commit bcc3bebb2338c8729994f93d28eb260053beae95
+Author: Elixonus <elias@dobrin.net>
+Date:   Fri May 6 18:53:20 2022 -0700
+
+    Create README.md
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..08a8bc9
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,4 @@
++# rollercoasterJS
++Simple kinematics simulation with conversion between kinetic and potential energy.
++
++![Screenshot](screenshot.png)
+
+commit 02dcf05ceca207d9bbfbd496be2258400009bfe0
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 6 18:52:49 2022 -0700
+
+    Create screenshot.png
+
+diff --git a/screenshot.png b/screenshot.png
+new file mode 100644
+index 0000000..3fd0384
+Binary files /dev/null and b/screenshot.png differ
+
+commit a57629db0d2dd7726da2264dba8002d62832c7ea
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 6 18:52:39 2022 -0700
+
+    Delete screenshot.PNG
+
+diff --git a/screenshot.PNG b/screenshot.PNG
+deleted file mode 100644
+index 3fd0384..0000000
+Binary files a/screenshot.PNG and /dev/null differ
+
+commit 35aa764caec55f9d5d49c26c0cd1d12aab349e42
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 6 18:50:19 2022 -0700
+
+    Create screenshot.PNG
+
+diff --git a/screenshot.PNG b/screenshot.PNG
+new file mode 100644
+index 0000000..3fd0384
+Binary files /dev/null and b/screenshot.PNG differ
+
+commit e81cb17d734d83906f4eb3c9e676bb6fd8f99aa1
+Author: Elias <elias@dobrin.net>
+Date:   Fri Apr 29 15:16:31 2022 -0700
+
+    fixed some display bugs
+
+diff --git a/index.php b/index.html
+similarity index 96%
+rename from index.php
+rename to index.html
+index 5814af2..ab5cec2 100644
+--- a/index.php
++++ b/index.html
+@@ -21,7 +21,12 @@
+         <img id="bars" class="hidden" src="./bars.jpg">
+         
+         <style>
+-            
++		
++		    body
++			{
++			    background-color: yellow;
++			}
++			
+             canvas
+             {
+                 border-style: solid;
+@@ -66,7 +71,6 @@
+             var ctxRollerCoaster = rollerCoaster.getContext("2d");
+             var rails = rails1;
+             var bars = document.getElementById("bars");
+-            var patternBars = ctxRollerCoaster.createPattern(bars, "repeat");
+             
+             var energyGraph = document.getElementById("energyGraph");
+             var ctxEnergyGraph = energyGraph.getContext("2d");
+@@ -78,6 +82,7 @@
+             
+             function render()
+             {
++				var patternBars = ctxRollerCoaster.createPattern(bars, "repeat");
+                 ctxRollerCoaster.fillStyle = "#34aeeb";
+                 ctxRollerCoaster.fillRect(0, 0, 500, 300);
+                 
+@@ -186,6 +191,8 @@
+                 document.getElementById("mechanical").innerHTML = "Mechanical Energy = Kinetic Energy + Potential Energy = " + mechanicalEnergy + "J";
+                 document.getElementById("velocity").innerHTML = "Velocity = " + Math.round(100 * v) / 100 + " m/s";
+                 
++				ctxEnergyGraph.fillStyle = "#ffffff";
++				ctxEnergyGraph.fillRect(-energyGraph.width / 2, -energyGraph.width / 2, energyGraph.width, energyGraph.height);
+                 ctxEnergyGraph.fillStyle = "#ff0000";
+                 ctxEnergyGraph.beginPath();
+                 ctxEnergyGraph.arc(0, 0, 50, 0, 2 * Math.PI * (kineticEnergy / mechanicalEnergy));
+
+commit 9890377ce75b0351ffa8ed370fff4100507b81dc
+Author: Elias <elias@dobrin.net>
+Date:   Thu Oct 29 17:46:44 2020 -0700
+
+    added velocity indicator
+
+diff --git a/index.php b/index.php
+index 456e61e..5814af2 100644
+--- a/index.php
++++ b/index.php
+@@ -14,6 +14,7 @@
+         <h2 id="potential"></h2>
+         <canvas id="energyGraph" width="100" height="100"></canvas>
+         <h2 id="mechanical"></h2>
++        <h2 id="velocity"></h2>
+         <br>
+         <canvas id="rollerCoaster" width="500" height="300"></canvas>
+         
+@@ -41,6 +42,12 @@
+                 color: green;
+             }
+             
++            #velocity
++            {
++                color: yellow;
++                background-color: gray;
++            }
++            
+             .hidden
+             {
+                 visibility: hidden;
+@@ -50,10 +57,14 @@
+         
+         <script>
+             
++            var rails1 = [[0, 250], [20, 40], [30, 30], [40, 40], [50, 60], [100, 140], [150, 180], [200, 200], [220, 180], [250, 50], [270, 20], [300, 0], [350, 20], [500, 300]];
++            var rails2 = [[0, 250], [10, 248], [20, 245], [40, 235], [70, 210], [100, 150], [130, 90], [150, 60], [170, 40], [190, 30], [210, 25], [250, 23], [400, 23], [500, 23]];
++            var rails3 = [[0, 250], [250, 125], [500, 50]];
++            
+             var mass = 10;
+             var rollerCoaster = document.getElementById("rollerCoaster");
+             var ctxRollerCoaster = rollerCoaster.getContext("2d");
+-            var rails = [[10, 250], [30, 30], [50, 60], [100, 140], [200, 200], [300, 0], [500, 300]];
++            var rails = rails1;
+             var bars = document.getElementById("bars");
+             var patternBars = ctxRollerCoaster.createPattern(bars, "repeat");
+             
+@@ -89,7 +100,26 @@
+                 
+             }
+             
+-            window.setTimeout(function()
++/*            window.setTimeout(function()
++            {
++                render();
++                
++                window.setInterval(function()
++                {
++                    var parse = parseInt(document.getElementById("x").value);
++                    
++                    if(isNaN(parse))
++                    {
++                        parse = 0;
++                    }
++                    
++                    document.getElementById("x").value = parse + 1;
++                    render();
++                    calculate();
++                }, 1000 / 30);
++            }, 2000);*/
++            
++            window.onload = function()
+             {
+                 render();
+                 
+@@ -106,7 +136,7 @@
+                     render();
+                     calculate();
+                 }, 1000 / 30);
+-            }, 1000);
++            }
+             
+             function calculate()
+             {
+@@ -154,6 +184,7 @@
+                 document.getElementById("kinetic").innerHTML = "Kinetic Energy = 1/2 * mv^2 = " + kineticEnergy + "J";
+                 document.getElementById("potential").innerHTML = "Potential Energy = mgh = " + potentialEnergy + "J";
+                 document.getElementById("mechanical").innerHTML = "Mechanical Energy = Kinetic Energy + Potential Energy = " + mechanicalEnergy + "J";
++                document.getElementById("velocity").innerHTML = "Velocity = " + Math.round(100 * v) / 100 + " m/s";
+                 
+                 ctxEnergyGraph.fillStyle = "#ff0000";
+                 ctxEnergyGraph.beginPath();
+
+commit 5cf01670bf55136c577bc44750eca7fefde93654
+Author: Elias <elias@dobrin.net>
+Date:   Wed Oct 28 12:27:45 2020 -0700
+
+    first roller coaster version
+
+diff --git a/bars.jpg b/bars.jpg
+new file mode 100644
+index 0000000..49241d6
+Binary files /dev/null and b/bars.jpg differ
+diff --git a/index.php b/index.php
+new file mode 100644
+index 0000000..456e61e
+--- /dev/null
++++ b/index.php
+@@ -0,0 +1,195 @@
++<!DOCTYPE HTML>
++<html>
++    <head>
++        <title>Roller Coaster!</title>
++    </head>
++    
++    <body>
++        <h2>Find kinetic and potential energy (J) at x= (meter)</h2>
++        <input id="x" type="number">
++        <button type="button" onclick="calculate();">Calculate!</button>
++        <br>
++        <h2>Calculation:</h2>
++        <h2 id="kinetic"></h2>
++        <h2 id="potential"></h2>
++        <canvas id="energyGraph" width="100" height="100"></canvas>
++        <h2 id="mechanical"></h2>
++        <br>
++        <canvas id="rollerCoaster" width="500" height="300"></canvas>
++        
++        <img id="bars" class="hidden" src="./bars.jpg">
++        
++        <style>
++            
++            canvas
++            {
++                border-style: solid;
++            }
++            
++            #kinetic
++            {
++                color: red;
++            }
++            
++            #potential
++            {
++                color: blue;
++            }
++            
++            #mechanical
++            {
++                color: green;
++            }
++            
++            .hidden
++            {
++                visibility: hidden;
++            }
++            
++        </style>
++        
++        <script>
++            
++            var mass = 10;
++            var rollerCoaster = document.getElementById("rollerCoaster");
++            var ctxRollerCoaster = rollerCoaster.getContext("2d");
++            var rails = [[10, 250], [30, 30], [50, 60], [100, 140], [200, 200], [300, 0], [500, 300]];
++            var bars = document.getElementById("bars");
++            var patternBars = ctxRollerCoaster.createPattern(bars, "repeat");
++            
++            var energyGraph = document.getElementById("energyGraph");
++            var ctxEnergyGraph = energyGraph.getContext("2d");
++            ctxEnergyGraph.translate(50, 50);
++            
++            ctxRollerCoaster.translate(0, 150);
++            ctxRollerCoaster.scale(1, -1);
++            ctxRollerCoaster.translate(0, -150);
++            
++            function render()
++            {
++                ctxRollerCoaster.fillStyle = "#34aeeb";
++                ctxRollerCoaster.fillRect(0, 0, 500, 300);
++                
++                ctxRollerCoaster.strokeStyle = "#000000";
++                ctxRollerCoaster.lineWidth = 3;
++                ctxRollerCoaster.fillStyle = patternBars;
++                ctxRollerCoaster.beginPath();
++                ctxRollerCoaster.moveTo(rails[0][0], rails[0][1]);
++                
++                for(var n = 1; n < rails.length; n++)
++                {
++                    ctxRollerCoaster.lineTo(rails[n][0], rails[n][1]);
++                }
++                
++                ctxRollerCoaster.stroke();
++                ctxRollerCoaster.lineTo(rails[rails.length - 1][0], 0);
++                ctxRollerCoaster.lineTo(rails[0][0], 0);
++                ctxRollerCoaster.closePath();
++                ctxRollerCoaster.fill();
++                
++            }
++            
++            window.setTimeout(function()
++            {
++                render();
++                
++                window.setInterval(function()
++                {
++                    var parse = parseInt(document.getElementById("x").value);
++                    
++                    if(isNaN(parse))
++                    {
++                        parse = 0;
++                    }
++                    
++                    document.getElementById("x").value = parse + 1;
++                    render();
++                    calculate();
++                }, 1000 / 30);
++            }, 1000);
++            
++            function calculate()
++            {
++                var x = parseInt(document.getElementById("x").value);
++                
++                if(x < rails[0][0] || x > rails[rails.length - 1][0])
++                {
++                    return;
++                }
++                
++                var y;
++                
++                for(var n = 1; n < rails.length; n++)
++                {
++                    let rx = rails[n][0];
++                    let ry = rails[n][1];
++
++                    if(x < rx)
++                    {
++                        y = interpolateLinear(rails[n - 1][1], ry, (x - rails[n - 1][0]) / (rx - rails[n - 1][0]));
++                    }
++                    
++                    else if(x === rx)
++                    {
++                        y = ry;
++                    }
++                    
++                    else
++                    {
++                        continue;
++                    }
++                    
++                    var v = Math.sqrt(2 * 9.88 * Math.abs(y - rails[0][1]));
++                    var a = Math.atan2(ry - rails[n - 1][1], rx - rails[n - 1][0]);
++                    var vx = v * Math.cos(a);
++                    var vy = v * Math.sin(a);
++                    
++                    break;
++                }
++                
++                var kineticEnergy = Math.round(100 * (mass * Math.pow(v, 2) / 2)) / 100;
++                var potentialEnergy = Math.round(100 * (mass * 9.88 * y)) / 100;
++                var mechanicalEnergy = kineticEnergy + potentialEnergy;
++                
++                document.getElementById("kinetic").innerHTML = "Kinetic Energy = 1/2 * mv^2 = " + kineticEnergy + "J";
++                document.getElementById("potential").innerHTML = "Potential Energy = mgh = " + potentialEnergy + "J";
++                document.getElementById("mechanical").innerHTML = "Mechanical Energy = Kinetic Energy + Potential Energy = " + mechanicalEnergy + "J";
++                
++                ctxEnergyGraph.fillStyle = "#ff0000";
++                ctxEnergyGraph.beginPath();
++                ctxEnergyGraph.arc(0, 0, 50, 0, 2 * Math.PI * (kineticEnergy / mechanicalEnergy));
++                ctxEnergyGraph.lineTo(0, 0);
++                ctxEnergyGraph.fill();
++                
++                ctxEnergyGraph.fillStyle = "#0000ff";
++                ctxEnergyGraph.beginPath();
++                ctxEnergyGraph.arc(0, 0, 50, 2 * Math.PI * (kineticEnergy / mechanicalEnergy), 2 * Math.PI);
++                ctxEnergyGraph.lineTo(0, 0);
++                ctxEnergyGraph.fill();
++                
++                render();
++                ctxRollerCoaster.fillStyle = "#ff0000";
++                ctxRollerCoaster.fillRect(x - 5, y - 5, 10, 10);
++                
++                ctxRollerCoaster.strokeStyle = "#ffff00";
++                ctxRollerCoaster.beginPath();
++                ctxRollerCoaster.translate(x, y);
++                ctxRollerCoaster.rotate(a);
++                ctxRollerCoaster.moveTo(0, 0);
++                ctxRollerCoaster.lineTo(v, 0);
++                ctxRollerCoaster.lineTo(v - 10, -10);
++                ctxRollerCoaster.lineTo(v, 0);
++                ctxRollerCoaster.lineTo(v - 10, 10);
++                ctxRollerCoaster.stroke();
++                ctxRollerCoaster.rotate(-a);
++                ctxRollerCoaster.translate(-x, -y);
++            }
++            
++            function interpolateLinear(startingValue, endingValue, t)
++            {
++                return (startingValue + (endingValue - startingValue) * t);
++            }
++            
++        </script>
++    </body>
++</html>
+\ No newline at end of file
+
+commit 2523ed5c6935cc621889bf263a897843e7835571
+Author: Elias <elias@dobrin.net>
+Date:   Wed Oct 28 12:26:50 2020 -0700
+
+    Initial commit
+
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000..dfe0770
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,2 @@
++# Auto detect text files and perform LF normalization
++* text=auto
