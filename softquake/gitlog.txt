@@ -1,0 +1,6432 @@
+commit 19db644215967d9ffe5b9946bbbab3e850fc96fd
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Mar 13 17:30:32 2023 -0700
+
+    Update style.css
+
+diff --git a/softquake/style.css b/softquake/style.css
+index 1a135d6..e5c7979 100644
+--- a/softquake/style.css
++++ b/softquake/style.css
+@@ -2,61 +2,53 @@ body
+ {
+     display: flex;
+     margin: 0;
+-    padding: 50px 0;
++    padding: 25px 0;
+     text-align: center;
+-    background-color: #421;
+ }
+ 
+ .section
+ {
+-    margin: 5px;
++    margin: 0;
+     padding: 5px;
+-    background-color: #0f0;
+-    border: 10px solid #000;
+ }
+ 
+ .group
+ {
+-    margin: 5px;
++    margin: 0;
+     padding: 5px;
+-    background-color: #00f;
+-    border: 5px solid #000;
+ }
+ 
+ .panel
+ {
+     display: inline-block;
+-    margin: 10px;
++    margin: 0;
+     padding: 5px;
+-    background-color: #000;
+-    color: #fff;
+ }
+ 
+ .content
+ {
+-    margin: 5px;
+-    padding: 10px;
+-    background-color: #fff;
++    margin: 0;
++    padding: 5px;
+ }
+ 
+ .heading
+ {
+     margin: 5px;
+-    padding: 5px;
++    padding: 0;
++    text-decoration: underline;
+ }
+ 
+ .label
+ {
+     margin: 5px;
+-    padding: 5px;
++    padding: 0;
+ }
+ 
+ .button
+ {
+     display: inline-block;
+-    padding: 6px 14px;
+-    background-color: #000;
+-    color: #fff;
++    margin: 0;
++    padding: auto;
+     cursor: pointer;
+ }
+ 
+@@ -77,9 +69,13 @@ body
+ 
+ #main
+ {
+-    max-width: 700px;
++    max-width: 800px;
+     margin: 0 auto;
+-    padding: 10px;
+-    border: 15px solid #000;
+-    background-color: #fff;
++    padding: 0;
++}
++
++#title
++{
++    margin: 10px;
++    padding: 0;
+ }
+
+commit 31eb0738c1324b1abebc1b7fb440a3d069ba6377
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 12 18:00:19 2023 -0700
+
+    Updated button panel styling.
+
+diff --git a/softquake/style.css b/softquake/style.css
+index df275fa..1a135d6 100644
+--- a/softquake/style.css
++++ b/softquake/style.css
+@@ -2,7 +2,7 @@ body
+ {
+     display: flex;
+     margin: 0;
+-    padding: 75px 0;
++    padding: 50px 0;
+     text-align: center;
+     background-color: #421;
+ }
+@@ -28,14 +28,15 @@ body
+     display: inline-block;
+     margin: 10px;
+     padding: 5px;
+-    background-color: #eee;
++    background-color: #000;
++    color: #fff;
+ }
+ 
+ .content
+ {
+     margin: 5px;
+     padding: 10px;
+-    background-color: #ddd;
++    background-color: #fff;
+ }
+ 
+ .heading
+@@ -50,6 +51,21 @@ body
+     padding: 5px;
+ }
+ 
++.button
++{
++    display: inline-block;
++    padding: 6px 14px;
++    background-color: #000;
++    color: #fff;
++    cursor: pointer;
++}
++
++.button:disabled
++{
++    opacity: 0.2;
++    cursor: default;
++}
++
+ .canvas
+ {
+     width: 100%;
+@@ -61,7 +77,7 @@ body
+ 
+ #main
+ {
+-    max-width: 800px;
++    max-width: 700px;
+     margin: 0 auto;
+     padding: 10px;
+     border: 15px solid #000;
+
+commit b4dab59b92109e36922673da17383f9d47f79561
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 12 17:54:43 2023 -0700
+
+    Updated style of the application interface a lot.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index b386568..8d824da 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -23,7 +23,6 @@
+                         </div>
+                     </div>
+                 </div>
+-                <br>
+             </div>
+             <div class="section">
+                 <h2 class="heading">Softbody</h2>
+@@ -90,7 +89,6 @@
+                     </div>
+                 </div>
+             </div>
+-            <br>
+             <!--<canvas width="800" height="200" id="canvas-spos"></canvas>-->
+         </div>
+ 
+diff --git a/softquake/script.js b/softquake/script.js
+index b20f4f1..e41eae0 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -238,24 +238,9 @@ function doView()
+         ctxXray.moveTo(lnk.nod1.pos.x, lnk.nod1.pos.y);
+         ctxXray.lineTo(lnk.nod2.pos.x, lnk.nod2.pos.y);
+ 
+-        ctxXray.lineWidth = 0.1 * (lnk.rlen / len);
+-        ctxXray.strokeStyle = "#000";
+-        ctxXray.stroke();
+-
+         ctxXray.lineWidth = 0.05 * (lnk.rlen / len);
+-
+-        if(len < (1 - 0.05) * lnk.rlen)
+-        {
+-            ctxXray.strokeStyle = "#f00";
+-        }
+-
+-        else if(len > (1 + 0.05) * lnk.rlen)
+-        {
+-            ctxXray.strokeStyle = "#00f";
+-        }
+-
++        ctxXray.strokeStyle = "#000";
+         ctxXray.stroke();
+-
+     }
+ 
+     for(let n = 0; n < nods.length; n++)
+@@ -279,7 +264,6 @@ function doView()
+ 
+         ctxXray.translate(lod.nod.pos.x, lod.nod.pos.y);
+         ctxXray.rotate(Math.atan2(lod.frc.y, lod.frc.x));
+-        ctxXray.translate(-0.2, 0);
+ 
+         ctxXray.beginPath();
+         ctxXray.moveTo(0, 0);
+@@ -336,7 +320,7 @@ function setTimeStop()
+ function setDmpLow()
+ {
+     dmp = 1;
+-    setLab(); 
++    setLab();
+ }
+ 
+ function setDmpMed()
+@@ -389,6 +373,8 @@ function setAmpHigh()
+ 
+ function setLab()
+ {
++    time = 0;
++
+     if(frq === 1)
+     {
+         sins[0].frq = 0.2;
+@@ -540,7 +526,7 @@ function setLab()
+ 
+     for(let x = 0; x < (4 - 1); x++)
+     {
+-        for(let y = x % 2; y < (8 - 1); y += 2)
++        for(let y = 0; y < (8 - 1); y++)
+         {
+             let nod1 = nods[8 * x + y];
+             let nod2 = nods[8 * (x + 1) + (y + 1)];
+@@ -557,25 +543,6 @@ function setLab()
+         }
+     }
+ 
+-    for(let x = 0; x < (4 - 1); x++)
+-    {
+-        for(let y = (x + 1) % 2; y < (8 - 1); y += 2)
+-        {
+-            let nod1 = nods[8 * (x + 1) + y];
+-            let nod2 = nods[8 * x + (y + 1)];
+-
+-            let lnk = {
+-                nod1: nod1,
+-                nod2: nod2,
+-                rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-                cstf: 5000,
+-                cdmp: cdmp
+-            };
+-
+-            lnks.push(lnk);
+-        }
+-    }
+-
+     pins = [];
+ 
+     for(let x = 0; x < 4; x++)
+diff --git a/softquake/style.css b/softquake/style.css
+index 759a3f7..df275fa 100644
+--- a/softquake/style.css
++++ b/softquake/style.css
+@@ -1,32 +1,53 @@
+-*
+-{
+-    margin: 0;
+-    padding: 0;
+-}
+-
+ body
+ {
++    display: flex;
+     margin: 0;
+-    padding: 0;
++    padding: 75px 0;
++    text-align: center;
+     background-color: #421;
+ }
+ 
+ .section
+ {
+-    display: inline-block;
+-    background-color: #eee;
++    margin: 5px;
++    padding: 5px;
++    background-color: #0f0;
++    border: 10px solid #000;
+ }
+ 
+ .group
+ {
+-    display: inline-block;
+-    background-color: #eee;
++    margin: 5px;
++    padding: 5px;
++    background-color: #00f;
++    border: 5px solid #000;
+ }
+ 
+ .panel
+ {
+     display: inline-block;
+-    background-color: #00f;
++    margin: 10px;
++    padding: 5px;
++    background-color: #eee;
++}
++
++.content
++{
++    margin: 5px;
++    padding: 10px;
++    background-color: #ddd;
++}
++
++.heading
++{
++    margin: 5px;
++    padding: 5px;
++}
++
++.label
++{
++    margin: 5px;
++    padding: 5px;
+ }
+ 
+ .canvas
+@@ -42,6 +63,7 @@ body
+ {
+     max-width: 800px;
+     margin: 0 auto;
+-    text-align: center;
++    padding: 10px;
++    border: 15px solid #000;
+     background-color: #fff;
+ }
+
+commit 098b2ca00ad170dabe30ea33e3e6e439a032ac78
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 12 13:34:48 2023 -0700
+
+    Added link color visualization.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index 35e55d3..b386568 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -26,7 +26,7 @@
+                 <br>
+             </div>
+             <div class="section">
+-                <h2 class="heading">Structure</h2>
++                <h2 class="heading">Softbody</h2>
+                 <div class="group">
+                     <div class="panel">
+                         <h3 class="label">TOPOLOGY</h3>
+@@ -59,7 +59,7 @@
+                 </div>
+             </div>
+             <div class="section">
+-                <h2 class="heading">Vibration</h2>
++                <h2 class="heading">Earthquake</h2>
+                 <div class="group">
+                     <div class="panel">
+                         <h3 class="label">FREQUENCY</h3>
+@@ -83,7 +83,7 @@
+                 <h2 class="heading">View</h2>
+                 <div class="group">
+                     <div class="panel">
+-                        <h3 class="label">XRAY</h3>
++                        <h3 class="label">XRAY of TIME</h3>
+                         <div class="content">
+                             <canvas width="800" height="600" id="canvas-xray" class="canvas"></canvas>
+                         </div>
+diff --git a/softquake/script.js b/softquake/script.js
+index 5dcb25f..b20f4f1 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -108,6 +108,17 @@ function doPhys(dlt)
+         let len = Math.hypot(vec.x, vec.y);
+         let dsp = len - lnk.rlen;
+         let vel = vec.x * (lnk.nod2.vel.x - lnk.nod1.vel.x) + vec.y * (lnk.nod2.vel.y - lnk.nod1.vel.y);
++
++        if(dsp > 0.1)
++        {
++            lnk.cstf = 20000;
++        }
++
++        else
++        {
++            lnk.cstf = 5000;
++        }
++
+         let frc = -(lnk.cstf * dsp + lnk.cdmp * vel);
+         let uvec = {
+             x: vec.x / len,
+@@ -221,15 +232,30 @@ function doView()
+     for(let l = 0; l < lnks.length; l++)
+     {
+         let lnk = lnks[l];
++        let len = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+ 
+         ctxXray.beginPath();
+         ctxXray.moveTo(lnk.nod1.pos.x, lnk.nod1.pos.y);
+         ctxXray.lineTo(lnk.nod2.pos.x, lnk.nod2.pos.y);
+ 
+-        ctxXray.lineWidth = 0.05;
+-        
++        ctxXray.lineWidth = 0.1 * (lnk.rlen / len);
+         ctxXray.strokeStyle = "#000";
+         ctxXray.stroke();
++
++        ctxXray.lineWidth = 0.05 * (lnk.rlen / len);
++
++        if(len < (1 - 0.05) * lnk.rlen)
++        {
++            ctxXray.strokeStyle = "#f00";
++        }
++
++        else if(len > (1 + 0.05) * lnk.rlen)
++        {
++            ctxXray.strokeStyle = "#00f";
++        }
++
++        ctxXray.stroke();
++
+     }
+ 
+     for(let n = 0; n < nods.length; n++)
+diff --git a/softquake/style.css b/softquake/style.css
+index 72aba22..759a3f7 100644
+--- a/softquake/style.css
++++ b/softquake/style.css
+@@ -13,12 +13,14 @@ body
+ 
+ .section
+ {
++    display: inline-block;
+     background-color: #eee;
+ }
+ 
+ .group
+ {
+-    background-color: #ddd;
++    display: inline-block;
++    background-color: #eee;
+ }
+ 
+ .panel
+
+commit 8aa622d74734123a6739a0540dc4b88e34492f22
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 12 11:26:46 2023 -0700
+
+    Updated UI mode currently for debug.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index 845771f..5dcb25f 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -578,6 +578,9 @@ function setLab()
+ 
+ const btnTimeStrt = document.getElementById("button-time-start");
+ const btnTimeStop = document.getElementById("button-time-stop");
++const btnDmpLow = document.getElementById("button-dampening-low");
++const btnDmpMed = document.getElementById("button-dampening-medium");
++const btnDmpHigh = document.getElementById("button-dampening-high");
+ const btnFrqLow = document.getElementById("button-frequency-low");
+ const btnFrqMed = document.getElementById("button-frequency-medium");
+ const btnFrqHigh = document.getElementById("button-frequency-high");
+@@ -588,6 +591,9 @@ const btnAmpHigh = document.getElementById("button-amplitude-high");
+ 
+ btnTimeStrt.onclick = setTimeStrt;
+ btnTimeStop.onclick = setTimeStop;
++btnDmpLow.onclick = setDmpLow;
++btnDmpMed.onclick = setDmpMed;
++btnDmpHigh.onclick = setDmpHigh;
+ btnFrqLow.onclick = setFrqLow;
+ btnFrqMed.onclick = setFrqMed;
+ btnFrqHigh.onclick = setFrqHigh;
+diff --git a/softquake/style.css b/softquake/style.css
+index 2b18898..72aba22 100644
+--- a/softquake/style.css
++++ b/softquake/style.css
+@@ -1,27 +1,30 @@
++*
++{
++    margin: 0;
++    padding: 0;
++}
++
+ body
+ {
+     margin: 0;
+     padding: 0;
++    background-color: #421;
+ }
+ 
+ .section
+ {
+-    margin: 10px;
+-    padding: 10px;
+     background-color: #eee;
+ }
+ 
+ .group
+ {
+-    margin: 10px;
+-    padding: 10px;
+     background-color: #ddd;
+ }
+ 
+ .panel
+ {
+     display: inline-block;
+-    padding: 5px;
++    background-color: #00f;
+ }
+ 
+ .canvas
+@@ -38,4 +41,5 @@ body
+     max-width: 800px;
+     margin: 0 auto;
+     text-align: center;
++    background-color: #fff;
+ }
+
+commit 677579f09cb6d30b49ab367d1ab6cf8adabd6734
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Mar 11 19:50:20 2023 -0800
+
+    Added some initial button interaction for certain buttons.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index 0bba071..35e55d3 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -70,7 +70,7 @@
+                         </div>
+                     </div>
+                     <div class="panel">
+-                        <h3 class="label">Amplitude</h3>
++                        <h3 class="label">AMPLITUDE</h3>
+                         <div class="content">
+                             <button type="button" id="button-amplitude-low" class="button">LOW</button>
+                             <button type="button" id="button-amplitude-medium" class="button">MEDIUM</button>
+@@ -85,7 +85,7 @@
+                     <div class="panel">
+                         <h3 class="label">XRAY</h3>
+                         <div class="content">
+-                            <canvas width="800" height="600" id="canvas-xray"></canvas>
++                            <canvas width="800" height="600" id="canvas-xray" class="canvas"></canvas>
+                         </div>
+                     </div>
+                 </div>
+diff --git a/softquake/script.js b/softquake/script.js
+index 4076fea..845771f 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -578,6 +578,19 @@ function setLab()
+ 
+ const btnTimeStrt = document.getElementById("button-time-start");
+ const btnTimeStop = document.getElementById("button-time-stop");
++const btnFrqLow = document.getElementById("button-frequency-low");
++const btnFrqMed = document.getElementById("button-frequency-medium");
++const btnFrqHigh = document.getElementById("button-frequency-high");
++const btnAmpLow = document.getElementById("button-amplitude-low");
++const btnAmpMed = document.getElementById("button-amplitude-medium");
++const btnAmpHigh = document.getElementById("button-amplitude-high");
++
+ 
+ btnTimeStrt.onclick = setTimeStrt;
+-btnTimeStop.onclick = setTimeStop;
+\ No newline at end of file
++btnTimeStop.onclick = setTimeStop;
++btnFrqLow.onclick = setFrqLow;
++btnFrqMed.onclick = setFrqMed;
++btnFrqHigh.onclick = setFrqHigh;
++btnAmpLow.onclick = setAmpLow;
++btnAmpMed.onclick = setAmpMed;
++btnAmpHigh.onclick = setAmpHigh;
+diff --git a/softquake/style.css b/softquake/style.css
+index 089c6bd..2b18898 100644
+--- a/softquake/style.css
++++ b/softquake/style.css
+@@ -4,20 +4,38 @@ body
+     padding: 0;
+ }
+ 
++.section
++{
++    margin: 10px;
++    padding: 10px;
++    background-color: #eee;
++}
++
++.group
++{
++    margin: 10px;
++    padding: 10px;
++    background-color: #ddd;
++}
++
+ .panel
+ {
+     display: inline-block;
+-    margin: 5px;
+     padding: 5px;
+ }
+ 
+-canvas
++.canvas
+ {
++    width: 100%;
++    margin: 0;
++    padding: 0;
++    vertical-align: middle;
+     background-color: #000;
+-    outline: 5px solid #000;
+ }
+ 
+ #main
+ {
++    max-width: 800px;
++    margin: 0 auto;
+     text-align: center;
+-}
+\ No newline at end of file
++}
+
+commit 165e7d2ad037031bc95ea4e27c4dd1c81e04dd48
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Mar 11 19:43:29 2023 -0800
+
+    Fixed a lot of the layout in html and css.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index 6619ec4..0bba071 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -13,7 +13,7 @@
+         <div id="main">
+             <h1 id="title">Softbody Earthquake Lab</h1>
+             <div class="section">
+-                <h2 id="heading">General</h2>
++                <h2 class="heading">General</h2>
+                 <div class="group">
+                     <div class="panel">
+                         <h3 class="label">TIME</h3>
+@@ -26,7 +26,40 @@
+                 <br>
+             </div>
+             <div class="section">
+-                <h2 id="heading">Vibration</h2>
++                <h2 class="heading">Structure</h2>
++                <div class="group">
++                    <div class="panel">
++                        <h3 class="label">TOPOLOGY</h3>
++                        <div class="content">
++                            <button type="button" id="button-topology-crossbox" class="button">CROSSBOX</button>
++                            <button type="button" id="button-topology-pyramid" class="button">PYRAMID</button>
++                        </div>
++                    </div>
++                    <div class="section">
++                        <h2 class="heading">Material</h2>
++                        <div class="group">
++                            <div class="panel">
++                                <h3 class="label">STIFFNESS</h3>
++                                <div class="content">
++                                    <button type="button" id="button-stiffness-low" class="button">LOW</button>
++                                    <button type="button" id="button-stiffness-medium" class="button">MEDIUM</button>
++                                    <button type="button" id="button-stiffness-high" class="button">HIGH</button>
++                                </div>
++                            </div>
++                            <div class="panel">
++                                <h3 class="label">DAMPENING</h3>
++                                <div class="content">
++                                    <button type="button" id="button-dampening-low" class="button">LOW</button>
++                                    <button type="button" id="button-dampening-medium" class="button">MEDIUM</button>
++                                    <button type="button" id="button-dampening-high" class="button">HIGH</button>
++                                </div>
++                            </div>
++                        </div>
++                    </div>
++                </div>
++            </div>
++            <div class="section">
++                <h2 class="heading">Vibration</h2>
+                 <div class="group">
+                     <div class="panel">
+                         <h3 class="label">FREQUENCY</h3>
+@@ -46,10 +79,19 @@
+                     </div>
+                 </div>
+             </div>
++            <div class="section">
++                <h2 class="heading">View</h2>
++                <div class="group">
++                    <div class="panel">
++                        <h3 class="label">XRAY</h3>
++                        <div class="content">
++                            <canvas width="800" height="600" id="canvas-xray"></canvas>
++                        </div>
++                    </div>
++                </div>
++            </div>
+             <br>
+-            <canvas width="800" height="600" id="canvas-xray"></canvas>
+-            <br>
+-            <canvas width="800" height="200" id="canvas-spos"></canvas>
++            <!--<canvas width="800" height="200" id="canvas-spos"></canvas>-->
+         </div>
+ 
+         <script src="./script.js"></script>
+diff --git a/softquake/style.css b/softquake/style.css
+index 31ddf10..089c6bd 100644
+--- a/softquake/style.css
++++ b/softquake/style.css
+@@ -4,6 +4,13 @@ body
+     padding: 0;
+ }
+ 
++.panel
++{
++    display: inline-block;
++    margin: 5px;
++    padding: 5px;
++}
++
+ canvas
+ {
+     background-color: #000;
+
+commit f82d7e04f464f0db2e55904bd8eeaa27414a313c
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Mar 11 19:23:29 2023 -0800
+
+    Updated html significantly and added buttons.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index 0a2449d..bf0e774 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -26,10 +26,11 @@ Structure is fixed rigidly to the moving base plate instead of frictionally.
+ Buttons:
+ -General:
+ --Time: Start/Stop
++--Clutter: Show/Hide
+ -Structure:
+ --Topology: Crossbox, Pyramid
+ --Material:
+----Stiffness: Elastic/Rubber
++---Stiffness: Low/Medium/High
+ ---Dampening: Low/Medium/High
+ -Vibration:
+ --Frequency: Low/Medium/High
+diff --git a/softquake/index.html b/softquake/index.html
+index 3eb142e..6619ec4 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -12,6 +12,41 @@
+     <body>
+         <div id="main">
+             <h1 id="title">Softbody Earthquake Lab</h1>
++            <div class="section">
++                <h2 id="heading">General</h2>
++                <div class="group">
++                    <div class="panel">
++                        <h3 class="label">TIME</h3>
++                        <div class="content">
++                            <button type="button" id="button-time-start" class="button">START</button>
++                            <button type="button" id="button-time-stop" class="button">STOP</button>
++                        </div>
++                    </div>
++                </div>
++                <br>
++            </div>
++            <div class="section">
++                <h2 id="heading">Vibration</h2>
++                <div class="group">
++                    <div class="panel">
++                        <h3 class="label">FREQUENCY</h3>
++                        <div class="content">
++                            <button type="button" id="button-frequency-low" class="button">LOW</button>
++                            <button type="button" id="button-frequency-medium" class="button">MEDIUM</button>
++                            <button type="button" id="button-frequency-high" class="button">HIGH</button>
++                        </div>
++                    </div>
++                    <div class="panel">
++                        <h3 class="label">Amplitude</h3>
++                        <div class="content">
++                            <button type="button" id="button-amplitude-low" class="button">LOW</button>
++                            <button type="button" id="button-amplitude-medium" class="button">MEDIUM</button>
++                            <button type="button" id="button-amplitude-high" class="button">HIGH</button>
++                        </div>
++                    </div>
++                </div>
++            </div>
++            <br>
+             <canvas width="800" height="600" id="canvas-xray"></canvas>
+             <br>
+             <canvas width="800" height="200" id="canvas-spos"></canvas>
+diff --git a/softquake/script.js b/softquake/script.js
+index eb55ffd..4076fea 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -575,3 +575,9 @@ function setLab()
+ 
+     doPhys(0);
+ }
++
++const btnTimeStrt = document.getElementById("button-time-start");
++const btnTimeStop = document.getElementById("button-time-stop");
++
++btnTimeStrt.onclick = setTimeStrt;
++btnTimeStop.onclick = setTimeStop;
+\ No newline at end of file
+
+commit f0e035f5d758cfa0615eb723cac8814296ba369f
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Mar 10 17:39:19 2023 -0800
+
+    Added concept of force loads and added rendering component.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index 94dee2b..eb55ffd 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -37,6 +37,8 @@ let lnks = [];
+ 
+ let pins = [];
+ 
++let lods = [];
++
+ setLab();
+ 
+ window.setInterval(function()
+@@ -125,6 +127,14 @@ function doPhys(dlt)
+         }
+     }
+ 
++    for(let l = 0; l < lods.length; l++)
++    {
++        let lod = lods[l];
++
++        lod.nod.frc.x += lod.frc.x;
++        lod.nod.frc.y += lod.frc.y;
++    }
++
+     for(let n = 0; n < nods.length; n++)
+     {
+         let nod = nods[n];
+@@ -155,6 +165,7 @@ window.requestAnimationFrame(doAnim);
+ function doAnim()
+ {
+     doView();
++
+     doPlot();
+ 
+     window.requestAnimationFrame(doAnim);
+@@ -234,6 +245,34 @@ function doView()
+         ctxXray.stroke();
+     }
+ 
++    for(let l = 0; l < lods.length; l++)
++    {
++        let lod = lods[l];
++        
++        ctxXray.save();
++
++        ctxXray.translate(lod.nod.pos.x, lod.nod.pos.y);
++        ctxXray.rotate(Math.atan2(lod.frc.y, lod.frc.x));
++        ctxXray.translate(-0.2, 0);
++
++        ctxXray.beginPath();
++        ctxXray.moveTo(0, 0);
++        ctxXray.lineTo(-0.2, 0.2);
++        ctxXray.lineTo(-0.2, 0.06);
++        ctxXray.lineTo(-0.6, 0.08);
++        ctxXray.lineTo(-0.6, -0.08);
++        ctxXray.lineTo(-0.2, -0.06);
++        ctxXray.lineTo(-0.2, -0.2);
++        ctxXray.closePath();
++        ctxXray.fillStyle = "#ff0";
++        ctxXray.fill();
++        ctxXray.lineWidth = 0.05;
++        ctxXray.strokeStyle = "#000";
++        ctxXray.stroke();
++    
++        ctxXray.restore();
++    }
++
+     ctxXray.restore();
+ }
+ 
+@@ -526,5 +565,13 @@ function setLab()
+         });
+     }
+ 
++    lods = [{
++        nod: nods[7],
++        frc: {
++            x: 0,
++            y: -220
++        }
++    }];
++
+     doPhys(0);
+ }
+
+commit 227e60a6f5b9092e1ca93a92fe798592dd286bc6
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Mar 10 17:10:16 2023 -0800
+
+    Updated pin logic and data structure.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index 2b2276a..94dee2b 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -35,7 +35,7 @@ let nods = [];
+ 
+ let lnks = [];
+ 
+-let pnods = [];
++let pins = [];
+ 
+ setLab();
+ 
+@@ -70,21 +70,21 @@ function doPhys(dlt)
+         plt.acc.x -= 4 * Math.PI * Math.PI * sin.frq * sin.frq * sin.amp * Math.sin(2 * Math.PI * (sin.frq * time + sin.phs));
+     }
+ 
+-    for(let p = 0; p < pnods.length; p++)
++    for(let p = 0; p < pins.length; p++)
+     {
+-        let nod = pnods[p];
++        let pin = pins[p];
+ 
+-        nod.pos.x = pnods.length > 1 ? plt.pos.x + 0.8 * pw * (p / (pnods.length - 1) - 0.5) : plt.pos.x;
+-        nod.pos.y = plt.pos.y;
++        pin.nod.pos.x = plt.pos.x + pin.rpos.x;
++        pin.nod.pos.y = plt.pos.y + pin.rpos.y;
+ 
+-        nod.vel.x = plt.vel.x;
+-        nod.vel.y = plt.vel.y;
++        pin.nod.vel.x = plt.vel.x;
++        pin.nod.vel.y = plt.vel.y;
+ 
+-        nod.acc.x = plt.acc.x;
+-        nod.acc.y = plt.acc.y;
++        pin.nod.acc.x = plt.acc.x;
++        pin.nod.acc.y = plt.acc.y;
+ 
+-        nod.frc.x = nod.mass * nod.acc.x;
+-        nod.frc.y = nod.mass * nod.acc.y;
++        pin.nod.frc.x = pin.nod.mass * pin.nod.acc.x;
++        pin.nod.frc.y = pin.nod.mass * pin.nod.acc.y;
+     }
+ 
+     for(let n = 0; n < nods.length; n++)
+@@ -112,13 +112,13 @@ function doPhys(dlt)
+             y: vec.y / len
+         };
+ 
+-        if(pnods.includes(lnk.nod1) === false)
++        if(isPind(lnk.nod1) === false)
+         {
+             lnk.nod1.frc.x -= uvec.x * frc;
+             lnk.nod1.frc.y -= uvec.y * frc;
+         }
+         
+-        if(pnods.includes(lnk.nod2) === false)
++        if(isPind(lnk.nod2) === false)
+         {
+             lnk.nod2.frc.x += uvec.x * frc;
+             lnk.nod2.frc.y += uvec.y * frc;
+@@ -129,7 +129,7 @@ function doPhys(dlt)
+     {
+         let nod = nods[n];
+ 
+-        if(pnods.includes(nod) === false)
++        if(isPind(nod) === false)
+         {
+             let acc = {
+                 x: nod.acc.x,
+@@ -243,6 +243,21 @@ function doPlot()
+ 
+ }
+ 
++function isPind(nod)
++{
++    for(let p = 0; p < pins.length; p++)
++    {
++        let pin = pins[p];
++
++        if(pin.nod === nod)
++        {
++            return true;
++        }
++    }
++
++    return false;
++}
++
+ function setTimeStrt()
+ {
+     run = true;
+@@ -496,11 +511,19 @@ function setLab()
+         }
+     }
+ 
+-    pnods = [];
++    pins = [];
+ 
+     for(let x = 0; x < 4; x++)
+     {
+-        pnods.push(nods[8 * x]);
++        let nod = nods[8 * x];
++
++        pins.push({
++            nod: nod,
++            rpos: {
++                x: nod.pos.x - plt.pos.x,
++                y: nod.pos.y - plt.pos.y
++            }
++        });
+     }
+ 
+     doPhys(0);
+
+commit 23166d8fea5e4a659c98af77d504edd94df6e61f
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 20:22:31 2023 -0800
+
+    Fixed some bugs.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index 9b75d97..0a2449d 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -38,18 +38,16 @@ Buttons:
+ 
+ Coordinate System:
+ ->2D
+-(0,0) is center of screen
+-(4,3) is top right of screen
+-(-4,-3) is bottom left of screen
++IN LAB SPACE:
++(0,0) is plate center horizontal and top vertical
+ 
+ Time Integration:
+-Verlet Integration or RK4, done with Euler
++RK4
+ 
+ View:
+ Human observer view building from side.
+ 
+ Plot:
+-// Horizontal Displacement vs Time
+-// Vertical Displacement vs Time
+-Observer frequency vs amplitude vs time spectrogram
+-Energy function in time
+\ No newline at end of file
++Spring stiffness curve and/or stress strain curve.
++Energy function in time
++Energy converted to heat through dampening. (IDK yet how to calc).
+\ No newline at end of file
+diff --git a/softquake/script.js b/softquake/script.js
+index f1d8023..2b2276a 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -5,6 +5,8 @@ let run = true;
+ 
+ let time = 0;
+ 
++let dmp = 2;
++
+ let frq = 2;
+ let amp = 2;
+ 
+@@ -178,7 +180,7 @@ function doView()
+     if(time < 100)
+     {
+         ctxXray.beginPath();
+-        ctxXray.arc(0, 0.3 * time - 3, 0.5, 0, 2 * Math.PI);
++        ctxXray.arc(0, 0.1 * time - 3, 0.5, 0, 2 * Math.PI);
+         ctxXray.fillStyle = "#ff0";
+         ctxXray.fill();
+         ctxXray.lineWidth = 0.05;
+@@ -251,36 +253,22 @@ function setTimeStop()
+     run = false;
+ }
+ 
+-
+-
+ function setDmpLow()
+ {
+-    for(let l = 0; l < lnks.length; l++)
+-    {
+-        let lnk = lnks[l];
+-
+-        lnk.cdmp = 5;
+-    }    
++    dmp = 1;
++    setLab(); 
+ }
+ 
+ function setDmpMed()
+ {
+-    for(let l = 0; l < lnks.length; l++)
+-    {
+-        let lnk = lnks[l];
+-
+-        lnk.cdmp = 20;
+-    }
++    dmp = 2;
++    setLab();
+ }
+ 
+ function setDmpHigh()
+ {
+-    for(let l = 0; l < lnks.length; l++)
+-    {
+-        let lnk = lnks[l];
+-
+-        lnk.cdmp = 80;
+-    }
++    dmp = 3;
++    setLab();
+ }
+ 
+ function setFrqLow()
+@@ -413,6 +401,23 @@ function setLab()
+         }
+     }
+ 
++    let cdmp = 0;
++
++    if(dmp === 1)
++    {
++        cdmp = 5;
++    }
++
++    else if(dmp === 2)
++    {
++        cdmp = 20;
++    }
++
++    else if(dmp === 3)
++    {
++        cdmp = 80;
++    }
++
+     lnks = [];
+ 
+     for(let x = 0; x < (4 - 1); x++)
+@@ -427,7 +432,7 @@ function setLab()
+                 nod2: nod2,
+                 rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+                 cstf: 5000,
+-                cdmp: 10
++                cdmp: cdmp
+             };
+ 
+             lnks.push(lnk);
+@@ -446,7 +451,7 @@ function setLab()
+                 nod2: nod2,
+                 rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+                 cstf: 5000,
+-                cdmp: 10
++                cdmp: cdmp
+             };
+ 
+             lnks.push(lnk);
+@@ -465,7 +470,7 @@ function setLab()
+                 nod2: nod2,
+                 rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+                 cstf: 5000,
+-                cdmp: 10
++                cdmp: cdmp
+             };
+ 
+             lnks.push(lnk);
+@@ -484,7 +489,7 @@ function setLab()
+                 nod2: nod2,
+                 rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+                 cstf: 5000,
+-                cdmp: 10
++                cdmp: cdmp
+             };
+ 
+             lnks.push(lnk);
+
+commit 0724bfef646b9e4adc1d8ef3be4b6271f27bd346
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 19:35:01 2023 -0800
+
+    Starting to add lots of utility functions stuff for UI.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index fd54f4a..9b75d97 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -26,16 +26,14 @@ Structure is fixed rigidly to the moving base plate instead of frictionally.
+ Buttons:
+ -General:
+ --Time: Start/Stop
+--Structure: Crossbox, Pyramid
++-Structure:
++--Topology: Crossbox, Pyramid
+ --Material:
+----Mass: Low/Medium/High
+----Stiffness: Low/Medium/High
++---Stiffness: Elastic/Rubber
+ ---Dampening: Low/Medium/High
+ -Vibration:
+ --Frequency: Low/Medium/High
+ --Amplitude: Low/Medium/High
+--Sensor:
+---Placement: Low/Medium/High
+ 
+ 
+ Coordinate System:
+diff --git a/softquake/script.js b/softquake/script.js
+index fff844c..f1d8023 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,22 +1,16 @@
+ const cg = 9.8;
+ const pw = 3;
+ 
+-let time = 0;
+-
+ let run = true;
+ 
+-function addSine(freq, amp)
+-{
+-    sins.push({
+-        freq: freq,
+-        amp: amp,
+-        phs: 0,
+-    });
+-}
++let time = 0;
++
++let frq = 2;
++let amp = 2;
+ 
+ let sins = [{
+-    freq: 0.2,
+-    amp: 2,
++    frq: 0,
++    amp: 0,
+     phs: 0
+ }];
+ 
+@@ -37,130 +31,20 @@ let plt = {
+ 
+ let nods = [];
+ 
+-for(let x = 0; x < 4; x++)
+-{
+-    for(let y = 0; y < 8; y++)
+-    {
+-        let nod = {
+-            mass: 1,
+-            pos: {
+-                x: 2 * (x / (4 - 1) - 0.5),
+-                y: 4 * y / (8 - 1) + 0
+-            },
+-            vel: {
+-                x: 0,
+-                y: 0
+-            },
+-            acc: {
+-                x: 0,
+-                y: 0
+-            },
+-            frc: {
+-                x: 0,
+-                y: 0
+-            }
+-        };
+-
+-        nods.push(nod);
+-    }
+-}
+-
+ let lnks = [];
+ 
+-for(let x = 0; x < (4 - 1); x++)
+-{
+-    for(let y = 0; y < 8; y++)
+-    {
+-        let nod1 = nods[8 * x + y];
+-        let nod2 = nods[8 * (x + 1) + y];
+-
+-        let lnk = {
+-            nod1: nod1,
+-            nod2: nod2,
+-            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 5000,
+-            cdmp: 10
+-        };
+-
+-        lnks.push(lnk);
+-    }
+-}
+-
+-for(let x = 0; x < 4; x++)
+-{
+-    for(let y = 0; y < (8 - 1); y++)
+-    {
+-        let nod1 = nods[8 * x + y];
+-        let nod2 = nods[8 * x + (y + 1)];
+-
+-        let lnk = {
+-            nod1: nod1,
+-            nod2: nod2,
+-            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 5000,
+-            cdmp: 10
+-        };
+-
+-        lnks.push(lnk);
+-    }
+-}
+-
+-for(let x = 0; x < (4 - 1); x++)
+-{
+-    for(let y = x % 2; y < (8 - 1); y += 2)
+-    {
+-        let nod1 = nods[8 * x + y];
+-        let nod2 = nods[8 * (x + 1) + (y + 1)];
+-
+-        let lnk = {
+-            nod1: nod1,
+-            nod2: nod2,
+-            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 5000,
+-            cdmp: 10
+-        };
+-
+-        lnks.push(lnk);
+-    }
+-}
+-
+-for(let x = 0; x < (4 - 1); x++)
+-{
+-    for(let y = (x + 1) % 2; y < (8 - 1); y += 2)
+-    {
+-        let nod1 = nods[8 * (x + 1) + y];
+-        let nod2 = nods[8 * x + (y + 1)];
+-
+-        let lnk = {
+-            nod1: nod1,
+-            nod2: nod2,
+-            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 5000,
+-            cdmp: 10
+-        };
+-
+-        lnks.push(lnk);
+-    }
+-}
+-
+-lnks.splice(13, 2);
+-lnks.splice(7, 2);
+-lnks.splice(15, 3);
+-
+ let pnods = [];
+ 
+-for(let x = 0; x < 4; x++)
+-{
+-    pnods.push(nods[8 * x]);
+-}
+-
+-doPhys(0);
++setLab();
+ 
+ window.setInterval(function()
+ {
+-    for(let s = 0; s < 100; s++)
++    if(run === true)
+     {
+-        doPhys(1 / (100 * 24));
++        for(let s = 0; s < 100; s++)
++        {
++            doPhys(1 / (100 * 24));
++        }
+     }
+ }, 1000 / 24);
+ 
+@@ -179,9 +63,9 @@ function doPhys(dlt)
+     {
+         let sin = sins[s];
+ 
+-        plt.pos.x += sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
+-        plt.vel.x += 2 * Math.PI * sin.freq * sin.amp * Math.cos(2 * Math.PI * (sin.freq * time + sin.phs));
+-        plt.acc.x -= 4 * Math.PI * Math.PI * sin.freq * sin.freq * sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
++        plt.pos.x += sin.amp * Math.sin(2 * Math.PI * (sin.frq * time + sin.phs));
++        plt.vel.x += 2 * Math.PI * sin.frq * sin.amp * Math.cos(2 * Math.PI * (sin.frq * time + sin.phs));
++        plt.acc.x -= 4 * Math.PI * Math.PI * sin.frq * sin.frq * sin.amp * Math.sin(2 * Math.PI * (sin.frq * time + sin.phs));
+     }
+ 
+     for(let p = 0; p < pnods.length; p++)
+@@ -297,6 +181,9 @@ function doView()
+         ctxXray.arc(0, 0.3 * time - 3, 0.5, 0, 2 * Math.PI);
+         ctxXray.fillStyle = "#ff0";
+         ctxXray.fill();
++        ctxXray.lineWidth = 0.05;
++        ctxXray.strokeStyle = "#f80";
++        ctxXray.stroke();
+     }
+ 
+     ctxXray.fillStyle = "#0f0";
+@@ -353,3 +240,263 @@ function doPlot()
+ {
+ 
+ }
++
++function setTimeStrt()
++{
++    run = true;
++}
++
++function setTimeStop()
++{
++    run = false;
++}
++
++
++
++function setDmpLow()
++{
++    for(let l = 0; l < lnks.length; l++)
++    {
++        let lnk = lnks[l];
++
++        lnk.cdmp = 5;
++    }    
++}
++
++function setDmpMed()
++{
++    for(let l = 0; l < lnks.length; l++)
++    {
++        let lnk = lnks[l];
++
++        lnk.cdmp = 20;
++    }
++}
++
++function setDmpHigh()
++{
++    for(let l = 0; l < lnks.length; l++)
++    {
++        let lnk = lnks[l];
++
++        lnk.cdmp = 80;
++    }
++}
++
++function setFrqLow()
++{
++    frq = 1;
++    setLab();
++}
++
++function setFrqMed()
++{
++    frq = 2;
++    setLab();
++}
++
++function setFrqHigh()
++{
++    frq = 3;
++    setLab();
++}
++
++function setAmpLow()
++{
++    amp = 1;
++    setLab();
++}
++
++function setAmpMed()
++{
++    amp = 2;
++    setLab();
++}
++
++function setAmpHigh()
++{
++    amp = 3;
++    setLab();
++}
++
++function setLab()
++{
++    if(frq === 1)
++    {
++        sins[0].frq = 0.2;
++
++        if(amp === 1)
++        {
++            sins[0].amp = 0.5;
++        }
++
++        else if(amp === 2)
++        {
++            sins[0].amp = 1;
++        }
++
++        else if(amp === 3)
++        {
++            sins[0].amp = 2;
++        }
++    }
++
++    else if(frq === 2)
++    {
++        sins[0].frq = 1;
++
++        if(amp === 1)
++        {
++            sins[0].amp = 0.1;
++        }
++
++        else if(amp === 2)
++        {
++            sins[0].amp = 0.2;
++        }
++
++        else if(amp === 3)
++        {
++            sins[0].amp = 0.4;
++        }
++    }
++
++    else if(frq === 3)
++    {
++        sins[0].frq = 5;
++
++        if(amp === 1)
++        {
++            sins[0].amp = 0.01;
++        }
++
++        else if(amp === 2)
++        {
++            sins[0].amp = 0.02;
++        }
++
++        else if(amp === 3)
++        {
++            sins[0].amp = 0.08;
++        }
++    }
++
++    doPhys(0);
++
++    nods = [];
++
++    for(let x = 0; x < 4; x++)
++    {
++        for(let y = 0; y < 8; y++)
++        {
++            let nod = {
++                mass: 1,
++                pos: {
++                    x: plt.pos.x + 2 * (x / (4 - 1) - 0.5),
++                    y: plt.pos.y + 4 * y / (8 - 1)
++                },
++                vel: {
++                    x: 0,
++                    y: 0
++                },
++                acc: {
++                    x: 0,
++                    y: 0
++                },
++                frc: {
++                    x: 0,
++                    y: 0
++                }
++            };
++    
++            nods.push(nod);
++        }
++    }
++
++    lnks = [];
++
++    for(let x = 0; x < (4 - 1); x++)
++    {
++        for(let y = 0; y < 8; y++)
++        {
++            let nod1 = nods[8 * x + y];
++            let nod2 = nods[8 * (x + 1) + y];
++
++            let lnk = {
++                nod1: nod1,
++                nod2: nod2,
++                rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
++                cstf: 5000,
++                cdmp: 10
++            };
++
++            lnks.push(lnk);
++        }
++    }
++
++    for(let x = 0; x < 4; x++)
++    {
++        for(let y = 0; y < (8 - 1); y++)
++        {
++            let nod1 = nods[8 * x + y];
++            let nod2 = nods[8 * x + (y + 1)];
++
++            let lnk = {
++                nod1: nod1,
++                nod2: nod2,
++                rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
++                cstf: 5000,
++                cdmp: 10
++            };
++
++            lnks.push(lnk);
++        }
++    }
++
++    for(let x = 0; x < (4 - 1); x++)
++    {
++        for(let y = x % 2; y < (8 - 1); y += 2)
++        {
++            let nod1 = nods[8 * x + y];
++            let nod2 = nods[8 * (x + 1) + (y + 1)];
++
++            let lnk = {
++                nod1: nod1,
++                nod2: nod2,
++                rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
++                cstf: 5000,
++                cdmp: 10
++            };
++
++            lnks.push(lnk);
++        }
++    }
++
++    for(let x = 0; x < (4 - 1); x++)
++    {
++        for(let y = (x + 1) % 2; y < (8 - 1); y += 2)
++        {
++            let nod1 = nods[8 * (x + 1) + y];
++            let nod2 = nods[8 * x + (y + 1)];
++
++            let lnk = {
++                nod1: nod1,
++                nod2: nod2,
++                rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
++                cstf: 5000,
++                cdmp: 10
++            };
++
++            lnks.push(lnk);
++        }
++    }
++
++    pnods = [];
++
++    for(let x = 0; x < 4; x++)
++    {
++        pnods.push(nods[8 * x]);
++    }
++
++    doPhys(0);
++}
+
+commit a094f8cb8fdd8f3a309182612bc467efd05e1a6e
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 15:42:08 2023 -0800
+
+    Added sun and missing links.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index b340c15..fff844c 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -42,11 +42,10 @@ for(let x = 0; x < 4; x++)
+     for(let y = 0; y < 8; y++)
+     {
+         let nod = {
+-            id: 8 * x + y,
+             mass: 1,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+-                y: 4 * y / (8 - 1) + 0.1
++                y: 4 * y / (8 - 1) + 0
+             },
+             vel: {
+                 x: 0,
+@@ -144,11 +143,15 @@ for(let x = 0; x < (4 - 1); x++)
+     }
+ }
+ 
+-let pins = [];
++lnks.splice(13, 2);
++lnks.splice(7, 2);
++lnks.splice(15, 3);
++
++let pnods = [];
+ 
+ for(let x = 0; x < 4; x++)
+ {
+-    pins.push(nods[8 * x]);
++    pnods.push(nods[8 * x]);
+ }
+ 
+ doPhys(0);
+@@ -181,11 +184,11 @@ function doPhys(dlt)
+         plt.acc.x -= 4 * Math.PI * Math.PI * sin.freq * sin.freq * sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
+     }
+ 
+-    for(let p = 0; p < pins.length; p++)
++    for(let p = 0; p < pnods.length; p++)
+     {
+-        let nod = pins[p];
++        let nod = pnods[p];
+ 
+-        nod.pos.x = pins.length > 1 ? plt.pos.x + 0.8 * pw * (p / (pins.length - 1) - 0.5) : plt.pos.x;
++        nod.pos.x = pnods.length > 1 ? plt.pos.x + 0.8 * pw * (p / (pnods.length - 1) - 0.5) : plt.pos.x;
+         nod.pos.y = plt.pos.y;
+ 
+         nod.vel.x = plt.vel.x;
+@@ -223,13 +226,13 @@ function doPhys(dlt)
+             y: vec.y / len
+         };
+ 
+-        if(pins.includes(lnk.nod1) === false)
++        if(pnods.includes(lnk.nod1) === false)
+         {
+             lnk.nod1.frc.x -= uvec.x * frc;
+             lnk.nod1.frc.y -= uvec.y * frc;
+         }
+         
+-        if(pins.includes(lnk.nod2) === false)
++        if(pnods.includes(lnk.nod2) === false)
+         {
+             lnk.nod2.frc.x += uvec.x * frc;
+             lnk.nod2.frc.y += uvec.y * frc;
+@@ -240,7 +243,7 @@ function doPhys(dlt)
+     {
+         let nod = nods[n];
+ 
+-        if(pins.includes(nod) === false)
++        if(pnods.includes(nod) === false)
+         {
+             let acc = {
+                 x: nod.acc.x,
+@@ -255,12 +258,6 @@ function doPhys(dlt)
+ 
+             nod.vel.x += 0.5 * (acc.x + nod.acc.x) * dlt;
+             nod.vel.y += 0.5 * (acc.y + nod.acc.y) * dlt;
+-
+-            // nod.vel.x += dlt * nod.acc.x;
+-            // nod.vel.y += dlt * nod.acc.y;
+-    
+-            // nod.pos.x += dlt * nod.vel.x;
+-            // nod.pos.y += dlt * nod.vel.y;
+         }
+     }
+ 
+@@ -294,20 +291,24 @@ function doView()
+     ctxXray.translate(4, 3);
+     ctxXray.scale(1, -1);
+ 
+-    ctxXray.translate(0, -2);
++    if(time < 100)
++    {
++        ctxXray.beginPath();
++        ctxXray.arc(0, 0.3 * time - 3, 0.5, 0, 2 * Math.PI);
++        ctxXray.fillStyle = "#ff0";
++        ctxXray.fill();
++    }
+ 
+     ctxXray.fillStyle = "#0f0";
+-    ctxXray.fillRect(-4, -1, 8, 1.5);
++    ctxXray.fillRect(-4, -3, 8, 1.5);
+     ctxXray.beginPath();
+-    ctxXray.moveTo(-4, 0.5);
+-    ctxXray.lineTo(4, 0.5);
++    ctxXray.moveTo(-4, -1.5);
++    ctxXray.lineTo(4, -1.5);
+     ctxXray.lineWidth = 0.05;
+     ctxXray.strokeStyle = "#000";
+     ctxXray.stroke();
+ 
+-    ctxXray.closePath();
+-    ctxXray.fillStyle = "#fff";
+-    ctxXray.fill();
++    ctxXray.translate(0, -2);
+ 
+     ctxXray.beginPath();
+     ctxXray.rect(plt.pos.x - 0.5 * pw, plt.pos.y - 0.5, pw, 0.5);
+
+commit 3fae1d634709252480920e3b03f8c55f12dcefcc
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 14:42:12 2023 -0800
+
+    Graph theory is difficult.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index b4cfb72..b340c15 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -42,6 +42,7 @@ for(let x = 0; x < 4; x++)
+     for(let y = 0; y < 8; y++)
+     {
+         let nod = {
++            id: 8 * x + y,
+             mass: 1,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+@@ -143,43 +144,6 @@ for(let x = 0; x < (4 - 1); x++)
+     }
+ }
+ 
+-let trgs = [];
+-
+-for(let l = 0; l < lnks.length; l++)
+-{
+-    let lnk = lnks[l];
+-
+-    for(let n = 0; n < nods.length; n++)
+-    {
+-        let nod = nods[n];
+-
+-        if(lnk.nod1 === nod || lnk.nod2 === nod)
+-        {
+-            continue;
+-        }
+-
+-        let tlnks = [];
+-        let tbls = [];
+-
+-        for(let t = 0; t < lnks.length; t++)
+-        {
+-            let tlnk = lnks[t];
+-
+-            if(tlnk.nod1 === nod)
+-            {
+-                let 
+-            }
+-        }
+-
+-        // do logic
+-
+-        for(let t = 0; t < tlnks.length; t++)
+-        {
+-
+-        }
+-    }
+-}
+-
+ let pins = [];
+ 
+ for(let x = 0; x < 4; x++)
+@@ -341,6 +305,10 @@ function doView()
+     ctxXray.strokeStyle = "#000";
+     ctxXray.stroke();
+ 
++    ctxXray.closePath();
++    ctxXray.fillStyle = "#fff";
++    ctxXray.fill();
++
+     ctxXray.beginPath();
+     ctxXray.rect(plt.pos.x - 0.5 * pw, plt.pos.y - 0.5, pw, 0.5);
+     ctxXray.fillStyle = "#842";
+
+commit 345b86002bba04a3ad902d1272b41ca8b0164aa6
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 13:41:33 2023 -0800
+
+    Trying to figure out some triangulization algorithm.
+
+diff --git a/graph.png b/graph.png
+new file mode 100644
+index 0000000..0500d8b
+Binary files /dev/null and b/graph.png differ
+diff --git a/softquake/script.js b/softquake/script.js
+index 8b12ad7..b4cfb72 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -153,19 +153,30 @@ for(let l = 0; l < lnks.length; l++)
+     {
+         let nod = nods[n];
+ 
+-        let nlnks = [];
++        if(lnk.nod1 === nod || lnk.nod2 === nod)
++        {
++            continue;
++        }
+ 
+-        for(let n = 0; n < lnks.length; n++)
++        let tlnks = [];
++        let tbls = [];
++
++        for(let t = 0; t < lnks.length; t++)
+         {
+-            let nlnk = lnks[n];
++            let tlnk = lnks[t];
+ 
+-            if((nlnk.nod1 === nod || nlnk.nod2 === nod) && !(lnk.nod1 === nod || lnk.nod2 === nod))
++            if(tlnk.nod1 === nod)
+             {
+-                nlnks.push(nlnk);
++                let 
+             }
+         }
+ 
+         // do logic
++
++        for(let t = 0; t < tlnks.length; t++)
++        {
++
++        }
+     }
+ }
+ 
+
+commit 35d154b074bf0a03ecf09e6dc2b5ea9f6b90f755
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 12:58:55 2023 -0800
+
+    FFT is too difficult.
+
+diff --git a/softquake/fft.js b/softquake/fft.js
+deleted file mode 100644
+index 0350964..0000000
+--- a/softquake/fft.js
++++ /dev/null
+@@ -1,504 +0,0 @@
+-function FFT(size) {
+-  this.size = size | 0;
+-  if (this.size <= 1 || (this.size & (this.size - 1)) !== 0)
+-    throw new Error('FFT size must be a power of two and bigger than 1');
+-
+-  this._csize = size << 1;
+-
+-  // NOTE: Use of `var` is intentional for old V8 versions
+-  var table = new Array(this.size * 2);
+-  for (var i = 0; i < table.length; i += 2) {
+-    const angle = Math.PI * i / this.size;
+-    table[i] = Math.cos(angle);
+-    table[i + 1] = -Math.sin(angle);
+-  }
+-  this.table = table;
+-
+-  // Find size's power of two
+-  var power = 0;
+-  for (var t = 1; this.size > t; t <<= 1)
+-    power++;
+-
+-  // Calculate initial step's width:
+-  //   * If we are full radix-4 - it is 2x smaller to give inital len=8
+-  //   * Otherwise it is the same as `power` to give len=4
+-  this._width = power % 2 === 0 ? power - 1 : power;
+-
+-  // Pre-compute bit-reversal patterns
+-  this._bitrev = new Array(1 << this._width);
+-  for (var j = 0; j < this._bitrev.length; j++) {
+-    this._bitrev[j] = 0;
+-    for (var shift = 0; shift < this._width; shift += 2) {
+-      var revShift = this._width - shift - 2;
+-      this._bitrev[j] |= ((j >>> shift) & 3) << revShift;
+-    }
+-  }
+-
+-  this._out = null;
+-  this._data = null;
+-  this._inv = 0;
+-}
+-
+-FFT.prototype.fromComplexArray = function fromComplexArray(complex, storage) {
+-  var res = storage || new Array(complex.length >>> 1);
+-  for (var i = 0; i < complex.length; i += 2)
+-    res[i >>> 1] = complex[i];
+-  return res;
+-};
+-
+-FFT.prototype.createComplexArray = function createComplexArray() {
+-  const res = new Array(this._csize);
+-  for (var i = 0; i < res.length; i++)
+-    res[i] = 0;
+-  return res;
+-};
+-
+-FFT.prototype.toComplexArray = function toComplexArray(input, storage) {
+-  var res = storage || this.createComplexArray();
+-  for (var i = 0; i < res.length; i += 2) {
+-    res[i] = input[i >>> 1];
+-    res[i + 1] = 0;
+-  }
+-  return res;
+-};
+-
+-FFT.prototype.completeSpectrum = function completeSpectrum(spectrum) {
+-  var size = this._csize;
+-  var half = size >>> 1;
+-  for (var i = 2; i < half; i += 2) {
+-    spectrum[size - i] = spectrum[i];
+-    spectrum[size - i + 1] = -spectrum[i + 1];
+-  }
+-};
+-
+-FFT.prototype.transform = function transform(out, data) {
+-  if (out === data)
+-    throw new Error('Input and output buffers must be different');
+-
+-  this._out = out;
+-  this._data = data;
+-  this._inv = 0;
+-  this._transform4();
+-  this._out = null;
+-  this._data = null;
+-};
+-
+-FFT.prototype.realTransform = function realTransform(out, data) {
+-  if (out === data)
+-    throw new Error('Input and output buffers must be different');
+-
+-  this._out = out;
+-  this._data = data;
+-  this._inv = 0;
+-  this._realTransform4();
+-  this._out = null;
+-  this._data = null;
+-};
+-
+-FFT.prototype.inverseTransform = function inverseTransform(out, data) {
+-  if (out === data)
+-    throw new Error('Input and output buffers must be different');
+-
+-  this._out = out;
+-  this._data = data;
+-  this._inv = 1;
+-  this._transform4();
+-  for (var i = 0; i < out.length; i++)
+-    out[i] /= this.size;
+-  this._out = null;
+-  this._data = null;
+-};
+-
+-// radix-4 implementation
+-//
+-// NOTE: Uses of `var` are intentional for older V8 version that do not
+-// support both `let compound assignments` and `const phi`
+-FFT.prototype._transform4 = function _transform4() {
+-  var out = this._out;
+-  var size = this._csize;
+-
+-  // Initial step (permute and transform)
+-  var width = this._width;
+-  var step = 1 << width;
+-  var len = (size / step) << 1;
+-
+-  var outOff;
+-  var t;
+-  var bitrev = this._bitrev;
+-  if (len === 4) {
+-    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
+-      const off = bitrev[t];
+-      this._singleTransform2(outOff, off, step);
+-    }
+-  } else {
+-    // len === 8
+-    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
+-      const off = bitrev[t];
+-      this._singleTransform4(outOff, off, step);
+-    }
+-  }
+-
+-  // Loop through steps in decreasing order
+-  var inv = this._inv ? -1 : 1;
+-  var table = this.table;
+-  for (step >>= 2; step >= 2; step >>= 2) {
+-    len = (size / step) << 1;
+-    var quarterLen = len >>> 2;
+-
+-    // Loop through offsets in the data
+-    for (outOff = 0; outOff < size; outOff += len) {
+-      // Full case
+-      var limit = outOff + quarterLen;
+-      for (var i = outOff, k = 0; i < limit; i += 2, k += step) {
+-        const A = i;
+-        const B = A + quarterLen;
+-        const C = B + quarterLen;
+-        const D = C + quarterLen;
+-
+-        // Original values
+-        const Ar = out[A];
+-        const Ai = out[A + 1];
+-        const Br = out[B];
+-        const Bi = out[B + 1];
+-        const Cr = out[C];
+-        const Ci = out[C + 1];
+-        const Dr = out[D];
+-        const Di = out[D + 1];
+-
+-        // Middle values
+-        const MAr = Ar;
+-        const MAi = Ai;
+-
+-        const tableBr = table[k];
+-        const tableBi = inv * table[k + 1];
+-        const MBr = Br * tableBr - Bi * tableBi;
+-        const MBi = Br * tableBi + Bi * tableBr;
+-
+-        const tableCr = table[2 * k];
+-        const tableCi = inv * table[2 * k + 1];
+-        const MCr = Cr * tableCr - Ci * tableCi;
+-        const MCi = Cr * tableCi + Ci * tableCr;
+-
+-        const tableDr = table[3 * k];
+-        const tableDi = inv * table[3 * k + 1];
+-        const MDr = Dr * tableDr - Di * tableDi;
+-        const MDi = Dr * tableDi + Di * tableDr;
+-
+-        // Pre-Final values
+-        const T0r = MAr + MCr;
+-        const T0i = MAi + MCi;
+-        const T1r = MAr - MCr;
+-        const T1i = MAi - MCi;
+-        const T2r = MBr + MDr;
+-        const T2i = MBi + MDi;
+-        const T3r = inv * (MBr - MDr);
+-        const T3i = inv * (MBi - MDi);
+-
+-        // Final values
+-        const FAr = T0r + T2r;
+-        const FAi = T0i + T2i;
+-
+-        const FCr = T0r - T2r;
+-        const FCi = T0i - T2i;
+-
+-        const FBr = T1r + T3i;
+-        const FBi = T1i - T3r;
+-
+-        const FDr = T1r - T3i;
+-        const FDi = T1i + T3r;
+-
+-        out[A] = FAr;
+-        out[A + 1] = FAi;
+-        out[B] = FBr;
+-        out[B + 1] = FBi;
+-        out[C] = FCr;
+-        out[C + 1] = FCi;
+-        out[D] = FDr;
+-        out[D + 1] = FDi;
+-      }
+-    }
+-  }
+-};
+-
+-// radix-2 implementation
+-//
+-// NOTE: Only called for len=4
+-FFT.prototype._singleTransform2 = function _singleTransform2(outOff, off,
+-                                                             step) {
+-  const out = this._out;
+-  const data = this._data;
+-
+-  const evenR = data[off];
+-  const evenI = data[off + 1];
+-  const oddR = data[off + step];
+-  const oddI = data[off + step + 1];
+-
+-  const leftR = evenR + oddR;
+-  const leftI = evenI + oddI;
+-  const rightR = evenR - oddR;
+-  const rightI = evenI - oddI;
+-
+-  out[outOff] = leftR;
+-  out[outOff + 1] = leftI;
+-  out[outOff + 2] = rightR;
+-  out[outOff + 3] = rightI;
+-};
+-
+-// radix-4
+-//
+-// NOTE: Only called for len=8
+-FFT.prototype._singleTransform4 = function _singleTransform4(outOff, off,
+-                                                             step) {
+-  const out = this._out;
+-  const data = this._data;
+-  const inv = this._inv ? -1 : 1;
+-  const step2 = step * 2;
+-  const step3 = step * 3;
+-
+-  // Original values
+-  const Ar = data[off];
+-  const Ai = data[off + 1];
+-  const Br = data[off + step];
+-  const Bi = data[off + step + 1];
+-  const Cr = data[off + step2];
+-  const Ci = data[off + step2 + 1];
+-  const Dr = data[off + step3];
+-  const Di = data[off + step3 + 1];
+-
+-  // Pre-Final values
+-  const T0r = Ar + Cr;
+-  const T0i = Ai + Ci;
+-  const T1r = Ar - Cr;
+-  const T1i = Ai - Ci;
+-  const T2r = Br + Dr;
+-  const T2i = Bi + Di;
+-  const T3r = inv * (Br - Dr);
+-  const T3i = inv * (Bi - Di);
+-
+-  // Final values
+-  const FAr = T0r + T2r;
+-  const FAi = T0i + T2i;
+-
+-  const FBr = T1r + T3i;
+-  const FBi = T1i - T3r;
+-
+-  const FCr = T0r - T2r;
+-  const FCi = T0i - T2i;
+-
+-  const FDr = T1r - T3i;
+-  const FDi = T1i + T3r;
+-
+-  out[outOff] = FAr;
+-  out[outOff + 1] = FAi;
+-  out[outOff + 2] = FBr;
+-  out[outOff + 3] = FBi;
+-  out[outOff + 4] = FCr;
+-  out[outOff + 5] = FCi;
+-  out[outOff + 6] = FDr;
+-  out[outOff + 7] = FDi;
+-};
+-
+-// Real input radix-4 implementation
+-FFT.prototype._realTransform4 = function _realTransform4() {
+-  var out = this._out;
+-  var size = this._csize;
+-
+-  // Initial step (permute and transform)
+-  var width = this._width;
+-  var step = 1 << width;
+-  var len = (size / step) << 1;
+-
+-  var outOff;
+-  var t;
+-  var bitrev = this._bitrev;
+-  if (len === 4) {
+-    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
+-      const off = bitrev[t];
+-      this._singleRealTransform2(outOff, off >>> 1, step >>> 1);
+-    }
+-  } else {
+-    // len === 8
+-    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
+-      const off = bitrev[t];
+-      this._singleRealTransform4(outOff, off >>> 1, step >>> 1);
+-    }
+-  }
+-
+-  // Loop through steps in decreasing order
+-  var inv = this._inv ? -1 : 1;
+-  var table = this.table;
+-  for (step >>= 2; step >= 2; step >>= 2) {
+-    len = (size / step) << 1;
+-    var halfLen = len >>> 1;
+-    var quarterLen = halfLen >>> 1;
+-    var hquarterLen = quarterLen >>> 1;
+-
+-    // Loop through offsets in the data
+-    for (outOff = 0; outOff < size; outOff += len) {
+-      for (var i = 0, k = 0; i <= hquarterLen; i += 2, k += step) {
+-        var A = outOff + i;
+-        var B = A + quarterLen;
+-        var C = B + quarterLen;
+-        var D = C + quarterLen;
+-
+-        // Original values
+-        var Ar = out[A];
+-        var Ai = out[A + 1];
+-        var Br = out[B];
+-        var Bi = out[B + 1];
+-        var Cr = out[C];
+-        var Ci = out[C + 1];
+-        var Dr = out[D];
+-        var Di = out[D + 1];
+-
+-        // Middle values
+-        var MAr = Ar;
+-        var MAi = Ai;
+-
+-        var tableBr = table[k];
+-        var tableBi = inv * table[k + 1];
+-        var MBr = Br * tableBr - Bi * tableBi;
+-        var MBi = Br * tableBi + Bi * tableBr;
+-
+-        var tableCr = table[2 * k];
+-        var tableCi = inv * table[2 * k + 1];
+-        var MCr = Cr * tableCr - Ci * tableCi;
+-        var MCi = Cr * tableCi + Ci * tableCr;
+-
+-        var tableDr = table[3 * k];
+-        var tableDi = inv * table[3 * k + 1];
+-        var MDr = Dr * tableDr - Di * tableDi;
+-        var MDi = Dr * tableDi + Di * tableDr;
+-
+-        // Pre-Final values
+-        var T0r = MAr + MCr;
+-        var T0i = MAi + MCi;
+-        var T1r = MAr - MCr;
+-        var T1i = MAi - MCi;
+-        var T2r = MBr + MDr;
+-        var T2i = MBi + MDi;
+-        var T3r = inv * (MBr - MDr);
+-        var T3i = inv * (MBi - MDi);
+-
+-        // Final values
+-        var FAr = T0r + T2r;
+-        var FAi = T0i + T2i;
+-
+-        var FBr = T1r + T3i;
+-        var FBi = T1i - T3r;
+-
+-        out[A] = FAr;
+-        out[A + 1] = FAi;
+-        out[B] = FBr;
+-        out[B + 1] = FBi;
+-
+-        // Output final middle point
+-        if (i === 0) {
+-          var FCr = T0r - T2r;
+-          var FCi = T0i - T2i;
+-          out[C] = FCr;
+-          out[C + 1] = FCi;
+-          continue;
+-        }
+-
+-        // Do not overwrite ourselves
+-        if (i === hquarterLen)
+-          continue;
+-
+-        // In the flipped case:
+-        // MAi = -MAi
+-        // MBr=-MBi, MBi=-MBr
+-        // MCr=-MCr
+-        // MDr=MDi, MDi=MDr
+-        var ST0r = T1r;
+-        var ST0i = -T1i;
+-        var ST1r = T0r;
+-        var ST1i = -T0i;
+-        var ST2r = -inv * T3i;
+-        var ST2i = -inv * T3r;
+-        var ST3r = -inv * T2i;
+-        var ST3i = -inv * T2r;
+-
+-        var SFAr = ST0r + ST2r;
+-        var SFAi = ST0i + ST2i;
+-
+-        var SFBr = ST1r + ST3i;
+-        var SFBi = ST1i - ST3r;
+-
+-        var SA = outOff + quarterLen - i;
+-        var SB = outOff + halfLen - i;
+-
+-        out[SA] = SFAr;
+-        out[SA + 1] = SFAi;
+-        out[SB] = SFBr;
+-        out[SB + 1] = SFBi;
+-      }
+-    }
+-  }
+-};
+-
+-// radix-2 implementation
+-//
+-// NOTE: Only called for len=4
+-FFT.prototype._singleRealTransform2 = function _singleRealTransform2(outOff,
+-                                                                     off,
+-                                                                     step) {
+-  const out = this._out;
+-  const data = this._data;
+-
+-  const evenR = data[off];
+-  const oddR = data[off + step];
+-
+-  const leftR = evenR + oddR;
+-  const rightR = evenR - oddR;
+-
+-  out[outOff] = leftR;
+-  out[outOff + 1] = 0;
+-  out[outOff + 2] = rightR;
+-  out[outOff + 3] = 0;
+-};
+-
+-// radix-4
+-//
+-// NOTE: Only called for len=8
+-FFT.prototype._singleRealTransform4 = function _singleRealTransform4(outOff,
+-                                                                     off,
+-                                                                     step) {
+-  const out = this._out;
+-  const data = this._data;
+-  const inv = this._inv ? -1 : 1;
+-  const step2 = step * 2;
+-  const step3 = step * 3;
+-
+-  // Original values
+-  const Ar = data[off];
+-  const Br = data[off + step];
+-  const Cr = data[off + step2];
+-  const Dr = data[off + step3];
+-
+-  // Pre-Final values
+-  const T0r = Ar + Cr;
+-  const T1r = Ar - Cr;
+-  const T2r = Br + Dr;
+-  const T3r = inv * (Br - Dr);
+-
+-  // Final values
+-  const FAr = T0r + T2r;
+-
+-  const FBr = T1r;
+-  const FBi = -T3r;
+-
+-  const FCr = T0r - T2r;
+-
+-  const FDr = T1r;
+-  const FDi = T3r;
+-
+-  out[outOff] = FAr;
+-  out[outOff + 1] = 0;
+-  out[outOff + 2] = FBr;
+-  out[outOff + 3] = FBi;
+-  out[outOff + 4] = FCr;
+-  out[outOff + 5] = 0;
+-  out[outOff + 6] = FDr;
+-  out[outOff + 7] = FDi;
+-};
+diff --git a/softquake/index.html b/softquake/index.html
+index 96796da..3eb142e 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -17,7 +17,6 @@
+             <canvas width="800" height="200" id="canvas-spos"></canvas>
+         </div>
+ 
+-        <script src="./fft.js"></script>
+         <script src="./script.js"></script>
+     </body>
+ </html>
+diff --git a/softquake/script.js b/softquake/script.js
+index 937cd23..8b12ad7 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,6 +1,5 @@
+ const cg = 9.8;
+ const pw = 3;
+-const dc = 32768;
+ 
+ let time = 0;
+ 
+@@ -19,11 +18,6 @@ let sins = [{
+     freq: 0.2,
+     amp: 2,
+     phs: 0
+-},
+-{
+-    freq: 0.5,
+-    amp: 0.2,
+-    phs: 0
+ }];
+ 
+ let plt = {
+@@ -149,39 +143,46 @@ for(let x = 0; x < (4 - 1); x++)
+     }
+ }
+ 
+-let pins = [];
++let trgs = [];
+ 
+-for(let x = 0; x < 4; x++)
++for(let l = 0; l < lnks.length; l++)
+ {
+-    pins.push(nods[8 * x]);
+-}
++    let lnk = lnks[l];
++
++    for(let n = 0; n < nods.length; n++)
++    {
++        let nod = nods[n];
+ 
+-let snsr = nods[0];
++        let nlnks = [];
+ 
+-let sps = [];
++        for(let n = 0; n < lnks.length; n++)
++        {
++            let nlnk = lnks[n];
+ 
+-for(let d = 0; d < dc; d++)
+-{
+-    sps[d] = 0;
+-}
++            if((nlnk.nod1 === nod || nlnk.nod2 === nod) && !(lnk.nod1 === nod || lnk.nod2 === nod))
++            {
++                nlnks.push(nlnk);
++            }
++        }
+ 
+-let frqs = [];
++        // do logic
++    }
++}
+ 
+-let amps = [];
++let pins = [];
+ 
+-let phss = [];
++for(let x = 0; x < 4; x++)
++{
++    pins.push(nods[8 * x]);
++}
+ 
+ doPhys(0);
+ 
+-let c = 0;
+-
+ window.setInterval(function()
+ {
+     for(let s = 0; s < 100; s++)
+     {
+         doPhys(1 / (100 * 24));
+-        sps[c % dc] = snsr.pos.x;
+-        c++;
+     }
+ }, 1000 / 24);
+ 
+@@ -346,6 +347,7 @@ function doView()
+         ctxXray.lineTo(lnk.nod2.pos.x, lnk.nod2.pos.y);
+ 
+         ctxXray.lineWidth = 0.05;
++        
+         ctxXray.strokeStyle = "#000";
+         ctxXray.stroke();
+     }
+@@ -363,84 +365,11 @@ function doView()
+         ctxXray.stroke();
+     }
+ 
+-    ctxXray.save();
+-
+-    ctxXray.translate(snsr.pos.x, snsr.pos.y);
+-    ctxXray.rotate((3 / 4) * Math.PI);
+-    ctxXray.translate(0.2, 0);
+-
+-    ctxXray.beginPath();
+-    ctxXray.moveTo(0, 0);
+-    ctxXray.lineTo(0.3, 0.2);
+-    ctxXray.lineTo(0.3, 0.06);
+-    ctxXray.lineTo(1, 0.1);
+-    ctxXray.lineTo(1, -0.1);
+-    ctxXray.lineTo(0.3, -0.06);
+-    ctxXray.lineTo(0.3, -0.2);
+-    ctxXray.closePath();
+-    ctxXray.fillStyle = "#ff0";
+-    ctxXray.fill();
+-    ctxXray.lineWidth = 0.05;
+-    ctxXray.strokeStyle = "#000";
+-    ctxXray.stroke();
+-
+-    ctxXray.restore();
+-
+     ctxXray.restore();
+ }
+ 
+-const canvSpos = document.getElementById("canvas-spos");
+ 
+ function doPlot()
+ {
+-    let ctxSpos = canvSpos.getContext("2d", { alpha: false });
+ 
+-    ctxSpos.save();
+-
+-    ctxSpos.clearRect(0, 0, 800, 200);
+-
+-    ctxSpos.fillStyle = "#000";
+-    ctxSpos.fillRect(0, 0, 800, 200);
+-
+-    ctxSpos.scale(100, 100);
+-    ctxSpos.translate(0, 1);
+-    ctxSpos.scale(1, -1);
+-
+-    ctxSpos.beginPath();
+-
+-    for(let p = 0; p < dc; p += 100)
+-    {
+-        if(sps[p] !== undefined)
+-        {
+-            ctxSpos.lineTo(8 * p / (dc - 1), 2 * sps[p] / 8);
+-        }
+-    }
+-
+-    ctxSpos.lineWidth = 0.05;
+-    ctxSpos.strokeStyle = "#ff0";
+-    ctxSpos.stroke();
+-
+-    ctxSpos.restore();
+ }
+-
+-
+-window.setInterval(function()
+-{
+-    let fft = new FFT(dc);
+-    let inp = sps;
+-    let out = fft.createComplexArray();
+-    fft.realTransform(out, inp);
+-
+-    frqs = [];
+-    amps = [];
+-    phss = [];
+-
+-    for(let d = 0; d < dc; d++)
+-    {
+-        frqs[d] = d;
+-        amps[d] = Math.hypot(out[2 * d], out[2 * d + 1]);
+-        phss[d] = Math.atan2(out[2 * d + 1], out[2 * d]);
+-    }
+-
+-    console.log(amps);
+-}, 1000);
+
+commit 71a5e5306e5aa6491eb58d93d84795b49d81b5af
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 11:13:00 2023 -0800
+
+    Added FFT FINALLY.
+
+diff --git a/softquake/fft.js b/softquake/fft.js
+index d96d7d0..0350964 100644
+--- a/softquake/fft.js
++++ b/softquake/fft.js
+@@ -38,7 +38,6 @@ function FFT(size) {
+   this._data = null;
+   this._inv = 0;
+ }
+-module.exports = FFT;
+ 
+ FFT.prototype.fromComplexArray = function fromComplexArray(complex, storage) {
+   var res = storage || new Array(complex.length >>> 1);
+diff --git a/softquake/index.html b/softquake/index.html
+index 3eb142e..96796da 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -17,6 +17,7 @@
+             <canvas width="800" height="200" id="canvas-spos"></canvas>
+         </div>
+ 
++        <script src="./fft.js"></script>
+         <script src="./script.js"></script>
+     </body>
+ </html>
+diff --git a/softquake/script.js b/softquake/script.js
+index 9955c3c..937cd23 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,6 +1,6 @@
+ const cg = 9.8;
+ const pw = 3;
+-const dc = 30000;
++const dc = 32768;
+ 
+ let time = 0;
+ 
+@@ -156,10 +156,21 @@ for(let x = 0; x < 4; x++)
+     pins.push(nods[8 * x]);
+ }
+ 
+-let snsr = nods[15];
++let snsr = nods[0];
+ 
+ let sps = [];
+ 
++for(let d = 0; d < dc; d++)
++{
++    sps[d] = 0;
++}
++
++let frqs = [];
++
++let amps = [];
++
++let phss = [];
++
+ doPhys(0);
+ 
+ let c = 0;
+@@ -388,7 +399,7 @@ function doPlot()
+ 
+     ctxSpos.clearRect(0, 0, 800, 200);
+ 
+-    ctxSpos.fillStyle = "#fff";
++    ctxSpos.fillStyle = "#000";
+     ctxSpos.fillRect(0, 0, 800, 200);
+ 
+     ctxSpos.scale(100, 100);
+@@ -405,12 +416,31 @@ function doPlot()
+         }
+     }
+ 
+-    ctxSpos.lineWidth = 0.2;
+-    ctxSpos.strokeStyle = "#000";
+-    ctxSpos.stroke();
+-    ctxSpos.lineWidth = 0.03;
++    ctxSpos.lineWidth = 0.05;
+     ctxSpos.strokeStyle = "#ff0";
+     ctxSpos.stroke();
+ 
+     ctxSpos.restore();
+ }
++
++
++window.setInterval(function()
++{
++    let fft = new FFT(dc);
++    let inp = sps;
++    let out = fft.createComplexArray();
++    fft.realTransform(out, inp);
++
++    frqs = [];
++    amps = [];
++    phss = [];
++
++    for(let d = 0; d < dc; d++)
++    {
++        frqs[d] = d;
++        amps[d] = Math.hypot(out[2 * d], out[2 * d + 1]);
++        phss[d] = Math.atan2(out[2 * d + 1], out[2 * d]);
++    }
++
++    console.log(amps);
++}, 1000);
+
+commit 631cdafb57aa1d17325e5d6e4e9f25dfd6dbc3b9
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Mar 8 10:30:16 2023 -0800
+
+    Refactored some code as well as rendering.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index 18f6b63..fd54f4a 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -51,7 +51,7 @@ View:
+ Human observer view building from side.
+ 
+ Plot:
+-Horizontal Displacement vs Time
+-Vertical Displacement vs Time
++// Horizontal Displacement vs Time
++// Vertical Displacement vs Time
+ Observer frequency vs amplitude vs time spectrogram
+ Energy function in time
+\ No newline at end of file
+diff --git a/softquake/index.html b/softquake/index.html
+index 8ff7c8d..3eb142e 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -13,6 +13,7 @@
+         <div id="main">
+             <h1 id="title">Softbody Earthquake Lab</h1>
+             <canvas width="800" height="600" id="canvas-xray"></canvas>
++            <br>
+             <canvas width="800" height="200" id="canvas-spos"></canvas>
+         </div>
+ 
+diff --git a/softquake/script.js b/softquake/script.js
+index 9cbc5d2..9955c3c 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,5 +1,6 @@
+-const g = 9.8;
+-const w = 3;
++const cg = 9.8;
++const pw = 3;
++const dc = 30000;
+ 
+ let time = 0;
+ 
+@@ -161,15 +162,15 @@ let sps = [];
+ 
+ doPhys(0);
+ 
+-let d = 0;
++let c = 0;
+ 
+ window.setInterval(function()
+ {
+     for(let s = 0; s < 100; s++)
+     {
+         doPhys(1 / (100 * 24));
+-        sps[d % 10000] = snsr.pos.x;
+-        d++;
++        sps[c % dc] = snsr.pos.x;
++        c++;
+     }
+ }, 1000 / 24);
+ 
+@@ -197,7 +198,7 @@ function doPhys(dlt)
+     {
+         let nod = pins[p];
+ 
+-        nod.pos.x = pins.length > 1 ? plt.pos.x + 0.8 * w * (p / (pins.length - 1) - 0.5) : plt.pos.x;
++        nod.pos.x = pins.length > 1 ? plt.pos.x + 0.8 * pw * (p / (pins.length - 1) - 0.5) : plt.pos.x;
+         nod.pos.y = plt.pos.y;
+ 
+         nod.vel.x = plt.vel.x;
+@@ -215,7 +216,7 @@ function doPhys(dlt)
+         let nod = nods[n];
+ 
+         nod.frc.x = 0;
+-        nod.frc.y = -g * nod.mass;
++        nod.frc.y = -cg * nod.mass;
+     }
+ 
+     for(let l = 0; l < lnks.length; l++)
+@@ -308,16 +309,17 @@ function doView()
+ 
+     ctxXray.translate(0, -2);
+ 
+-    ctxXray.beginPath();
+-    ctxXray.rect(-4, -1, 8, 1.5);
+     ctxXray.fillStyle = "#0f0";
+-    ctxXray.fill();
++    ctxXray.fillRect(-4, -1, 8, 1.5);
++    ctxXray.beginPath();
++    ctxXray.moveTo(-4, 0.5);
++    ctxXray.lineTo(4, 0.5);
+     ctxXray.lineWidth = 0.05;
+     ctxXray.strokeStyle = "#000";
+     ctxXray.stroke();
+ 
+     ctxXray.beginPath();
+-    ctxXray.rect(plt.pos.x - 0.5 * w, plt.pos.y - 0.5, w, 0.5);
++    ctxXray.rect(plt.pos.x - 0.5 * pw, plt.pos.y - 0.5, pw, 0.5);
+     ctxXray.fillStyle = "#842";
+     ctxXray.fill();
+     ctxXray.lineWidth = 0.05;
+@@ -386,7 +388,7 @@ function doPlot()
+ 
+     ctxSpos.clearRect(0, 0, 800, 200);
+ 
+-    ctxSpos.fillStyle = "#000";
++    ctxSpos.fillStyle = "#fff";
+     ctxSpos.fillRect(0, 0, 800, 200);
+ 
+     ctxSpos.scale(100, 100);
+@@ -395,27 +397,18 @@ function doPlot()
+ 
+     ctxSpos.beginPath();
+ 
+-    for(let p = 0; p < 10000; p += 10)
++    for(let p = 0; p < dc; p += 100)
+     {
+         if(sps[p] !== undefined)
+         {
+-            ctxSpos.lineTo(8 * p / (10000 - 1), 2 * sps[p] / 6);
+-        }
+-
+-        else
+-        {
+-            ctxSpos.lineTo(8 * p / (10000 - 1), 0);
++            ctxSpos.lineTo(8 * p / (dc - 1), 2 * sps[p] / 8);
+         }
+     }
+ 
+-    ctxSpos.lineWidth = 0.05;
+-    ctxSpos.strokeStyle = "#f00";
++    ctxSpos.lineWidth = 0.2;
++    ctxSpos.strokeStyle = "#000";
+     ctxSpos.stroke();
+-
+-    ctxSpos.beginPath();
+-    ctxSpos.moveTo(8 * (d % 10000) / (10000 - 1), -2);
+-    ctxSpos.lineTo(8 * (d % 10000) / (10000 - 1), 2);
+-    ctxSpos.lineWidth = 0.05;
++    ctxSpos.lineWidth = 0.03;
+     ctxSpos.strokeStyle = "#ff0";
+     ctxSpos.stroke();
+ 
+
+commit 97b57c0fb66afb5992fef92eb18f3997de90e0d4
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Mar 7 19:06:50 2023 -0800
+
+    Added time bar.
+
+diff --git a/softquake/fft.js b/softquake/fft.js
+index c13b408..d96d7d0 100644
+--- a/softquake/fft.js
++++ b/softquake/fft.js
+@@ -1,5 +1,3 @@
+-'use strict';
+-
+ function FFT(size) {
+   this.size = size | 0;
+   if (this.size <= 1 || (this.size & (this.size - 1)) !== 0)
+diff --git a/softquake/script.js b/softquake/script.js
+index defdf8d..9cbc5d2 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -16,7 +16,7 @@ function addSine(freq, amp)
+ 
+ let sins = [{
+     freq: 0.2,
+-    amp: 1,
++    amp: 2,
+     phs: 0
+ },
+ {
+@@ -395,11 +395,11 @@ function doPlot()
+ 
+     ctxSpos.beginPath();
+ 
+-    for(let p = 0; p < 10000; p++)
++    for(let p = 0; p < 10000; p += 10)
+     {
+         if(sps[p] !== undefined)
+         {
+-            ctxSpos.lineTo(8 * p / (10000 - 1), 0.5 * sps[p]);
++            ctxSpos.lineTo(8 * p / (10000 - 1), 2 * sps[p] / 6);
+         }
+ 
+         else
+@@ -412,5 +412,12 @@ function doPlot()
+     ctxSpos.strokeStyle = "#f00";
+     ctxSpos.stroke();
+ 
++    ctxSpos.beginPath();
++    ctxSpos.moveTo(8 * (d % 10000) / (10000 - 1), -2);
++    ctxSpos.lineTo(8 * (d % 10000) / (10000 - 1), 2);
++    ctxSpos.lineWidth = 0.05;
++    ctxSpos.strokeStyle = "#ff0";
++    ctxSpos.stroke();
++
+     ctxSpos.restore();
+ }
+
+commit 0f2a89f6713d86a3b89155e8c68a65f329155187
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Mar 7 17:17:34 2023 -0800
+
+    Added cool looking graph with sensor position data.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index dba3441..8ff7c8d 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -13,6 +13,7 @@
+         <div id="main">
+             <h1 id="title">Softbody Earthquake Lab</h1>
+             <canvas width="800" height="600" id="canvas-xray"></canvas>
++            <canvas width="800" height="200" id="canvas-spos"></canvas>
+         </div>
+ 
+         <script src="./script.js"></script>
+diff --git a/softquake/script.js b/softquake/script.js
+index ebbd145..defdf8d 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -84,7 +84,7 @@ for(let x = 0; x < (4 - 1); x++)
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 5000,
+-            cdmp: 100
++            cdmp: 10
+         };
+ 
+         lnks.push(lnk);
+@@ -103,7 +103,7 @@ for(let x = 0; x < 4; x++)
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 5000,
+-            cdmp: 100
++            cdmp: 10
+         };
+ 
+         lnks.push(lnk);
+@@ -122,7 +122,7 @@ for(let x = 0; x < (4 - 1); x++)
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 5000,
+-            cdmp: 100
++            cdmp: 10
+         };
+ 
+         lnks.push(lnk);
+@@ -141,7 +141,7 @@ for(let x = 0; x < (4 - 1); x++)
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 5000,
+-            cdmp: 100
++            cdmp: 10
+         };
+ 
+         lnks.push(lnk);
+@@ -155,13 +155,21 @@ for(let x = 0; x < 4; x++)
+     pins.push(nods[8 * x]);
+ }
+ 
++let snsr = nods[15];
++
++let sps = [];
++
+ doPhys(0);
+ 
++let d = 0;
++
+ window.setInterval(function()
+ {
+-    for(let s = 0; s < 20; s++)
++    for(let s = 0; s < 100; s++)
+     {
+-        doPhys(1 / (20 * 24));
++        doPhys(1 / (100 * 24));
++        sps[d % 10000] = snsr.pos.x;
++        d++;
+     }
+ }, 1000 / 24);
+ 
+@@ -271,11 +279,19 @@ function doPhys(dlt)
+     time += dlt;
+ }
+ 
+-const canvXray = document.getElementById("canvas-xray");
+-
+ window.requestAnimationFrame(doAnim);
+ 
+ function doAnim()
++{
++    doView();
++    doPlot();
++
++    window.requestAnimationFrame(doAnim);
++}
++
++const canvXray = document.getElementById("canvas-xray");
++
++function doView()
+ {
+     let ctxXray = canvXray.getContext("2d", { alpha: false });
+ 
+@@ -334,7 +350,67 @@ function doAnim()
+         ctxXray.stroke();
+     }
+ 
++    ctxXray.save();
++
++    ctxXray.translate(snsr.pos.x, snsr.pos.y);
++    ctxXray.rotate((3 / 4) * Math.PI);
++    ctxXray.translate(0.2, 0);
++
++    ctxXray.beginPath();
++    ctxXray.moveTo(0, 0);
++    ctxXray.lineTo(0.3, 0.2);
++    ctxXray.lineTo(0.3, 0.06);
++    ctxXray.lineTo(1, 0.1);
++    ctxXray.lineTo(1, -0.1);
++    ctxXray.lineTo(0.3, -0.06);
++    ctxXray.lineTo(0.3, -0.2);
++    ctxXray.closePath();
++    ctxXray.fillStyle = "#ff0";
++    ctxXray.fill();
++    ctxXray.lineWidth = 0.05;
++    ctxXray.strokeStyle = "#000";
++    ctxXray.stroke();
++
+     ctxXray.restore();
+ 
+-    window.requestAnimationFrame(doAnim);
++    ctxXray.restore();
++}
++
++const canvSpos = document.getElementById("canvas-spos");
++
++function doPlot()
++{
++    let ctxSpos = canvSpos.getContext("2d", { alpha: false });
++
++    ctxSpos.save();
++
++    ctxSpos.clearRect(0, 0, 800, 200);
++
++    ctxSpos.fillStyle = "#000";
++    ctxSpos.fillRect(0, 0, 800, 200);
++
++    ctxSpos.scale(100, 100);
++    ctxSpos.translate(0, 1);
++    ctxSpos.scale(1, -1);
++
++    ctxSpos.beginPath();
++
++    for(let p = 0; p < 10000; p++)
++    {
++        if(sps[p] !== undefined)
++        {
++            ctxSpos.lineTo(8 * p / (10000 - 1), 0.5 * sps[p]);
++        }
++
++        else
++        {
++            ctxSpos.lineTo(8 * p / (10000 - 1), 0);
++        }
++    }
++
++    ctxSpos.lineWidth = 0.05;
++    ctxSpos.strokeStyle = "#f00";
++    ctxSpos.stroke();
++
++    ctxSpos.restore();
+ }
+
+commit d37ac6d5fbc175e65b9aabcfbd6c5e20e93d15cc
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Mar 7 16:33:01 2023 -0800
+
+    Revert "Added data collection code snippet."
+    
+    This reverts commit 1f0ca7771fd4c687dc20030495fa11c0c7528d39.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index a0a2fa4..ebbd145 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,11 +1,18 @@
+ const g = 9.8;
+ const w = 3;
+ 
+-let run = true;
+-
+ let time = 0;
+ 
+-let ntrv = null;
++let run = true;
++
++function addSine(freq, amp)
++{
++    sins.push({
++        freq: freq,
++        amp: amp,
++        phs: 0,
++    });
++}
+ 
+ let sins = [{
+     freq: 0.2,
+@@ -13,12 +20,12 @@ let sins = [{
+     phs: 0
+ },
+ {
+-    freq: 5,
++    freq: 0.5,
+     amp: 0.2,
+     phs: 0
+ }];
+ 
+-let shkr = {
++let plt = {
+     pos: {
+         x: 0,
+         y: 0
+@@ -148,127 +155,48 @@ for(let x = 0; x < 4; x++)
+     pins.push(nods[8 * x]);
+ }
+ 
+-let snsr = nods[15];
+-
+-let datas = [];
++doPhys(0);
+ 
+-function doExp(steps, step)
++window.setInterval(function()
+ {
+-    time = 0;
+-    ntrv = step * steps;
+-    datas = [];
+-
+-    for(let s = 0; s < steps; s++)
++    for(let s = 0; s < 20; s++)
+     {
+-        doStep(step);
+-
+-        let data = {
+-            time: null,
+-            shkr: {},
+-            nods: [],
+-            lnks: [],
+-            pins: [],
+-            snsr: null
+-        };
+-
+-        data.time = time;
+-
+-        data.shkr.pos = {};
+-
+-        data.shkr.pos.x = shkr.pos.x;
+-        data.shkr.pos.y = shkr.pos.y;
+-
+-        data.shkr.vel = {};
+-
+-        data.shkr.vel.x = shkr.vel.x;
+-        data.shkr.vel.y = shkr.vel.y;
+-
+-        data.shkr.acc = {};
+-
+-        data.shkr.acc.x = shkr.acc.x;
+-        data.shkr.acc.y = shkr.acc.y;
+-
+-        for(let n = 0; n < nods.length; n++)
+-        {
+-            data.nods.push({});
+-
+-            data.nods[n].mass = nods[n].mass;
+-
+-            data.nods[n].pos = {};
+-
+-            data.nods[n].pos.x = nods[n].pos.x;
+-            data.nods[n].pos.y = nods[n].pos.y;
+-
+-            data.nods[n].vel = {};
+-
+-            data.nods[n].vel.x = nods[n].vel.x;
+-            data.nods[n].vel.y = nods[n].vel.y;
+-
+-            data.nods[n].acc = {};
+-
+-            data.nods[n].acc.x = nods[n].acc.x;
+-            data.nods[n].acc.y = nods[n].acc.y;
+-
+-            data.nods[n].frc = {};
+-
+-            data.nods[n].frc.x = nods[n].frc.x;
+-            data.nods[n].frc.y = nods[n].frc.y;
+-        }
+-
+-        for(let l = 0; l < lnks.length; l++)
+-        {
+-            data.lnks.push({});
+-
+-            data.lnks[l].nod1 = data.nods[nods.indexOf(lnks[l].nod1)];
+-            data.lnks[l].nod2 = data.nods[nods.indexOf(lnks[l].nod2)];
+-            data.lnks[l].rlen = lnks[l].rlen;
+-            data.lnks[l].cstf = lnks[l].cstf;
+-            data.lnks[l].cdmp = lnks[l].cdmp;
+-        }
+-
+-        for(let p = 0; p < pins.length; p++)
+-        {
+-            data.pins.push(data.nods[nods.indexOf(pins[p])]);
+-        }
+-
+-        data.snsr = data.nods[nods.indexOf(snsr)];
+-
+-        datas.push(data);
++        doPhys(1 / (20 * 24));
+     }
+-}
++}, 1000 / 24);
+ 
+-function doStep(step)
++function doPhys(dlt)
+ {
+-    shkr.pos.x = 0;
+-    shkr.pos.y = 0;
++    plt.pos.x = 0;
++    plt.pos.y = 0;
+ 
+-    shkr.vel.x = 0;
+-    shkr.vel.y = 0;
++    plt.vel.x = 0;
++    plt.vel.y = 0;
+     
+-    shkr.acc.x = 0;
+-    shkr.acc.y = 0;
++    plt.acc.x = 0;
++    plt.acc.y = 0;
+ 
+     for(let s = 0; s < sins.length; s++)
+     {
+         let sin = sins[s];
+ 
+-        shkr.pos.x += sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
+-        shkr.vel.x += 2 * Math.PI * sin.freq * sin.amp * Math.cos(2 * Math.PI * (sin.freq * time + sin.phs));
+-        shkr.acc.x -= 4 * Math.PI * Math.PI * sin.freq * sin.freq * sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
++        plt.pos.x += sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
++        plt.vel.x += 2 * Math.PI * sin.freq * sin.amp * Math.cos(2 * Math.PI * (sin.freq * time + sin.phs));
++        plt.acc.x -= 4 * Math.PI * Math.PI * sin.freq * sin.freq * sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
+     }
+ 
+     for(let p = 0; p < pins.length; p++)
+     {
+         let nod = pins[p];
+ 
+-        nod.pos.x = pins.length > 1 ? shkr.pos.x + 0.8 * w * (p / (pins.length - 1) - 0.5) : shkr.pos.x;
+-        nod.pos.y = shkr.pos.y;
++        nod.pos.x = pins.length > 1 ? plt.pos.x + 0.8 * w * (p / (pins.length - 1) - 0.5) : plt.pos.x;
++        nod.pos.y = plt.pos.y;
+ 
+-        nod.vel.x = shkr.vel.x;
+-        nod.vel.y = shkr.vel.y;
++        nod.vel.x = plt.vel.x;
++        nod.vel.y = plt.vel.y;
+ 
+-        nod.acc.x = shkr.acc.x;
+-        nod.acc.y = shkr.acc.y;
++        nod.acc.x = plt.acc.x;
++        nod.acc.y = plt.acc.y;
+ 
+         nod.frc.x = nod.mass * nod.acc.x;
+         nod.frc.y = nod.mass * nod.acc.y;
+@@ -326,59 +254,28 @@ function doStep(step)
+             nod.acc.x = nod.frc.x / nod.mass;
+             nod.acc.y = nod.frc.y / nod.mass;
+ 
+-            nod.pos.x += nod.vel.x * step + 0.5 * nod.acc.x * step * step;
+-            nod.pos.y += nod.vel.y * step + 0.5 * nod.acc.y * step * step;
++            nod.pos.x += nod.vel.x * dlt + 0.5 * nod.acc.x * dlt * dlt;
++            nod.pos.y += nod.vel.y * dlt + 0.5 * nod.acc.y * dlt * dlt;
+ 
+-            nod.vel.x += 0.5 * (acc.x + nod.acc.x) * step;
+-            nod.vel.y += 0.5 * (acc.y + nod.acc.y) * step;
++            nod.vel.x += 0.5 * (acc.x + nod.acc.x) * dlt;
++            nod.vel.y += 0.5 * (acc.y + nod.acc.y) * dlt;
+ 
+-            // nod.vel.x += step * nod.acc.x;
+-            // nod.vel.y += step * nod.acc.y;
++            // nod.vel.x += dlt * nod.acc.x;
++            // nod.vel.y += dlt * nod.acc.y;
+     
+-            // nod.pos.x += step * nod.vel.x;
+-            // nod.pos.y += step * nod.vel.y;
++            // nod.pos.x += dlt * nod.vel.x;
++            // nod.pos.y += dlt * nod.vel.y;
+         }
+     }
+ 
+-    time += step;
+-}
+-
+-doExp(10000, 0.001);
+-
+-window.setInterval(doLoop, 1000 / 24);
+-
+-let rtime = 0;
+-
+-function doLoop()
+-{
+-    let data = datas[0];
+-    let diff = rtime - data.time;
+-
+-    for(let d = 1; d < datas.length; d++)
+-    {
+-        if(Math.abs(rtime - datas[d].time) < Math.abs(diff))
+-        {
+-            data = datas[d];
+-            diff = rtime - data.time;
+-        }
+-    }
+-
+-    window.requestAnimationFrame(function()
+-    {
+-        doView(data);
+-    });
+-
+-    rtime += 1 / 24;
+-
+-    if(rtime > ntrv)
+-    {
+-        rtime = 0;
+-    }
++    time += dlt;
+ }
+ 
+ const canvXray = document.getElementById("canvas-xray");
+ 
+-function doView(data)
++window.requestAnimationFrame(doAnim);
++
++function doAnim()
+ {
+     let ctxXray = canvXray.getContext("2d", { alpha: false });
+ 
+@@ -404,16 +301,16 @@ function doView(data)
+     ctxXray.stroke();
+ 
+     ctxXray.beginPath();
+-    ctxXray.rect(data.shkr.pos.x - 0.5 * w, data.shkr.pos.y - 0.5, w, 0.5);
++    ctxXray.rect(plt.pos.x - 0.5 * w, plt.pos.y - 0.5, w, 0.5);
+     ctxXray.fillStyle = "#842";
+     ctxXray.fill();
+     ctxXray.lineWidth = 0.05;
+     ctxXray.strokeStyle = "#000";
+     ctxXray.stroke();
+ 
+-    for(let l = 0; l < data.lnks.length; l++)
++    for(let l = 0; l < lnks.length; l++)
+     {
+-        let lnk = data.lnks[l];
++        let lnk = lnks[l];
+ 
+         ctxXray.beginPath();
+         ctxXray.moveTo(lnk.nod1.pos.x, lnk.nod1.pos.y);
+@@ -424,9 +321,9 @@ function doView(data)
+         ctxXray.stroke();
+     }
+ 
+-    for(let n = 0; n < data.nods.length; n++)
++    for(let n = 0; n < nods.length; n++)
+     {
+-        let nod = data.nods[n];
++        let nod = nods[n];
+ 
+         ctxXray.beginPath();
+         ctxXray.arc(nod.pos.x, nod.pos.y, 0.1, 0, 2 * Math.PI);
+@@ -437,36 +334,7 @@ function doView(data)
+         ctxXray.stroke();
+     }
+ 
+-    ctxXray.save();
+-
+-    ctxXray.translate(data.snsr.pos.x, data.snsr.pos.y);
+-    ctxXray.rotate((3 / 4) * Math.PI);
+-    ctxXray.translate(0.2, 0);
+-
+-    ctxXray.beginPath();
+-    ctxXray.moveTo(0, 0);
+-    ctxXray.lineTo(0.3, 0.2);
+-    ctxXray.lineTo(0.3, 0.06);
+-    ctxXray.lineTo(1, 0.1);
+-    ctxXray.lineTo(1, -0.1);
+-    ctxXray.lineTo(0.3, -0.06);
+-    ctxXray.lineTo(0.3, -0.2);
+-    ctxXray.closePath();
+-    ctxXray.fillStyle = "#ff0";
+-    ctxXray.fill();
+-    ctxXray.lineWidth = 0.05;
+-    ctxXray.strokeStyle = "#000";
+-    ctxXray.stroke();
+-
+-    ctxXray.restore();
+-
+     ctxXray.restore();
+ 
+-    ctxXray.beginPath();
+-    ctxXray.rect(0, 0, 800 * (rtime / ntrv), 20);
+-    ctxXray.fillStyle = "#ff0";
+-    ctxXray.fill();
+-    ctxXray.lineWidth = 5;
+-    ctxXray.strokeStyle = "#000";
+-    ctxXray.stroke();
++    window.requestAnimationFrame(doAnim);
+ }
+
+commit 1f0ca7771fd4c687dc20030495fa11c0c7528d39
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Mar 7 12:50:33 2023 -0800
+
+    Added data collection code snippet.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index ebbd145..a0a2fa4 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,18 +1,11 @@
+ const g = 9.8;
+ const w = 3;
+ 
+-let time = 0;
+-
+ let run = true;
+ 
+-function addSine(freq, amp)
+-{
+-    sins.push({
+-        freq: freq,
+-        amp: amp,
+-        phs: 0,
+-    });
+-}
++let time = 0;
++
++let ntrv = null;
+ 
+ let sins = [{
+     freq: 0.2,
+@@ -20,12 +13,12 @@ let sins = [{
+     phs: 0
+ },
+ {
+-    freq: 0.5,
++    freq: 5,
+     amp: 0.2,
+     phs: 0
+ }];
+ 
+-let plt = {
++let shkr = {
+     pos: {
+         x: 0,
+         y: 0
+@@ -155,48 +148,127 @@ for(let x = 0; x < 4; x++)
+     pins.push(nods[8 * x]);
+ }
+ 
+-doPhys(0);
++let snsr = nods[15];
++
++let datas = [];
+ 
+-window.setInterval(function()
++function doExp(steps, step)
+ {
+-    for(let s = 0; s < 20; s++)
++    time = 0;
++    ntrv = step * steps;
++    datas = [];
++
++    for(let s = 0; s < steps; s++)
+     {
+-        doPhys(1 / (20 * 24));
++        doStep(step);
++
++        let data = {
++            time: null,
++            shkr: {},
++            nods: [],
++            lnks: [],
++            pins: [],
++            snsr: null
++        };
++
++        data.time = time;
++
++        data.shkr.pos = {};
++
++        data.shkr.pos.x = shkr.pos.x;
++        data.shkr.pos.y = shkr.pos.y;
++
++        data.shkr.vel = {};
++
++        data.shkr.vel.x = shkr.vel.x;
++        data.shkr.vel.y = shkr.vel.y;
++
++        data.shkr.acc = {};
++
++        data.shkr.acc.x = shkr.acc.x;
++        data.shkr.acc.y = shkr.acc.y;
++
++        for(let n = 0; n < nods.length; n++)
++        {
++            data.nods.push({});
++
++            data.nods[n].mass = nods[n].mass;
++
++            data.nods[n].pos = {};
++
++            data.nods[n].pos.x = nods[n].pos.x;
++            data.nods[n].pos.y = nods[n].pos.y;
++
++            data.nods[n].vel = {};
++
++            data.nods[n].vel.x = nods[n].vel.x;
++            data.nods[n].vel.y = nods[n].vel.y;
++
++            data.nods[n].acc = {};
++
++            data.nods[n].acc.x = nods[n].acc.x;
++            data.nods[n].acc.y = nods[n].acc.y;
++
++            data.nods[n].frc = {};
++
++            data.nods[n].frc.x = nods[n].frc.x;
++            data.nods[n].frc.y = nods[n].frc.y;
++        }
++
++        for(let l = 0; l < lnks.length; l++)
++        {
++            data.lnks.push({});
++
++            data.lnks[l].nod1 = data.nods[nods.indexOf(lnks[l].nod1)];
++            data.lnks[l].nod2 = data.nods[nods.indexOf(lnks[l].nod2)];
++            data.lnks[l].rlen = lnks[l].rlen;
++            data.lnks[l].cstf = lnks[l].cstf;
++            data.lnks[l].cdmp = lnks[l].cdmp;
++        }
++
++        for(let p = 0; p < pins.length; p++)
++        {
++            data.pins.push(data.nods[nods.indexOf(pins[p])]);
++        }
++
++        data.snsr = data.nods[nods.indexOf(snsr)];
++
++        datas.push(data);
+     }
+-}, 1000 / 24);
++}
+ 
+-function doPhys(dlt)
++function doStep(step)
+ {
+-    plt.pos.x = 0;
+-    plt.pos.y = 0;
++    shkr.pos.x = 0;
++    shkr.pos.y = 0;
+ 
+-    plt.vel.x = 0;
+-    plt.vel.y = 0;
++    shkr.vel.x = 0;
++    shkr.vel.y = 0;
+     
+-    plt.acc.x = 0;
+-    plt.acc.y = 0;
++    shkr.acc.x = 0;
++    shkr.acc.y = 0;
+ 
+     for(let s = 0; s < sins.length; s++)
+     {
+         let sin = sins[s];
+ 
+-        plt.pos.x += sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
+-        plt.vel.x += 2 * Math.PI * sin.freq * sin.amp * Math.cos(2 * Math.PI * (sin.freq * time + sin.phs));
+-        plt.acc.x -= 4 * Math.PI * Math.PI * sin.freq * sin.freq * sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
++        shkr.pos.x += sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
++        shkr.vel.x += 2 * Math.PI * sin.freq * sin.amp * Math.cos(2 * Math.PI * (sin.freq * time + sin.phs));
++        shkr.acc.x -= 4 * Math.PI * Math.PI * sin.freq * sin.freq * sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
+     }
+ 
+     for(let p = 0; p < pins.length; p++)
+     {
+         let nod = pins[p];
+ 
+-        nod.pos.x = pins.length > 1 ? plt.pos.x + 0.8 * w * (p / (pins.length - 1) - 0.5) : plt.pos.x;
+-        nod.pos.y = plt.pos.y;
++        nod.pos.x = pins.length > 1 ? shkr.pos.x + 0.8 * w * (p / (pins.length - 1) - 0.5) : shkr.pos.x;
++        nod.pos.y = shkr.pos.y;
+ 
+-        nod.vel.x = plt.vel.x;
+-        nod.vel.y = plt.vel.y;
++        nod.vel.x = shkr.vel.x;
++        nod.vel.y = shkr.vel.y;
+ 
+-        nod.acc.x = plt.acc.x;
+-        nod.acc.y = plt.acc.y;
++        nod.acc.x = shkr.acc.x;
++        nod.acc.y = shkr.acc.y;
+ 
+         nod.frc.x = nod.mass * nod.acc.x;
+         nod.frc.y = nod.mass * nod.acc.y;
+@@ -254,28 +326,59 @@ function doPhys(dlt)
+             nod.acc.x = nod.frc.x / nod.mass;
+             nod.acc.y = nod.frc.y / nod.mass;
+ 
+-            nod.pos.x += nod.vel.x * dlt + 0.5 * nod.acc.x * dlt * dlt;
+-            nod.pos.y += nod.vel.y * dlt + 0.5 * nod.acc.y * dlt * dlt;
++            nod.pos.x += nod.vel.x * step + 0.5 * nod.acc.x * step * step;
++            nod.pos.y += nod.vel.y * step + 0.5 * nod.acc.y * step * step;
+ 
+-            nod.vel.x += 0.5 * (acc.x + nod.acc.x) * dlt;
+-            nod.vel.y += 0.5 * (acc.y + nod.acc.y) * dlt;
++            nod.vel.x += 0.5 * (acc.x + nod.acc.x) * step;
++            nod.vel.y += 0.5 * (acc.y + nod.acc.y) * step;
+ 
+-            // nod.vel.x += dlt * nod.acc.x;
+-            // nod.vel.y += dlt * nod.acc.y;
++            // nod.vel.x += step * nod.acc.x;
++            // nod.vel.y += step * nod.acc.y;
+     
+-            // nod.pos.x += dlt * nod.vel.x;
+-            // nod.pos.y += dlt * nod.vel.y;
++            // nod.pos.x += step * nod.vel.x;
++            // nod.pos.y += step * nod.vel.y;
+         }
+     }
+ 
+-    time += dlt;
++    time += step;
+ }
+ 
+-const canvXray = document.getElementById("canvas-xray");
++doExp(10000, 0.001);
++
++window.setInterval(doLoop, 1000 / 24);
++
++let rtime = 0;
++
++function doLoop()
++{
++    let data = datas[0];
++    let diff = rtime - data.time;
++
++    for(let d = 1; d < datas.length; d++)
++    {
++        if(Math.abs(rtime - datas[d].time) < Math.abs(diff))
++        {
++            data = datas[d];
++            diff = rtime - data.time;
++        }
++    }
+ 
+-window.requestAnimationFrame(doAnim);
++    window.requestAnimationFrame(function()
++    {
++        doView(data);
++    });
++
++    rtime += 1 / 24;
++
++    if(rtime > ntrv)
++    {
++        rtime = 0;
++    }
++}
++
++const canvXray = document.getElementById("canvas-xray");
+ 
+-function doAnim()
++function doView(data)
+ {
+     let ctxXray = canvXray.getContext("2d", { alpha: false });
+ 
+@@ -301,16 +404,16 @@ function doAnim()
+     ctxXray.stroke();
+ 
+     ctxXray.beginPath();
+-    ctxXray.rect(plt.pos.x - 0.5 * w, plt.pos.y - 0.5, w, 0.5);
++    ctxXray.rect(data.shkr.pos.x - 0.5 * w, data.shkr.pos.y - 0.5, w, 0.5);
+     ctxXray.fillStyle = "#842";
+     ctxXray.fill();
+     ctxXray.lineWidth = 0.05;
+     ctxXray.strokeStyle = "#000";
+     ctxXray.stroke();
+ 
+-    for(let l = 0; l < lnks.length; l++)
++    for(let l = 0; l < data.lnks.length; l++)
+     {
+-        let lnk = lnks[l];
++        let lnk = data.lnks[l];
+ 
+         ctxXray.beginPath();
+         ctxXray.moveTo(lnk.nod1.pos.x, lnk.nod1.pos.y);
+@@ -321,9 +424,9 @@ function doAnim()
+         ctxXray.stroke();
+     }
+ 
+-    for(let n = 0; n < nods.length; n++)
++    for(let n = 0; n < data.nods.length; n++)
+     {
+-        let nod = nods[n];
++        let nod = data.nods[n];
+ 
+         ctxXray.beginPath();
+         ctxXray.arc(nod.pos.x, nod.pos.y, 0.1, 0, 2 * Math.PI);
+@@ -334,7 +437,36 @@ function doAnim()
+         ctxXray.stroke();
+     }
+ 
++    ctxXray.save();
++
++    ctxXray.translate(data.snsr.pos.x, data.snsr.pos.y);
++    ctxXray.rotate((3 / 4) * Math.PI);
++    ctxXray.translate(0.2, 0);
++
++    ctxXray.beginPath();
++    ctxXray.moveTo(0, 0);
++    ctxXray.lineTo(0.3, 0.2);
++    ctxXray.lineTo(0.3, 0.06);
++    ctxXray.lineTo(1, 0.1);
++    ctxXray.lineTo(1, -0.1);
++    ctxXray.lineTo(0.3, -0.06);
++    ctxXray.lineTo(0.3, -0.2);
++    ctxXray.closePath();
++    ctxXray.fillStyle = "#ff0";
++    ctxXray.fill();
++    ctxXray.lineWidth = 0.05;
++    ctxXray.strokeStyle = "#000";
++    ctxXray.stroke();
++
++    ctxXray.restore();
++
+     ctxXray.restore();
+ 
+-    window.requestAnimationFrame(doAnim);
++    ctxXray.beginPath();
++    ctxXray.rect(0, 0, 800 * (rtime / ntrv), 20);
++    ctxXray.fillStyle = "#ff0";
++    ctxXray.fill();
++    ctxXray.lineWidth = 5;
++    ctxXray.strokeStyle = "#000";
++    ctxXray.stroke();
+ }
+
+commit 34b1b88caaef0267012244e334875c3ee5b42f1b
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Mar 6 21:14:58 2023 -0800
+
+    Using verlet integration now instead of Euler.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index 7ed06cd..ebbd145 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,4 +1,4 @@
+-const g = 1;
++const g = 9.8;
+ const w = 3;
+ 
+ let time = 0;
+@@ -15,8 +15,13 @@ function addSine(freq, amp)
+ }
+ 
+ let sins = [{
+-    freq: 1,
+-    amp: 0.1,
++    freq: 0.2,
++    amp: 1,
++    phs: 0
++},
++{
++    freq: 0.5,
++    amp: 0.2,
+     phs: 0
+ }];
+ 
+@@ -78,8 +83,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 1000,
+-            cdmp: 0
++            cstf: 5000,
++            cdmp: 100
+         };
+ 
+         lnks.push(lnk);
+@@ -97,8 +102,8 @@ for(let x = 0; x < 4; x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 1000,
+-            cdmp: 0
++            cstf: 5000,
++            cdmp: 100
+         };
+ 
+         lnks.push(lnk);
+@@ -116,8 +121,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 1000,
+-            cdmp: 0
++            cstf: 5000,
++            cdmp: 100
+         };
+ 
+         lnks.push(lnk);
+@@ -135,8 +140,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 1000,
+-            cdmp: 0
++            cstf: 5000,
++            cdmp: 100
+         };
+ 
+         lnks.push(lnk);
+@@ -154,13 +159,13 @@ doPhys(0);
+ 
+ window.setInterval(function()
+ {
+-    for(let s = 0; s < 10; s++)
++    for(let s = 0; s < 20; s++)
+     {
+-        doPhys(1 / (10 * 24));
++        doPhys(1 / (20 * 24));
+     }
+ }, 1000 / 24);
+ 
+-function doPhys(step)
++function doPhys(dlt)
+ {
+     plt.pos.x = 0;
+     plt.pos.y = 0;
+@@ -175,9 +180,9 @@ function doPhys(step)
+     {
+         let sin = sins[s];
+ 
+-        plt.pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
+-        plt.vel.x += sin.freq * sin.amp * Math.cos(sin.freq * time + sin.phs);
+-        plt.acc.x -= sin.freq * sin.freq * sin.amp * Math.sin(sin.freq * time + sin.phs);
++        plt.pos.x += sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
++        plt.vel.x += 2 * Math.PI * sin.freq * sin.amp * Math.cos(2 * Math.PI * (sin.freq * time + sin.phs));
++        plt.acc.x -= 4 * Math.PI * Math.PI * sin.freq * sin.freq * sin.amp * Math.sin(2 * Math.PI * (sin.freq * time + sin.phs));
+     }
+ 
+     for(let p = 0; p < pins.length; p++)
+@@ -241,18 +246,29 @@ function doPhys(step)
+ 
+         if(pins.includes(nod) === false)
+         {
++            let acc = {
++                x: nod.acc.x,
++                y: nod.acc.y
++            };
++
+             nod.acc.x = nod.frc.x / nod.mass;
+             nod.acc.y = nod.frc.y / nod.mass;
++
++            nod.pos.x += nod.vel.x * dlt + 0.5 * nod.acc.x * dlt * dlt;
++            nod.pos.y += nod.vel.y * dlt + 0.5 * nod.acc.y * dlt * dlt;
++
++            nod.vel.x += 0.5 * (acc.x + nod.acc.x) * dlt;
++            nod.vel.y += 0.5 * (acc.y + nod.acc.y) * dlt;
++
++            // nod.vel.x += dlt * nod.acc.x;
++            // nod.vel.y += dlt * nod.acc.y;
+     
+-            nod.vel.x += step * nod.acc.x;
+-            nod.vel.y += step * nod.acc.y;
+-    
+-            nod.pos.x += step * nod.vel.x;
+-            nod.pos.y += step * nod.vel.y;
++            // nod.pos.x += dlt * nod.vel.x;
++            // nod.pos.y += dlt * nod.vel.y;
+         }
+     }
+ 
+-    time += step;
++    time += dlt;
+ }
+ 
+ const canvXray = document.getElementById("canvas-xray");
+
+commit 08c6e1173ceb5e3a8ec2f304bf686edc29eb2cea
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Mar 6 18:35:19 2023 -0800
+
+    Added basic code quality automation.
+
+diff --git a/.github/workflows/quality.yml b/.github/workflows/quality.yml
+new file mode 100644
+index 0000000..5ba729d
+--- /dev/null
++++ b/.github/workflows/quality.yml
+@@ -0,0 +1,20 @@
++name: Qodana
++on:
++  workflow_dispatch:
++  pull_request:
++  push:
++    branches:
++      - main
++
++jobs:
++  qodana:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v3
++        with:
++          fetch-depth: 0
++      - name: 'Qodana Scan'
++        uses: JetBrains/qodana-action@v2022.3.3
++      - uses: github/codeql-action/upload-sarif@v2
++        with:
++          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+
+commit 8af6e4580da8a29b5b24ead024764377227e3d7f
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Mar 6 18:30:44 2023 -0800
+
+    Added some devtools.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index 6378238..dba3441 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -4,14 +4,14 @@
+         <meta charset="utf-8"/>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta name="author" content="Elias Dobrin">
+-        <title>Softbody Earthquake Simulation</title>
++        <title>Softbody Earthquake Lab</title>
+         <link rel="icon" type="image/x-icon" href="./favicon.ico">
+         <link rel="stylesheet" type="text/css" href="./style.css">
+     </head>
+     
+     <body>
+         <div id="main">
+-            <h1 id="title">Softbody Earthquake Simulation</h1>
++            <h1 id="title">Softbody Earthquake Lab</h1>
+             <canvas width="800" height="600" id="canvas-xray"></canvas>
+         </div>
+ 
+diff --git a/softquake/script.js b/softquake/script.js
+index dedd92f..7ed06cd 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,12 +1,22 @@
++const g = 1;
+ const w = 3;
+ 
+ let time = 0;
+ 
+ let run = true;
+ 
++function addSine(freq, amp)
++{
++    sins.push({
++        freq: freq,
++        amp: amp,
++        phs: 0,
++    });
++}
++
+ let sins = [{
+-    freq: 0.1,
+-    amp: 0.5,
++    freq: 1,
++    amp: 0.1,
+     phs: 0
+ }];
+ 
+@@ -32,7 +42,7 @@ for(let x = 0; x < 4; x++)
+     for(let y = 0; y < 8; y++)
+     {
+         let nod = {
+-            mass: 0.1,
++            mass: 1,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+                 y: 4 * y / (8 - 1) + 0.1
+@@ -68,8 +78,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 0.2,
+-            cdmp: 0.1
++            cstf: 1000,
++            cdmp: 0
+         };
+ 
+         lnks.push(lnk);
+@@ -87,8 +97,8 @@ for(let x = 0; x < 4; x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 0.2,
+-            cdmp: 0.1
++            cstf: 1000,
++            cdmp: 0
+         };
+ 
+         lnks.push(lnk);
+@@ -106,8 +116,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 0.2,
+-            cdmp: 0.1
++            cstf: 1000,
++            cdmp: 0
+         };
+ 
+         lnks.push(lnk);
+@@ -125,8 +135,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nod1,
+             nod2: nod2,
+             rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+-            cstf: 0.2,
+-            cdmp: 0.1
++            cstf: 1000,
++            cdmp: 0
+         };
+ 
+         lnks.push(lnk);
+@@ -146,7 +156,7 @@ window.setInterval(function()
+ {
+     for(let s = 0; s < 10; s++)
+     {
+-        doPhys(0.1);
++        doPhys(1 / (10 * 24));
+     }
+ }, 1000 / 24);
+ 
+@@ -166,8 +176,8 @@ function doPhys(step)
+         let sin = sins[s];
+ 
+         plt.pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
+-        plt.vel.x += sin.amp * sin.freq * Math.cos(sin.freq * time + sin.phs);
+-        plt.acc.x -= sin.amp * sin.freq * sin.freq * Math.sin(sin.freq * time + sin.phs);
++        plt.vel.x += sin.freq * sin.amp * Math.cos(sin.freq * time + sin.phs);
++        plt.acc.x -= sin.freq * sin.freq * sin.amp * Math.sin(sin.freq * time + sin.phs);
+     }
+ 
+     for(let p = 0; p < pins.length; p++)
+@@ -182,6 +192,9 @@ function doPhys(step)
+ 
+         nod.acc.x = plt.acc.x;
+         nod.acc.y = plt.acc.y;
++
++        nod.frc.x = nod.mass * nod.acc.x;
++        nod.frc.y = nod.mass * nod.acc.y;
+     }
+ 
+     for(let n = 0; n < nods.length; n++)
+@@ -189,39 +202,36 @@ function doPhys(step)
+         let nod = nods[n];
+ 
+         nod.frc.x = 0;
+-        nod.frc.y = -0.005 * nod.mass;
++        nod.frc.y = -g * nod.mass;
+     }
+ 
+     for(let l = 0; l < lnks.length; l++)
+     {
+         let lnk = lnks[l];
+ 
+-        let dsp = {
++        let vec = {
+             x: lnk.nod2.pos.x - lnk.nod1.pos.x,
+             y: lnk.nod2.pos.y - lnk.nod1.pos.y
+         };
+-        let len = Math.hypot(dsp.x, dsp.y);
+-        let vel = dsp.x * (lnk.nod2.vel.x - lnk.nod1.vel.x) + dsp.y * (lnk.nod2.vel.y - lnk.nod1.vel.y);
+-        let frc = -(lnk.cstf * (len - lnk.rlen) + lnk.cdmp * vel);
+-        let udsp = {
+-            x: dsp.x / len,
+-            y: dsp.y / len
++        let len = Math.hypot(vec.x, vec.y);
++        let dsp = len - lnk.rlen;
++        let vel = vec.x * (lnk.nod2.vel.x - lnk.nod1.vel.x) + vec.y * (lnk.nod2.vel.y - lnk.nod1.vel.y);
++        let frc = -(lnk.cstf * dsp + lnk.cdmp * vel);
++        let uvec = {
++            x: vec.x / len,
++            y: vec.y / len
+         };
+ 
+-        lnk.nod1.frc.x -= udsp.x * frc;
+-        lnk.nod1.frc.y -= udsp.y * frc;
++        if(pins.includes(lnk.nod1) === false)
++        {
++            lnk.nod1.frc.x -= uvec.x * frc;
++            lnk.nod1.frc.y -= uvec.y * frc;
++        }
+         
+-        lnk.nod2.frc.x += udsp.x * frc;
+-        lnk.nod2.frc.y += udsp.y * frc;
+-    }
+-
+-    for(let n = 0; n < nods.length; n++)
+-    {
+-        let nod = nods[n];
+-
+-        if(nod.pos.y < plt.pos.y)
++        if(pins.includes(lnk.nod2) === false)
+         {
+-            nod.frc.y += 0.5 * nod.mass * (plt.pos.y - nod.pos.y);
++            lnk.nod2.frc.x += uvec.x * frc;
++            lnk.nod2.frc.y += uvec.y * frc;
+         }
+     }
+ 
+@@ -229,14 +239,17 @@ function doPhys(step)
+     {
+         let nod = nods[n];
+ 
+-        nod.acc.x = nod.frc.x / nod.mass;
+-        nod.acc.y = nod.frc.y / nod.mass;
+-
+-        nod.vel.x += step * nod.acc.x;
+-        nod.vel.y += step * nod.acc.y;
+-
+-        nod.pos.x += step * nod.vel.x;
+-        nod.pos.y += step * nod.vel.y;
++        if(pins.includes(nod) === false)
++        {
++            nod.acc.x = nod.frc.x / nod.mass;
++            nod.acc.y = nod.frc.y / nod.mass;
++    
++            nod.vel.x += step * nod.acc.x;
++            nod.vel.y += step * nod.acc.y;
++    
++            nod.pos.x += step * nod.vel.x;
++            nod.pos.y += step * nod.vel.y;
++        }
+     }
+ 
+     time += step;
+@@ -286,6 +299,7 @@ function doAnim()
+         ctxXray.beginPath();
+         ctxXray.moveTo(lnk.nod1.pos.x, lnk.nod1.pos.y);
+         ctxXray.lineTo(lnk.nod2.pos.x, lnk.nod2.pos.y);
++
+         ctxXray.lineWidth = 0.05;
+         ctxXray.strokeStyle = "#000";
+         ctxXray.stroke();
+
+commit f07a02faff99b9132e2e3f7814334acdb4f46168
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Mon Mar 6 09:46:16 2023 -0800
+
+    Made pin logic smarter and simpler.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index bea37f3..dedd92f 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -1,16 +1,28 @@
++const w = 3;
++
+ let time = 0;
+ 
+ let run = true;
+ 
+ let sins = [{
+     freq: 0.1,
+-    amp: 1,
++    amp: 0.5,
+     phs: 0
+ }];
+ 
+-let pos = {
+-    x: 0,
+-    y: 0
++let plt = {
++    pos: {
++        x: 0,
++        y: 0
++    },
++    vel: {
++        x: 0,
++        y: 0
++    },
++    acc: {
++        x: 0,
++        y: 0
++    }
+ };
+ 
+ let nods = [];
+@@ -23,7 +35,7 @@ for(let x = 0; x < 4; x++)
+             mass: 0.1,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+-                y: 4 * y / (8 - 1) + 1
++                y: 4 * y / (8 - 1) + 0.1
+             },
+             vel: {
+                 x: 0,
+@@ -49,16 +61,17 @@ for(let x = 0; x < (4 - 1); x++)
+ {
+     for(let y = 0; y < 8; y++)
+     {
++        let nod1 = nods[8 * x + y];
++        let nod2 = nods[8 * (x + 1) + y];
++
+         let lnk = {
+-            nod1: nods[8 * x + y],
+-            nod2: nods[8 * (x + 1) + y],
+-            rlen: null,
++            nod1: nod1,
++            nod2: nod2,
++            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 0.2,
+             cdmp: 0.1
+         };
+ 
+-        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+-
+         lnks.push(lnk);
+     }
+ }
+@@ -67,16 +80,17 @@ for(let x = 0; x < 4; x++)
+ {
+     for(let y = 0; y < (8 - 1); y++)
+     {
++        let nod1 = nods[8 * x + y];
++        let nod2 = nods[8 * x + (y + 1)];
++
+         let lnk = {
+-            nod1: nods[8 * x + y],
+-            nod2: nods[8 * x + (y + 1)],
+-            rlen: null,
++            nod1: nod1,
++            nod2: nod2,
++            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 0.2,
+             cdmp: 0.1
+         };
+ 
+-        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+-
+         lnks.push(lnk);
+     }
+ }
+@@ -85,16 +99,17 @@ for(let x = 0; x < (4 - 1); x++)
+ {
+     for(let y = x % 2; y < (8 - 1); y += 2)
+     {
++        let nod1 = nods[8 * x + y];
++        let nod2 = nods[8 * (x + 1) + (y + 1)];
++
+         let lnk = {
+-            nod1: nods[8 * x + y],
+-            nod2: nods[8 * (x + 1) + (y + 1)],
+-            rlen: null,
++            nod1: nod1,
++            nod2: nod2,
++            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 0.2,
+             cdmp: 0.1
+         };
+ 
+-        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+-
+         lnks.push(lnk);
+     }
+ }
+@@ -103,40 +118,70 @@ for(let x = 0; x < (4 - 1); x++)
+ {
+     for(let y = (x + 1) % 2; y < (8 - 1); y += 2)
+     {
++        let nod1 = nods[8 * (x + 1) + y];
++        let nod2 = nods[8 * x + (y + 1)];
++
+         let lnk = {
+-            nod1: nods[8 * (x + 1) + y],
+-            nod2: nods[8 * x + (y + 1)],
+-            rlen: null,
++            nod1: nod1,
++            nod2: nod2,
++            rlen: Math.hypot(nod1.pos.x - nod2.pos.x, nod1.pos.y - nod2.pos.y),
+             cstf: 0.2,
+             cdmp: 0.1
+         };
+ 
+-        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+-
+         lnks.push(lnk);
+     }
+ }
+ 
+ let pins = [];
+ 
++for(let x = 0; x < 4; x++)
++{
++    pins.push(nods[8 * x]);
++}
++
++doPhys(0);
++
+ window.setInterval(function()
+ {
+     for(let s = 0; s < 10; s++)
+     {
+         doPhys(0.1);
+     }
+-}, 1000 / 40);
++}, 1000 / 24);
+ 
+ function doPhys(step)
+ {
+-    pos.x = 0;
+-    pos.y = 0;
++    plt.pos.x = 0;
++    plt.pos.y = 0;
++
++    plt.vel.x = 0;
++    plt.vel.y = 0;
++    
++    plt.acc.x = 0;
++    plt.acc.y = 0;
+ 
+     for(let s = 0; s < sins.length; s++)
+     {
+         let sin = sins[s];
+ 
+-        pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
++        plt.pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
++        plt.vel.x += sin.amp * sin.freq * Math.cos(sin.freq * time + sin.phs);
++        plt.acc.x -= sin.amp * sin.freq * sin.freq * Math.sin(sin.freq * time + sin.phs);
++    }
++
++    for(let p = 0; p < pins.length; p++)
++    {
++        let nod = pins[p];
++
++        nod.pos.x = pins.length > 1 ? plt.pos.x + 0.8 * w * (p / (pins.length - 1) - 0.5) : plt.pos.x;
++        nod.pos.y = plt.pos.y;
++
++        nod.vel.x = plt.vel.x;
++        nod.vel.y = plt.vel.y;
++
++        nod.acc.x = plt.acc.x;
++        nod.acc.y = plt.acc.y;
+     }
+ 
+     for(let n = 0; n < nods.length; n++)
+@@ -174,9 +219,9 @@ function doPhys(step)
+     {
+         let nod = nods[n];
+ 
+-        if(nod.pos.y < pos.y && nod.pos.x > pos.x - 1.5 && nod.pos.x < pos.x + 1.5)
++        if(nod.pos.y < plt.pos.y)
+         {
+-            nod.frc.y += 0.5 * nod.mass * (pos.y - nod.pos.y);
++            nod.frc.y += 0.5 * nod.mass * (plt.pos.y - nod.pos.y);
+         }
+     }
+ 
+@@ -227,7 +272,7 @@ function doAnim()
+     ctxXray.stroke();
+ 
+     ctxXray.beginPath();
+-    ctxXray.rect(pos.x - 1.5, pos.y - 0.5, 3, 0.5);
++    ctxXray.rect(plt.pos.x - 0.5 * w, plt.pos.y - 0.5, w, 0.5);
+     ctxXray.fillStyle = "#842";
+     ctxXray.fill();
+     ctxXray.lineWidth = 0.05;
+
+commit fcf6fc7f90a5dc589941b0f59f52f0366bef23b8
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 20:15:58 2023 -0800
+
+    Added dampening force.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index f1448d3..bea37f3 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -2,16 +2,15 @@ let time = 0;
+ 
+ let run = true;
+ 
+-let plt = {
+-    pos: {
+-        x: 0,
+-        y: 0
+-    },
+-    sins: [{
+-        freq: 0.1,
+-        amp: 0.2,
+-        phs: 0
+-    }]
++let sins = [{
++    freq: 0.1,
++    amp: 1,
++    phs: 0
++}];
++
++let pos = {
++    x: 0,
++    y: 0
+ };
+ 
+ let nods = [];
+@@ -54,8 +53,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nods[8 * x + y],
+             nod2: nods[8 * (x + 1) + y],
+             rlen: null,
+-            cstf: 0.05,
+-            cdmp: 0
++            cstf: 0.2,
++            cdmp: 0.1
+         };
+ 
+         lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+@@ -72,8 +71,8 @@ for(let x = 0; x < 4; x++)
+             nod1: nods[8 * x + y],
+             nod2: nods[8 * x + (y + 1)],
+             rlen: null,
+-            cstf: 0.05,
+-            cdmp: 0
++            cstf: 0.2,
++            cdmp: 0.1
+         };
+ 
+         lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+@@ -90,8 +89,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nods[8 * x + y],
+             nod2: nods[8 * (x + 1) + (y + 1)],
+             rlen: null,
+-            cstf: 0.05,
+-            cdmp: 0
++            cstf: 0.2,
++            cdmp: 0.1
+         };
+ 
+         lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+@@ -108,8 +107,8 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nods[8 * (x + 1) + y],
+             nod2: nods[8 * x + (y + 1)],
+             rlen: null,
+-            cstf: 0.05,
+-            cdmp: 0
++            cstf: 0.2,
++            cdmp: 0.1
+         };
+ 
+         lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
+@@ -130,14 +129,14 @@ window.setInterval(function()
+ 
+ function doPhys(step)
+ {
+-    plt.pos.x = 0;
+-    plt.pos.y = 0;
++    pos.x = 0;
++    pos.y = 0;
+ 
+-    for(let s = 0; s < plt.sins.length; s++)
++    for(let s = 0; s < sins.length; s++)
+     {
+-        let sin = plt.sins[s];
++        let sin = sins[s];
+ 
+-        plt.pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
++        pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
+     }
+ 
+     for(let n = 0; n < nods.length; n++)
+@@ -145,7 +144,7 @@ function doPhys(step)
+         let nod = nods[n];
+ 
+         nod.frc.x = 0;
+-        nod.frc.y = -0.001 * nod.mass;
++        nod.frc.y = -0.005 * nod.mass;
+     }
+ 
+     for(let l = 0; l < lnks.length; l++)
+@@ -157,26 +156,27 @@ function doPhys(step)
+             y: lnk.nod2.pos.y - lnk.nod1.pos.y
+         };
+         let len = Math.hypot(dsp.x, dsp.y);
+-        let mfrc = -lnk.cstf * (len - lnk.rlen);
++        let vel = dsp.x * (lnk.nod2.vel.x - lnk.nod1.vel.x) + dsp.y * (lnk.nod2.vel.y - lnk.nod1.vel.y);
++        let frc = -(lnk.cstf * (len - lnk.rlen) + lnk.cdmp * vel);
+         let udsp = {
+             x: dsp.x / len,
+             y: dsp.y / len
+         };
+ 
+-        lnk.nod1.frc.x -= udsp.x * mfrc;
+-        lnk.nod1.frc.y -= udsp.y * mfrc;
++        lnk.nod1.frc.x -= udsp.x * frc;
++        lnk.nod1.frc.y -= udsp.y * frc;
+         
+-        lnk.nod2.frc.x += udsp.x * mfrc;
+-        lnk.nod2.frc.y += udsp.y * mfrc;
++        lnk.nod2.frc.x += udsp.x * frc;
++        lnk.nod2.frc.y += udsp.y * frc;
+     }
+ 
+     for(let n = 0; n < nods.length; n++)
+     {
+         let nod = nods[n];
+ 
+-        if(nod.pos.y < plt.pos.y && nod.pos.x > plt.pos.x - 1.5 && nod.pos.x < plt.pos.x + 1.5)
++        if(nod.pos.y < pos.y && nod.pos.x > pos.x - 1.5 && nod.pos.x < pos.x + 1.5)
+         {
+-            nod.frc.y += 0.5 * nod.mass * (plt.pos.y - nod.pos.y);
++            nod.frc.y += 0.5 * nod.mass * (pos.y - nod.pos.y);
+         }
+     }
+ 
+@@ -227,7 +227,7 @@ function doAnim()
+     ctxXray.stroke();
+ 
+     ctxXray.beginPath();
+-    ctxXray.rect(plt.pos.x - 1.5, plt.pos.y - 0.5, 3, 0.5);
++    ctxXray.rect(pos.x - 1.5, pos.y - 0.5, 3, 0.5);
+     ctxXray.fillStyle = "#842";
+     ctxXray.fill();
+     ctxXray.lineWidth = 0.05;
+
+commit 61e26582fba36af9e8094aaedc79de16d66d9b92
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 19:17:21 2023 -0800
+
+    Fixed rendering and integration.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index 894ab45..6378238 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -4,7 +4,7 @@
+         <meta charset="utf-8"/>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta name="author" content="Elias Dobrin">
+-        <title>Doppler Effect Simulation</title>
++        <title>Softbody Earthquake Simulation</title>
+         <link rel="icon" type="image/x-icon" href="./favicon.ico">
+         <link rel="stylesheet" type="text/css" href="./style.css">
+     </head>
+diff --git a/softquake/script.js b/softquake/script.js
+index 7cc729f..f1448d3 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -9,22 +9,22 @@ let plt = {
+     },
+     sins: [{
+         freq: 0.1,
+-        amp: 1,
++        amp: 0.2,
+         phs: 0
+-    }],
++    }]
+ };
+ 
+ let nods = [];
+ 
+ for(let x = 0; x < 4; x++)
+ {
+-    for(let y = 0; y < 4; y++)
++    for(let y = 0; y < 8; y++)
+     {
+         let nod = {
+-            mass: 0.01,
++            mass: 0.1,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+-                y: 2 * y / (4 - 1)
++                y: 4 * y / (8 - 1) + 1
+             },
+             vel: {
+                 x: 0,
+@@ -37,18 +37,9 @@ for(let x = 0; x < 4; x++)
+             frc: {
+                 x: 0,
+                 y: 0
+-            },
+-            rpin: null
++            }
+         };
+ 
+-        if(y === 0)
+-        {
+-            nod.rpin = {
+-                x: nod.pos.x,
+-                y: 0
+-            };
+-        }
+-
+         nods.push(nod);
+     }
+ }
+@@ -57,13 +48,13 @@ let lnks = [];
+ 
+ for(let x = 0; x < (4 - 1); x++)
+ {
+-    for(let y = 0; y < 4; y++)
++    for(let y = 0; y < 8; y++)
+     {
+         let lnk = {
+-            nod1: nods[4 * x + y],
+-            nod2: nods[4 * (x + 1) + y],
++            nod1: nods[8 * x + y],
++            nod2: nods[8 * (x + 1) + y],
+             rlen: null,
+-            cstf: 0.001,
++            cstf: 0.05,
+             cdmp: 0
+         };
+ 
+@@ -75,13 +66,13 @@ for(let x = 0; x < (4 - 1); x++)
+ 
+ for(let x = 0; x < 4; x++)
+ {
+-    for(let y = 0; y < (4 - 1); y++)
++    for(let y = 0; y < (8 - 1); y++)
+     {
+         let lnk = {
+-            nod1: nods[4 * x + y],
+-            nod2: nods[4 * x + (y + 1)],
++            nod1: nods[8 * x + y],
++            nod2: nods[8 * x + (y + 1)],
+             rlen: null,
+-            cstf: 0.001,
++            cstf: 0.05,
+             cdmp: 0
+         };
+ 
+@@ -93,13 +84,13 @@ for(let x = 0; x < 4; x++)
+ 
+ for(let x = 0; x < (4 - 1); x++)
+ {
+-    for(let y = x % 2; y < (4 - 1); y += 2)
++    for(let y = x % 2; y < (8 - 1); y += 2)
+     {
+         let lnk = {
+-            nod1: nods[4 * x + y],
+-            nod2: nods[4 * (x + 1) + (y + 1)],
++            nod1: nods[8 * x + y],
++            nod2: nods[8 * (x + 1) + (y + 1)],
+             rlen: null,
+-            cstf: 0.001,
++            cstf: 0.05,
+             cdmp: 0
+         };
+ 
+@@ -111,13 +102,13 @@ for(let x = 0; x < (4 - 1); x++)
+ 
+ for(let x = 0; x < (4 - 1); x++)
+ {
+-    for(let y = (x + 1) % 2; y < (4 - 1); y += 2)
++    for(let y = (x + 1) % 2; y < (8 - 1); y += 2)
+     {
+         let lnk = {
+-            nod1: nods[4 * (x + 1) + y],
+-            nod2: nods[4 * x + (y + 1)],
++            nod1: nods[8 * (x + 1) + y],
++            nod2: nods[8 * x + (y + 1)],
+             rlen: null,
+-            cstf: 0.001,
++            cstf: 0.05,
+             cdmp: 0
+         };
+ 
+@@ -127,13 +118,15 @@ for(let x = 0; x < (4 - 1); x++)
+     }
+ }
+ 
++let pins = [];
++
+ window.setInterval(function()
+ {
+-    for(let s = 0; s < 100; s++)
++    for(let s = 0; s < 10; s++)
+     {
+-        doPhys(0.01);
++        doPhys(0.1);
+     }
+-}, 1000 / 20);
++}, 1000 / 40);
+ 
+ function doPhys(step)
+ {
+@@ -151,12 +144,6 @@ function doPhys(step)
+     {
+         let nod = nods[n];
+ 
+-        if(nod.rpin !== null)
+-        {
+-            nod.pos.x = nod.rpin.x + plt.pos.x;
+-            nod.pos.y = nod.rpin.y + plt.pos.y;
+-        }
+-
+         nod.frc.x = 0;
+         nod.frc.y = -0.001 * nod.mass;
+     }
+@@ -187,19 +174,26 @@ function doPhys(step)
+     {
+         let nod = nods[n];
+ 
+-        if(nod.rpin === null)
++        if(nod.pos.y < plt.pos.y && nod.pos.x > plt.pos.x - 1.5 && nod.pos.x < plt.pos.x + 1.5)
+         {
+-            nod.acc.x = nod.frc.x / nod.mass;
+-            nod.acc.y = nod.frc.y / nod.mass;
+-
+-            nod.vel.x += 0.1 * nod.acc.x;
+-            nod.vel.y += 0.1 * nod.acc.y;
+-    
+-            nod.pos.x += 0.1 * nod.vel.x;
+-            nod.pos.y += 0.1 * nod.vel.y;
++            nod.frc.y += 0.5 * nod.mass * (plt.pos.y - nod.pos.y);
+         }
+     }
+ 
++    for(let n = 0; n < nods.length; n++)
++    {
++        let nod = nods[n];
++
++        nod.acc.x = nod.frc.x / nod.mass;
++        nod.acc.y = nod.frc.y / nod.mass;
++
++        nod.vel.x += step * nod.acc.x;
++        nod.vel.y += step * nod.acc.y;
++
++        nod.pos.x += step * nod.vel.x;
++        nod.pos.y += step * nod.vel.y;
++    }
++
+     time += step;
+ }
+ 
+@@ -225,7 +219,15 @@ function doAnim()
+     ctxXray.translate(0, -2);
+ 
+     ctxXray.beginPath();
+-    ctxXray.rect(plt.pos.x - 1.5, plt.pos.y - 0.2, 3, 0.2);
++    ctxXray.rect(-4, -1, 8, 1.5);
++    ctxXray.fillStyle = "#0f0";
++    ctxXray.fill();
++    ctxXray.lineWidth = 0.05;
++    ctxXray.strokeStyle = "#000";
++    ctxXray.stroke();
++
++    ctxXray.beginPath();
++    ctxXray.rect(plt.pos.x - 1.5, plt.pos.y - 0.5, 3, 0.5);
+     ctxXray.fillStyle = "#842";
+     ctxXray.fill();
+     ctxXray.lineWidth = 0.05;
+@@ -260,4 +262,4 @@ function doAnim()
+     ctxXray.restore();
+ 
+     window.requestAnimationFrame(doAnim);
+-}
+\ No newline at end of file
++}
+
+commit 0443e319dda4d40659155dc7c69d02cc5787b867
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 13:58:36 2023 -0800
+
+    Updated loops and brainstorm, need more dampening I think.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index f069cfb..18f6b63 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -53,3 +53,5 @@ Human observer view building from side.
+ Plot:
+ Horizontal Displacement vs Time
+ Vertical Displacement vs Time
++Observer frequency vs amplitude vs time spectrogram
++Energy function in time
+\ No newline at end of file
+diff --git a/softquake/script.js b/softquake/script.js
+index d1944c8..7cc729f 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -8,7 +8,7 @@ let plt = {
+         y: 0
+     },
+     sins: [{
+-        freq: 0.01,
++        freq: 0.1,
+         amp: 1,
+         phs: 0
+     }],
+@@ -63,7 +63,7 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nods[4 * x + y],
+             nod2: nods[4 * (x + 1) + y],
+             rlen: null,
+-            cstf: 0.01,
++            cstf: 0.001,
+             cdmp: 0
+         };
+ 
+@@ -81,7 +81,7 @@ for(let x = 0; x < 4; x++)
+             nod1: nods[4 * x + y],
+             nod2: nods[4 * x + (y + 1)],
+             rlen: null,
+-            cstf: 0.01,
++            cstf: 0.001,
+             cdmp: 0
+         };
+ 
+@@ -99,7 +99,7 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nods[4 * x + y],
+             nod2: nods[4 * (x + 1) + (y + 1)],
+             rlen: null,
+-            cstf: 0.01,
++            cstf: 0.001,
+             cdmp: 0
+         };
+ 
+@@ -117,7 +117,7 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nods[4 * (x + 1) + y],
+             nod2: nods[4 * x + (y + 1)],
+             rlen: null,
+-            cstf: 0.01,
++            cstf: 0.001,
+             cdmp: 0
+         };
+ 
+@@ -127,7 +127,15 @@ for(let x = 0; x < (4 - 1); x++)
+     }
+ }
+ 
+-function doPhys()
++window.setInterval(function()
++{
++    for(let s = 0; s < 100; s++)
++    {
++        doPhys(0.01);
++    }
++}, 1000 / 20);
++
++function doPhys(step)
+ {
+     plt.pos.x = 0;
+     plt.pos.y = 0;
+@@ -192,7 +200,7 @@ function doPhys()
+         }
+     }
+ 
+-    time += 0.1;
++    time += step;
+ }
+ 
+ const canvXray = document.getElementById("canvas-xray");
+@@ -201,11 +209,6 @@ window.requestAnimationFrame(doAnim);
+ 
+ function doAnim()
+ {
+-    for(let i = 0; i < 10; i++)
+-    {
+-        doPhys();
+-    }
+-
+     let ctxXray = canvXray.getContext("2d", { alpha: false });
+ 
+     ctxXray.save();
+
+commit d215e27b0a5d91887277e24216fcf61c37ee02ef
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 13:52:26 2023 -0800
+
+    Initial softbody and Euler integration working.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index 7219353..d1944c8 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -8,8 +8,8 @@ let plt = {
+         y: 0
+     },
+     sins: [{
+-        freq: 0.1,
+-        amp: 0.5,
++        freq: 0.01,
++        amp: 1,
+         phs: 0
+     }],
+ };
+@@ -21,7 +21,7 @@ for(let x = 0; x < 4; x++)
+     for(let y = 0; y < 4; y++)
+     {
+         let nod = {
+-            mass: 1,
++            mass: 0.01,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+                 y: 2 * y / (4 - 1)
+@@ -63,7 +63,7 @@ for(let x = 0; x < (4 - 1); x++)
+             nod1: nods[4 * x + y],
+             nod2: nods[4 * (x + 1) + y],
+             rlen: null,
+-            cstf: 1,
++            cstf: 0.01,
+             cdmp: 0
+         };
+ 
+@@ -80,8 +80,13 @@ for(let x = 0; x < 4; x++)
+         let lnk = {
+             nod1: nods[4 * x + y],
+             nod2: nods[4 * x + (y + 1)],
++            rlen: null,
++            cstf: 0.01,
++            cdmp: 0
+         };
+ 
++        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
++
+         lnks.push(lnk);
+     }
+ }
+@@ -93,8 +98,13 @@ for(let x = 0; x < (4 - 1); x++)
+         let lnk = {
+             nod1: nods[4 * x + y],
+             nod2: nods[4 * (x + 1) + (y + 1)],
++            rlen: null,
++            cstf: 0.01,
++            cdmp: 0
+         };
+ 
++        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
++
+         lnks.push(lnk);
+     }
+ }
+@@ -106,8 +116,13 @@ for(let x = 0; x < (4 - 1); x++)
+         let lnk = {
+             nod1: nods[4 * (x + 1) + y],
+             nod2: nods[4 * x + (y + 1)],
++            rlen: null,
++            cstf: 0.01,
++            cdmp: 0
+         };
+ 
++        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
++
+         lnks.push(lnk);
+     }
+ }
+@@ -135,7 +150,7 @@ function doPhys()
+         }
+ 
+         nod.frc.x = 0;
+-        nod.frc.y = 0;
++        nod.frc.y = -0.001 * nod.mass;
+     }
+ 
+     for(let l = 0; l < lnks.length; l++)
+@@ -153,14 +168,31 @@ function doPhys()
+             y: dsp.y / len
+         };
+ 
+-        lnk.nod1.frc.x += udsp.x * mfrc;
+-        lnk.nod1.frc.y += udsp.y * mfrc;
++        lnk.nod1.frc.x -= udsp.x * mfrc;
++        lnk.nod1.frc.y -= udsp.y * mfrc;
+         
+-        lnk.nod2.frc.x -= udsp.x * mfrc;
+-        lnk.nod2.frc.y -= udsp.y * mfrc;
++        lnk.nod2.frc.x += udsp.x * mfrc;
++        lnk.nod2.frc.y += udsp.y * mfrc;
+     }
+ 
+-    time += 1;
++    for(let n = 0; n < nods.length; n++)
++    {
++        let nod = nods[n];
++
++        if(nod.rpin === null)
++        {
++            nod.acc.x = nod.frc.x / nod.mass;
++            nod.acc.y = nod.frc.y / nod.mass;
++
++            nod.vel.x += 0.1 * nod.acc.x;
++            nod.vel.y += 0.1 * nod.acc.y;
++    
++            nod.pos.x += 0.1 * nod.vel.x;
++            nod.pos.y += 0.1 * nod.vel.y;
++        }
++    }
++
++    time += 0.1;
+ }
+ 
+ const canvXray = document.getElementById("canvas-xray");
+@@ -169,7 +201,10 @@ window.requestAnimationFrame(doAnim);
+ 
+ function doAnim()
+ {
+-    doPhys();
++    for(let i = 0; i < 10; i++)
++    {
++        doPhys();
++    }
+ 
+     let ctxXray = canvXray.getContext("2d", { alpha: false });
+ 
+
+commit 6a3c69cf8008f55112dedc627aaf6c40f2f6768f
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 13:07:25 2023 -0800
+
+    Wrote some not working logic for spring and mass physics.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index b2daa2b..7219353 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -21,7 +21,7 @@ for(let x = 0; x < 4; x++)
+     for(let y = 0; y < 4; y++)
+     {
+         let nod = {
+-            pin: null,
++            mass: 1,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+                 y: 2 * y / (4 - 1)
+@@ -37,12 +37,13 @@ for(let x = 0; x < 4; x++)
+             frc: {
+                 x: 0,
+                 y: 0
+-            }
++            },
++            rpin: null
+         };
+ 
+         if(y === 0)
+         {
+-            nod.pin = {
++            nod.rpin = {
+                 x: nod.pos.x,
+                 y: 0
+             };
+@@ -61,8 +62,13 @@ for(let x = 0; x < (4 - 1); x++)
+         let lnk = {
+             nod1: nods[4 * x + y],
+             nod2: nods[4 * (x + 1) + y],
++            rlen: null,
++            cstf: 1,
++            cdmp: 0
+         };
+ 
++        lnk.rlen = Math.hypot(lnk.nod1.pos.x - lnk.nod2.pos.x, lnk.nod1.pos.y - lnk.nod2.pos.y);
++
+         lnks.push(lnk);
+     }
+ }
+@@ -122,11 +128,36 @@ function doPhys()
+     {
+         let nod = nods[n];
+ 
+-        if(nod.pin !== null)
++        if(nod.rpin !== null)
+         {
+-            nod.pos.x = nod.pin.x + plt.pos.x;
+-            nod.pos.y = nod.pin.y + plt.pos.y;
++            nod.pos.x = nod.rpin.x + plt.pos.x;
++            nod.pos.y = nod.rpin.y + plt.pos.y;
+         }
++
++        nod.frc.x = 0;
++        nod.frc.y = 0;
++    }
++
++    for(let l = 0; l < lnks.length; l++)
++    {
++        let lnk = lnks[l];
++
++        let dsp = {
++            x: lnk.nod2.pos.x - lnk.nod1.pos.x,
++            y: lnk.nod2.pos.y - lnk.nod1.pos.y
++        };
++        let len = Math.hypot(dsp.x, dsp.y);
++        let mfrc = -lnk.cstf * (len - lnk.rlen);
++        let udsp = {
++            x: dsp.x / len,
++            y: dsp.y / len
++        };
++
++        lnk.nod1.frc.x += udsp.x * mfrc;
++        lnk.nod1.frc.y += udsp.y * mfrc;
++        
++        lnk.nod2.frc.x -= udsp.x * mfrc;
++        lnk.nod2.frc.y -= udsp.y * mfrc;
+     }
+ 
+     time += 1;
+
+commit 401ebf3443a92b8aed3c265d931fb9e55aad25cc
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 11:55:06 2023 -0800
+
+    Made pins actually work.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index c94849f..b2daa2b 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -20,8 +20,8 @@ for(let x = 0; x < 4; x++)
+ {
+     for(let y = 0; y < 4; y++)
+     {
+-        nod = {
+-            pin: y === 0,
++        let nod = {
++            pin: null,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+                 y: 2 * y / (4 - 1)
+@@ -40,6 +40,14 @@ for(let x = 0; x < 4; x++)
+             }
+         };
+ 
++        if(y === 0)
++        {
++            nod.pin = {
++                x: nod.pos.x,
++                y: 0
++            };
++        }
++
+         nods.push(nod);
+     }
+ }
+@@ -114,9 +122,10 @@ function doPhys()
+     {
+         let nod = nods[n];
+ 
+-        if(nod.pin === false)
++        if(nod.pin !== null)
+         {
+-            
++            nod.pos.x = nod.pin.x + plt.pos.x;
++            nod.pos.y = nod.pin.y + plt.pos.y;
+         }
+     }
+ 
+@@ -144,6 +153,8 @@ function doAnim()
+     ctxXray.translate(4, 3);
+     ctxXray.scale(1, -1);
+ 
++    ctxXray.translate(0, -2);
++
+     ctxXray.beginPath();
+     ctxXray.rect(plt.pos.x - 1.5, plt.pos.y - 0.2, 3, 0.2);
+     ctxXray.fillStyle = "#842";
+
+commit 56a7f914fc72d54dcc8b9eaa15b1e01bb0a57ff0
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 11:41:30 2023 -0800
+
+    Updated pin data structure.
+
+diff --git a/softquake/script.js b/softquake/script.js
+index b296281..c94849f 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -21,6 +21,7 @@ for(let x = 0; x < 4; x++)
+     for(let y = 0; y < 4; y++)
+     {
+         nod = {
++            pin: y === 0,
+             pos: {
+                 x: 2 * (x / (4 - 1) - 0.5),
+                 y: 2 * y / (4 - 1)
+@@ -97,8 +98,6 @@ for(let x = 0; x < (4 - 1); x++)
+     }
+ }
+ 
+-let pins = [];
+-
+ function doPhys()
+ {
+     plt.pos.x = 0;
+@@ -111,6 +110,16 @@ function doPhys()
+         plt.pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
+     }
+ 
++    for(let n = 0; n < nods.length; n++)
++    {
++        let nod = nods[n];
++
++        if(nod.pin === false)
++        {
++            
++        }
++    }
++
+     time += 1;
+ }
+ 
+@@ -128,7 +137,7 @@ function doAnim()
+ 
+     ctxXray.clearRect(0, 0, 800, 600);
+ 
+-    ctxXray.fillStyle = "#fff";
++    ctxXray.fillStyle = "#8ff";
+     ctxXray.fillRect(0, 0, 800, 600);
+ 
+     ctxXray.scale(100, 100);
+@@ -137,7 +146,7 @@ function doAnim()
+ 
+     ctxXray.beginPath();
+     ctxXray.rect(plt.pos.x - 1.5, plt.pos.y - 0.2, 3, 0.2);
+-    ctxXray.fillStyle = "#00f";
++    ctxXray.fillStyle = "#842";
+     ctxXray.fill();
+     ctxXray.lineWidth = 0.05;
+     ctxXray.strokeStyle = "#000";
+@@ -161,7 +170,7 @@ function doAnim()
+ 
+         ctxXray.beginPath();
+         ctxXray.arc(nod.pos.x, nod.pos.y, 0.1, 0, 2 * Math.PI);
+-        ctxXray.fillStyle = "#f00";
++        ctxXray.fillStyle = "#fff";
+         ctxXray.fill();
+         ctxXray.lineWidth = 0.05;
+         ctxXray.strokeStyle = "#000";
+
+commit 0deae69c42800436b87ecf6e44fa85ef3b82f465
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sun Mar 5 11:23:55 2023 -0800
+
+    Very basic rendering of xray view.
+
+diff --git a/softquake/index.html b/softquake/index.html
+index 3ff80f4..894ab45 100644
+--- a/softquake/index.html
++++ b/softquake/index.html
+@@ -6,13 +6,13 @@
+         <meta name="author" content="Elias Dobrin">
+         <title>Doppler Effect Simulation</title>
+         <link rel="icon" type="image/x-icon" href="./favicon.ico">
+-        <link rel="stylesheet" href="./style.css">
++        <link rel="stylesheet" type="text/css" href="./style.css">
+     </head>
+     
+     <body>
+         <div id="main">
+             <h1 id="title">Softbody Earthquake Simulation</h1>
+-            <canvas width="800" height="600" id="canvas-main"></canvas>
++            <canvas width="800" height="600" id="canvas-xray"></canvas>
+         </div>
+ 
+         <script src="./script.js"></script>
+diff --git a/softquake/script.js b/softquake/script.js
+index d3d9339..b296281 100644
+--- a/softquake/script.js
++++ b/softquake/script.js
+@@ -2,16 +2,119 @@ let time = 0;
+ 
+ let run = true;
+ 
++let plt = {
++    pos: {
++        x: 0,
++        y: 0
++    },
++    sins: [{
++        freq: 0.1,
++        amp: 0.5,
++        phs: 0
++    }],
++};
++
+ let nods = [];
++
++for(let x = 0; x < 4; x++)
++{
++    for(let y = 0; y < 4; y++)
++    {
++        nod = {
++            pos: {
++                x: 2 * (x / (4 - 1) - 0.5),
++                y: 2 * y / (4 - 1)
++            },
++            vel: {
++                x: 0,
++                y: 0
++            },
++            acc: {
++                x: 0,
++                y: 0
++            },
++            frc: {
++                x: 0,
++                y: 0
++            }
++        };
++
++        nods.push(nod);
++    }
++}
++
+ let lnks = [];
+ 
++for(let x = 0; x < (4 - 1); x++)
++{
++    for(let y = 0; y < 4; y++)
++    {
++        let lnk = {
++            nod1: nods[4 * x + y],
++            nod2: nods[4 * (x + 1) + y],
++        };
++
++        lnks.push(lnk);
++    }
++}
++
++for(let x = 0; x < 4; x++)
++{
++    for(let y = 0; y < (4 - 1); y++)
++    {
++        let lnk = {
++            nod1: nods[4 * x + y],
++            nod2: nods[4 * x + (y + 1)],
++        };
++
++        lnks.push(lnk);
++    }
++}
++
++for(let x = 0; x < (4 - 1); x++)
++{
++    for(let y = x % 2; y < (4 - 1); y += 2)
++    {
++        let lnk = {
++            nod1: nods[4 * x + y],
++            nod2: nods[4 * (x + 1) + (y + 1)],
++        };
++
++        lnks.push(lnk);
++    }
++}
++
++for(let x = 0; x < (4 - 1); x++)
++{
++    for(let y = (x + 1) % 2; y < (4 - 1); y += 2)
++    {
++        let lnk = {
++            nod1: nods[4 * (x + 1) + y],
++            nod2: nods[4 * x + (y + 1)],
++        };
++
++        lnks.push(lnk);
++    }
++}
++
++let pins = [];
+ 
+ function doPhys()
+ {
++    plt.pos.x = 0;
++    plt.pos.y = 0;
++
++    for(let s = 0; s < plt.sins.length; s++)
++    {
++        let sin = plt.sins[s];
++
++        plt.pos.x += sin.amp * Math.sin(sin.freq * time + sin.phs);
++    }
++
+     time += 1;
+ }
+ 
+-const canvMain = document.getElementById("canvas-main");
++const canvXray = document.getElementById("canvas-xray");
+ 
+ window.requestAnimationFrame(doAnim);
+ 
+@@ -19,13 +122,53 @@ function doAnim()
+ {
+     doPhys();
+ 
+-    let ctxMain = canvMain.getContext("2d", { alpha: false });
++    let ctxXray = canvXray.getContext("2d", { alpha: false });
+ 
+-    ctxMain.clearRect(0, 0, 800, 600);
+-    ctxMain.fillStyle = "#fff";
+-    ctxMain.fillRect(0, 0, 800, 600);
++    ctxXray.save();
+ 
+-    window.requestAnimationFrame(doAnim);
+-}
++    ctxXray.clearRect(0, 0, 800, 600);
+ 
+-function doRow
+\ No newline at end of file
++    ctxXray.fillStyle = "#fff";
++    ctxXray.fillRect(0, 0, 800, 600);
++
++    ctxXray.scale(100, 100);
++    ctxXray.translate(4, 3);
++    ctxXray.scale(1, -1);
++
++    ctxXray.beginPath();
++    ctxXray.rect(plt.pos.x - 1.5, plt.pos.y - 0.2, 3, 0.2);
++    ctxXray.fillStyle = "#00f";
++    ctxXray.fill();
++    ctxXray.lineWidth = 0.05;
++    ctxXray.strokeStyle = "#000";
++    ctxXray.stroke();
++
++    for(let l = 0; l < lnks.length; l++)
++    {
++        let lnk = lnks[l];
++
++        ctxXray.beginPath();
++        ctxXray.moveTo(lnk.nod1.pos.x, lnk.nod1.pos.y);
++        ctxXray.lineTo(lnk.nod2.pos.x, lnk.nod2.pos.y);
++        ctxXray.lineWidth = 0.05;
++        ctxXray.strokeStyle = "#000";
++        ctxXray.stroke();
++    }
++
++    for(let n = 0; n < nods.length; n++)
++    {
++        let nod = nods[n];
++
++        ctxXray.beginPath();
++        ctxXray.arc(nod.pos.x, nod.pos.y, 0.1, 0, 2 * Math.PI);
++        ctxXray.fillStyle = "#f00";
++        ctxXray.fill();
++        ctxXray.lineWidth = 0.05;
++        ctxXray.strokeStyle = "#000";
++        ctxXray.stroke();
++    }
++
++    ctxXray.restore();
++
++    window.requestAnimationFrame(doAnim);
++}
+\ No newline at end of file
+
+commit 88ac6b320d9592fbc8c77d31f93b9a18f2130f94
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Mar 4 21:20:08 2023 -0800
+
+    Made concept art using professional image editing program.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index 85ba119..f069cfb 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -3,6 +3,10 @@ Crossbox mesh
+ Triangulation mesh (show area of each triangle compression and expansion with different colors)
+ Way to algorithmically connect two structures by making the adjacent nodes be as one.
+ 
++Data:
++Information of softbody topologies is stored in a separate javascript file "softbodies.js" that includes every
++node and link pieces of data. 
++
+ Use software to generate nodes and links precomputed.
+ 
+ Effects:
+diff --git a/concept.png b/concept.png
+new file mode 100644
+index 0000000..c779590
+Binary files /dev/null and b/concept.png differ
+
+commit 3ba849d1051ddd080e9520ec603cb7223f95e887
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Mar 3 21:57:43 2023 -0800
+
+    Update brainstorm.txt
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index 329b596..85ba119 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -3,6 +3,8 @@ Crossbox mesh
+ Triangulation mesh (show area of each triangle compression and expansion with different colors)
+ Way to algorithmically connect two structures by making the adjacent nodes be as one.
+ 
++Use software to generate nodes and links precomputed.
++
+ Effects:
+ Structure links may have a stress strain curve that is nonlinear and resembles steel.
+ 
+
+commit 253febd4da0c4ef91960c76be750ddf3d319bf0f
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Mar 2 21:52:20 2023 -0800
+
+    Updated brainstorm.txt.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index f7726d0..329b596 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -1,25 +1,26 @@
+ Structure:
+ Crossbox mesh
++Triangulation mesh (show area of each triangle compression and expansion with different colors)
++Way to algorithmically connect two structures by making the adjacent nodes be as one.
+ 
+ Effects:
+ Structure links may have a stress strain curve that is nonlinear and resembles steel.
+ 
+ Function:
+-There is a plate underneath the structure that moves with a signal with frequency range(s).
++There is a plate underneath the structure that moves with a signal with frequency pattern.
+ The signal of the plate and the key nodes of the structure are measured.
+ Simulates ONLY P WAVES.
+ 
+-Able to control the number of floors, number of rooms per floor, and floor height
+ Able to control the frequencies of the vibration signal of the plate.
+ Able to control the stiffness and dampening of all of the links.
+ Able to control the mass of all the nodes at once.
+ 
++Structure is fixed rigidly to the moving base plate instead of frictionally.
++
+ Buttons:
+ -General:
+ --Time: Start/Stop
+--Structure:
+---Rows: Few/Some/Many
+---Columns: Few/Some/Many
++-Structure: Crossbox, Pyramid
+ --Material:
+ ---Mass: Low/Medium/High
+ ---Stiffness: Low/Medium/High
+@@ -40,7 +41,9 @@ Coordinate System:
+ Time Integration:
+ Verlet Integration or RK4, done with Euler
+ 
+-Views:
++View:
+ Human observer view building from side.
+ 
+-Plots:
++Plot:
++Horizontal Displacement vs Time
++Vertical Displacement vs Time
+
+commit ba91f0157a00588e056aca4f226e526efe38be4e
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Feb 21 15:55:49 2023 -0800
+
+    Quitting project for now and will maybe start some other time.
+
+diff --git a/fft.js b/softquake/fft.js
+similarity index 100%
+rename from fft.js
+rename to softquake/fft.js
+diff --git a/softquake/index.html b/softquake/index.html
+new file mode 100644
+index 0000000..3ff80f4
+--- /dev/null
++++ b/softquake/index.html
+@@ -0,0 +1,20 @@
++<!DOCTYPE HTML>
++<html lang="en">
++    <head>
++        <meta charset="utf-8"/>
++        <meta name="viewport" content="width=device-width, initial-scale=1">
++        <meta name="author" content="Elias Dobrin">
++        <title>Doppler Effect Simulation</title>
++        <link rel="icon" type="image/x-icon" href="./favicon.ico">
++        <link rel="stylesheet" href="./style.css">
++    </head>
++    
++    <body>
++        <div id="main">
++            <h1 id="title">Softbody Earthquake Simulation</h1>
++            <canvas width="800" height="600" id="canvas-main"></canvas>
++        </div>
++
++        <script src="./script.js"></script>
++    </body>
++</html>
+diff --git a/softquake/script.js b/softquake/script.js
+new file mode 100644
+index 0000000..d3d9339
+--- /dev/null
++++ b/softquake/script.js
+@@ -0,0 +1,31 @@
++let time = 0;
++
++let run = true;
++
++let nods = [];
++let lnks = [];
++
++
++function doPhys()
++{
++    time += 1;
++}
++
++const canvMain = document.getElementById("canvas-main");
++
++window.requestAnimationFrame(doAnim);
++
++function doAnim()
++{
++    doPhys();
++
++    let ctxMain = canvMain.getContext("2d", { alpha: false });
++
++    ctxMain.clearRect(0, 0, 800, 600);
++    ctxMain.fillStyle = "#fff";
++    ctxMain.fillRect(0, 0, 800, 600);
++
++    window.requestAnimationFrame(doAnim);
++}
++
++function doRow
+\ No newline at end of file
+diff --git a/softquake/style.css b/softquake/style.css
+new file mode 100644
+index 0000000..31ddf10
+--- /dev/null
++++ b/softquake/style.css
+@@ -0,0 +1,16 @@
++body
++{
++    margin: 0;
++    padding: 0;
++}
++
++canvas
++{
++    background-color: #000;
++    outline: 5px solid #000;
++}
++
++#main
++{
++    text-align: center;
++}
+\ No newline at end of file
+
+commit a0f62547a2b365c3e9d74a81f9f6316982175fa7
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Feb 21 15:37:14 2023 -0800
+
+    Update brainstorm.txt
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index 616af3f..f7726d0 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -1,5 +1,5 @@
+ Structure:
+-Delanuai triangulation mesh OR crossbox mesh
++Crossbox mesh
+ 
+ Effects:
+ Structure links may have a stress strain curve that is nonlinear and resembles steel.
+@@ -11,7 +11,7 @@ Simulates ONLY P WAVES.
+ 
+ Able to control the number of floors, number of rooms per floor, and floor height
+ Able to control the frequencies of the vibration signal of the plate.
+-Able to control the stiffness and dampening of each of the links.
++Able to control the stiffness and dampening of all of the links.
+ Able to control the mass of all the nodes at once.
+ 
+ Buttons:
+@@ -19,13 +19,23 @@ Buttons:
+ --Time: Start/Stop
+ -Structure:
+ --Rows: Few/Some/Many
+---Rooms: Few/Some/Many
++--Columns: Few/Some/Many
+ --Material:
++---Mass: Low/Medium/High
+ ---Stiffness: Low/Medium/High
+ ---Dampening: Low/Medium/High
++-Vibration:
++--Frequency: Low/Medium/High
++--Amplitude: Low/Medium/High
+ -Sensor:
+---Point: Low/Medium/High
+-  
++--Placement: Low/Medium/High
++
++
++Coordinate System:
++->2D
++(0,0) is center of screen
++(4,3) is top right of screen
++(-4,-3) is bottom left of screen
+ 
+ Time Integration:
+ Verlet Integration or RK4, done with Euler
+
+commit dcb91ee13556bb33fe4d59c63658dceab23123a1
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Feb 21 14:57:09 2023 -0800
+
+    Added button layout idea.
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+index 4a505a2..616af3f 100644
+--- a/brainstorm.txt
++++ b/brainstorm.txt
+@@ -9,11 +9,24 @@ There is a plate underneath the structure that moves with a signal with frequenc
+ The signal of the plate and the key nodes of the structure are measured.
+ Simulates ONLY P WAVES.
+ 
+-Able to control the number of floors, floor width and floor height.
++Able to control the number of floors, number of rooms per floor, and floor height
+ Able to control the frequencies of the vibration signal of the plate.
+ Able to control the stiffness and dampening of each of the links.
+ Able to control the mass of all the nodes at once.
+ 
++Buttons:
++-General:
++--Time: Start/Stop
++-Structure:
++--Rows: Few/Some/Many
++--Rooms: Few/Some/Many
++--Material:
++---Stiffness: Low/Medium/High
++---Dampening: Low/Medium/High
++-Sensor:
++--Point: Low/Medium/High
++  
++
+ Time Integration:
+ Verlet Integration or RK4, done with Euler
+ 
+
+commit ba855c4188f527dd842eebd957be3fc2c6f63c3c
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Feb 21 14:20:40 2023 -0800
+
+    Create fft.js
+
+diff --git a/fft.js b/fft.js
+new file mode 100644
+index 0000000..c13b408
+--- /dev/null
++++ b/fft.js
+@@ -0,0 +1,507 @@
++'use strict';
++
++function FFT(size) {
++  this.size = size | 0;
++  if (this.size <= 1 || (this.size & (this.size - 1)) !== 0)
++    throw new Error('FFT size must be a power of two and bigger than 1');
++
++  this._csize = size << 1;
++
++  // NOTE: Use of `var` is intentional for old V8 versions
++  var table = new Array(this.size * 2);
++  for (var i = 0; i < table.length; i += 2) {
++    const angle = Math.PI * i / this.size;
++    table[i] = Math.cos(angle);
++    table[i + 1] = -Math.sin(angle);
++  }
++  this.table = table;
++
++  // Find size's power of two
++  var power = 0;
++  for (var t = 1; this.size > t; t <<= 1)
++    power++;
++
++  // Calculate initial step's width:
++  //   * If we are full radix-4 - it is 2x smaller to give inital len=8
++  //   * Otherwise it is the same as `power` to give len=4
++  this._width = power % 2 === 0 ? power - 1 : power;
++
++  // Pre-compute bit-reversal patterns
++  this._bitrev = new Array(1 << this._width);
++  for (var j = 0; j < this._bitrev.length; j++) {
++    this._bitrev[j] = 0;
++    for (var shift = 0; shift < this._width; shift += 2) {
++      var revShift = this._width - shift - 2;
++      this._bitrev[j] |= ((j >>> shift) & 3) << revShift;
++    }
++  }
++
++  this._out = null;
++  this._data = null;
++  this._inv = 0;
++}
++module.exports = FFT;
++
++FFT.prototype.fromComplexArray = function fromComplexArray(complex, storage) {
++  var res = storage || new Array(complex.length >>> 1);
++  for (var i = 0; i < complex.length; i += 2)
++    res[i >>> 1] = complex[i];
++  return res;
++};
++
++FFT.prototype.createComplexArray = function createComplexArray() {
++  const res = new Array(this._csize);
++  for (var i = 0; i < res.length; i++)
++    res[i] = 0;
++  return res;
++};
++
++FFT.prototype.toComplexArray = function toComplexArray(input, storage) {
++  var res = storage || this.createComplexArray();
++  for (var i = 0; i < res.length; i += 2) {
++    res[i] = input[i >>> 1];
++    res[i + 1] = 0;
++  }
++  return res;
++};
++
++FFT.prototype.completeSpectrum = function completeSpectrum(spectrum) {
++  var size = this._csize;
++  var half = size >>> 1;
++  for (var i = 2; i < half; i += 2) {
++    spectrum[size - i] = spectrum[i];
++    spectrum[size - i + 1] = -spectrum[i + 1];
++  }
++};
++
++FFT.prototype.transform = function transform(out, data) {
++  if (out === data)
++    throw new Error('Input and output buffers must be different');
++
++  this._out = out;
++  this._data = data;
++  this._inv = 0;
++  this._transform4();
++  this._out = null;
++  this._data = null;
++};
++
++FFT.prototype.realTransform = function realTransform(out, data) {
++  if (out === data)
++    throw new Error('Input and output buffers must be different');
++
++  this._out = out;
++  this._data = data;
++  this._inv = 0;
++  this._realTransform4();
++  this._out = null;
++  this._data = null;
++};
++
++FFT.prototype.inverseTransform = function inverseTransform(out, data) {
++  if (out === data)
++    throw new Error('Input and output buffers must be different');
++
++  this._out = out;
++  this._data = data;
++  this._inv = 1;
++  this._transform4();
++  for (var i = 0; i < out.length; i++)
++    out[i] /= this.size;
++  this._out = null;
++  this._data = null;
++};
++
++// radix-4 implementation
++//
++// NOTE: Uses of `var` are intentional for older V8 version that do not
++// support both `let compound assignments` and `const phi`
++FFT.prototype._transform4 = function _transform4() {
++  var out = this._out;
++  var size = this._csize;
++
++  // Initial step (permute and transform)
++  var width = this._width;
++  var step = 1 << width;
++  var len = (size / step) << 1;
++
++  var outOff;
++  var t;
++  var bitrev = this._bitrev;
++  if (len === 4) {
++    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
++      const off = bitrev[t];
++      this._singleTransform2(outOff, off, step);
++    }
++  } else {
++    // len === 8
++    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
++      const off = bitrev[t];
++      this._singleTransform4(outOff, off, step);
++    }
++  }
++
++  // Loop through steps in decreasing order
++  var inv = this._inv ? -1 : 1;
++  var table = this.table;
++  for (step >>= 2; step >= 2; step >>= 2) {
++    len = (size / step) << 1;
++    var quarterLen = len >>> 2;
++
++    // Loop through offsets in the data
++    for (outOff = 0; outOff < size; outOff += len) {
++      // Full case
++      var limit = outOff + quarterLen;
++      for (var i = outOff, k = 0; i < limit; i += 2, k += step) {
++        const A = i;
++        const B = A + quarterLen;
++        const C = B + quarterLen;
++        const D = C + quarterLen;
++
++        // Original values
++        const Ar = out[A];
++        const Ai = out[A + 1];
++        const Br = out[B];
++        const Bi = out[B + 1];
++        const Cr = out[C];
++        const Ci = out[C + 1];
++        const Dr = out[D];
++        const Di = out[D + 1];
++
++        // Middle values
++        const MAr = Ar;
++        const MAi = Ai;
++
++        const tableBr = table[k];
++        const tableBi = inv * table[k + 1];
++        const MBr = Br * tableBr - Bi * tableBi;
++        const MBi = Br * tableBi + Bi * tableBr;
++
++        const tableCr = table[2 * k];
++        const tableCi = inv * table[2 * k + 1];
++        const MCr = Cr * tableCr - Ci * tableCi;
++        const MCi = Cr * tableCi + Ci * tableCr;
++
++        const tableDr = table[3 * k];
++        const tableDi = inv * table[3 * k + 1];
++        const MDr = Dr * tableDr - Di * tableDi;
++        const MDi = Dr * tableDi + Di * tableDr;
++
++        // Pre-Final values
++        const T0r = MAr + MCr;
++        const T0i = MAi + MCi;
++        const T1r = MAr - MCr;
++        const T1i = MAi - MCi;
++        const T2r = MBr + MDr;
++        const T2i = MBi + MDi;
++        const T3r = inv * (MBr - MDr);
++        const T3i = inv * (MBi - MDi);
++
++        // Final values
++        const FAr = T0r + T2r;
++        const FAi = T0i + T2i;
++
++        const FCr = T0r - T2r;
++        const FCi = T0i - T2i;
++
++        const FBr = T1r + T3i;
++        const FBi = T1i - T3r;
++
++        const FDr = T1r - T3i;
++        const FDi = T1i + T3r;
++
++        out[A] = FAr;
++        out[A + 1] = FAi;
++        out[B] = FBr;
++        out[B + 1] = FBi;
++        out[C] = FCr;
++        out[C + 1] = FCi;
++        out[D] = FDr;
++        out[D + 1] = FDi;
++      }
++    }
++  }
++};
++
++// radix-2 implementation
++//
++// NOTE: Only called for len=4
++FFT.prototype._singleTransform2 = function _singleTransform2(outOff, off,
++                                                             step) {
++  const out = this._out;
++  const data = this._data;
++
++  const evenR = data[off];
++  const evenI = data[off + 1];
++  const oddR = data[off + step];
++  const oddI = data[off + step + 1];
++
++  const leftR = evenR + oddR;
++  const leftI = evenI + oddI;
++  const rightR = evenR - oddR;
++  const rightI = evenI - oddI;
++
++  out[outOff] = leftR;
++  out[outOff + 1] = leftI;
++  out[outOff + 2] = rightR;
++  out[outOff + 3] = rightI;
++};
++
++// radix-4
++//
++// NOTE: Only called for len=8
++FFT.prototype._singleTransform4 = function _singleTransform4(outOff, off,
++                                                             step) {
++  const out = this._out;
++  const data = this._data;
++  const inv = this._inv ? -1 : 1;
++  const step2 = step * 2;
++  const step3 = step * 3;
++
++  // Original values
++  const Ar = data[off];
++  const Ai = data[off + 1];
++  const Br = data[off + step];
++  const Bi = data[off + step + 1];
++  const Cr = data[off + step2];
++  const Ci = data[off + step2 + 1];
++  const Dr = data[off + step3];
++  const Di = data[off + step3 + 1];
++
++  // Pre-Final values
++  const T0r = Ar + Cr;
++  const T0i = Ai + Ci;
++  const T1r = Ar - Cr;
++  const T1i = Ai - Ci;
++  const T2r = Br + Dr;
++  const T2i = Bi + Di;
++  const T3r = inv * (Br - Dr);
++  const T3i = inv * (Bi - Di);
++
++  // Final values
++  const FAr = T0r + T2r;
++  const FAi = T0i + T2i;
++
++  const FBr = T1r + T3i;
++  const FBi = T1i - T3r;
++
++  const FCr = T0r - T2r;
++  const FCi = T0i - T2i;
++
++  const FDr = T1r - T3i;
++  const FDi = T1i + T3r;
++
++  out[outOff] = FAr;
++  out[outOff + 1] = FAi;
++  out[outOff + 2] = FBr;
++  out[outOff + 3] = FBi;
++  out[outOff + 4] = FCr;
++  out[outOff + 5] = FCi;
++  out[outOff + 6] = FDr;
++  out[outOff + 7] = FDi;
++};
++
++// Real input radix-4 implementation
++FFT.prototype._realTransform4 = function _realTransform4() {
++  var out = this._out;
++  var size = this._csize;
++
++  // Initial step (permute and transform)
++  var width = this._width;
++  var step = 1 << width;
++  var len = (size / step) << 1;
++
++  var outOff;
++  var t;
++  var bitrev = this._bitrev;
++  if (len === 4) {
++    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
++      const off = bitrev[t];
++      this._singleRealTransform2(outOff, off >>> 1, step >>> 1);
++    }
++  } else {
++    // len === 8
++    for (outOff = 0, t = 0; outOff < size; outOff += len, t++) {
++      const off = bitrev[t];
++      this._singleRealTransform4(outOff, off >>> 1, step >>> 1);
++    }
++  }
++
++  // Loop through steps in decreasing order
++  var inv = this._inv ? -1 : 1;
++  var table = this.table;
++  for (step >>= 2; step >= 2; step >>= 2) {
++    len = (size / step) << 1;
++    var halfLen = len >>> 1;
++    var quarterLen = halfLen >>> 1;
++    var hquarterLen = quarterLen >>> 1;
++
++    // Loop through offsets in the data
++    for (outOff = 0; outOff < size; outOff += len) {
++      for (var i = 0, k = 0; i <= hquarterLen; i += 2, k += step) {
++        var A = outOff + i;
++        var B = A + quarterLen;
++        var C = B + quarterLen;
++        var D = C + quarterLen;
++
++        // Original values
++        var Ar = out[A];
++        var Ai = out[A + 1];
++        var Br = out[B];
++        var Bi = out[B + 1];
++        var Cr = out[C];
++        var Ci = out[C + 1];
++        var Dr = out[D];
++        var Di = out[D + 1];
++
++        // Middle values
++        var MAr = Ar;
++        var MAi = Ai;
++
++        var tableBr = table[k];
++        var tableBi = inv * table[k + 1];
++        var MBr = Br * tableBr - Bi * tableBi;
++        var MBi = Br * tableBi + Bi * tableBr;
++
++        var tableCr = table[2 * k];
++        var tableCi = inv * table[2 * k + 1];
++        var MCr = Cr * tableCr - Ci * tableCi;
++        var MCi = Cr * tableCi + Ci * tableCr;
++
++        var tableDr = table[3 * k];
++        var tableDi = inv * table[3 * k + 1];
++        var MDr = Dr * tableDr - Di * tableDi;
++        var MDi = Dr * tableDi + Di * tableDr;
++
++        // Pre-Final values
++        var T0r = MAr + MCr;
++        var T0i = MAi + MCi;
++        var T1r = MAr - MCr;
++        var T1i = MAi - MCi;
++        var T2r = MBr + MDr;
++        var T2i = MBi + MDi;
++        var T3r = inv * (MBr - MDr);
++        var T3i = inv * (MBi - MDi);
++
++        // Final values
++        var FAr = T0r + T2r;
++        var FAi = T0i + T2i;
++
++        var FBr = T1r + T3i;
++        var FBi = T1i - T3r;
++
++        out[A] = FAr;
++        out[A + 1] = FAi;
++        out[B] = FBr;
++        out[B + 1] = FBi;
++
++        // Output final middle point
++        if (i === 0) {
++          var FCr = T0r - T2r;
++          var FCi = T0i - T2i;
++          out[C] = FCr;
++          out[C + 1] = FCi;
++          continue;
++        }
++
++        // Do not overwrite ourselves
++        if (i === hquarterLen)
++          continue;
++
++        // In the flipped case:
++        // MAi = -MAi
++        // MBr=-MBi, MBi=-MBr
++        // MCr=-MCr
++        // MDr=MDi, MDi=MDr
++        var ST0r = T1r;
++        var ST0i = -T1i;
++        var ST1r = T0r;
++        var ST1i = -T0i;
++        var ST2r = -inv * T3i;
++        var ST2i = -inv * T3r;
++        var ST3r = -inv * T2i;
++        var ST3i = -inv * T2r;
++
++        var SFAr = ST0r + ST2r;
++        var SFAi = ST0i + ST2i;
++
++        var SFBr = ST1r + ST3i;
++        var SFBi = ST1i - ST3r;
++
++        var SA = outOff + quarterLen - i;
++        var SB = outOff + halfLen - i;
++
++        out[SA] = SFAr;
++        out[SA + 1] = SFAi;
++        out[SB] = SFBr;
++        out[SB + 1] = SFBi;
++      }
++    }
++  }
++};
++
++// radix-2 implementation
++//
++// NOTE: Only called for len=4
++FFT.prototype._singleRealTransform2 = function _singleRealTransform2(outOff,
++                                                                     off,
++                                                                     step) {
++  const out = this._out;
++  const data = this._data;
++
++  const evenR = data[off];
++  const oddR = data[off + step];
++
++  const leftR = evenR + oddR;
++  const rightR = evenR - oddR;
++
++  out[outOff] = leftR;
++  out[outOff + 1] = 0;
++  out[outOff + 2] = rightR;
++  out[outOff + 3] = 0;
++};
++
++// radix-4
++//
++// NOTE: Only called for len=8
++FFT.prototype._singleRealTransform4 = function _singleRealTransform4(outOff,
++                                                                     off,
++                                                                     step) {
++  const out = this._out;
++  const data = this._data;
++  const inv = this._inv ? -1 : 1;
++  const step2 = step * 2;
++  const step3 = step * 3;
++
++  // Original values
++  const Ar = data[off];
++  const Br = data[off + step];
++  const Cr = data[off + step2];
++  const Dr = data[off + step3];
++
++  // Pre-Final values
++  const T0r = Ar + Cr;
++  const T1r = Ar - Cr;
++  const T2r = Br + Dr;
++  const T3r = inv * (Br - Dr);
++
++  // Final values
++  const FAr = T0r + T2r;
++
++  const FBr = T1r;
++  const FBi = -T3r;
++
++  const FCr = T0r - T2r;
++
++  const FDr = T1r;
++  const FDi = T3r;
++
++  out[outOff] = FAr;
++  out[outOff + 1] = 0;
++  out[outOff + 2] = FBr;
++  out[outOff + 3] = FBi;
++  out[outOff + 4] = FCr;
++  out[outOff + 5] = 0;
++  out[outOff + 6] = FDr;
++  out[outOff + 7] = FDi;
++};
+
+commit b874a8c6231659b312d19111f24cd02f7bd0d40c
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Tue Feb 21 12:36:12 2023 -0800
+
+    Create brainstorm.txt
+
+diff --git a/brainstorm.txt b/brainstorm.txt
+new file mode 100644
+index 0000000..4a505a2
+--- /dev/null
++++ b/brainstorm.txt
+@@ -0,0 +1,23 @@
++Structure:
++Delanuai triangulation mesh OR crossbox mesh
++
++Effects:
++Structure links may have a stress strain curve that is nonlinear and resembles steel.
++
++Function:
++There is a plate underneath the structure that moves with a signal with frequency range(s).
++The signal of the plate and the key nodes of the structure are measured.
++Simulates ONLY P WAVES.
++
++Able to control the number of floors, floor width and floor height.
++Able to control the frequencies of the vibration signal of the plate.
++Able to control the stiffness and dampening of each of the links.
++Able to control the mass of all the nodes at once.
++
++Time Integration:
++Verlet Integration or RK4, done with Euler
++
++Views:
++Human observer view building from side.
++
++Plots:
+
+commit 5153a5812edefef0158b793e1b6857ee0c240a80
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Feb 9 09:53:43 2023 -0800
+
+    Initial commit
+
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000..dfe0770
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,2 @@
++# Auto detect text files and perform LF normalization
++* text=auto
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..d47c55c
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2023 Elias Dobrin
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.

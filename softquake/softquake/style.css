@@ -1,0 +1,81 @@
+body
+{
+    display: flex;
+    margin: 0;
+    padding: 25px 0;
+    text-align: center;
+}
+
+.section
+{
+    margin: 0;
+    padding: 5px;
+}
+
+.group
+{
+    margin: 0;
+    padding: 5px;
+}
+
+.panel
+{
+    display: inline-block;
+    margin: 0;
+    padding: 5px;
+}
+
+.content
+{
+    margin: 0;
+    padding: 5px;
+}
+
+.heading
+{
+    margin: 5px;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.label
+{
+    margin: 5px;
+    padding: 0;
+}
+
+.button
+{
+    display: inline-block;
+    margin: 0;
+    padding: auto;
+    cursor: pointer;
+}
+
+.button:disabled
+{
+    opacity: 0.2;
+    cursor: default;
+}
+
+.canvas
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    background-color: #000;
+}
+
+#main
+{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#title
+{
+    margin: 10px;
+    padding: 0;
+}

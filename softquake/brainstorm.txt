@@ -1,0 +1,54 @@
+Structure:
+Crossbox mesh
+Triangulation mesh (show area of each triangle compression and expansion with different colors)
+Way to algorithmically connect two structures by making the adjacent nodes be as one.
+
+Data:
+Information of softbody topologies is stored in a separate javascript file "softbodies.js" that includes every
+node and link pieces of data. 
+
+Use software to generate nodes and links precomputed.
+
+Effects:
+Structure links may have a stress strain curve that is nonlinear and resembles steel.
+
+Function:
+There is a plate underneath the structure that moves with a signal with frequency pattern.
+The signal of the plate and the key nodes of the structure are measured.
+Simulates ONLY P WAVES.
+
+Able to control the frequencies of the vibration signal of the plate.
+Able to control the stiffness and dampening of all of the links.
+Able to control the mass of all the nodes at once.
+
+Structure is fixed rigidly to the moving base plate instead of frictionally.
+
+Buttons:
+-General:
+--Time: Start/Stop
+--Clutter: Show/Hide
+-Structure:
+--Topology: Crossbox, Pyramid
+--Material:
+---Stiffness: Low/Medium/High
+---Dampening: Low/Medium/High
+-Vibration:
+--Frequency: Low/Medium/High
+--Amplitude: Low/Medium/High
+
+
+Coordinate System:
+->2D
+IN LAB SPACE:
+(0,0) is plate center horizontal and top vertical
+
+Time Integration:
+RK4
+
+View:
+Human observer view building from side.
+
+Plot:
+Spring stiffness curve and/or stress strain curve.
+Energy function in time
+Energy converted to heat through dampening. (IDK yet how to calc).
