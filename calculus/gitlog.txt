@@ -1,0 +1,3430 @@
+commit 526e140cc58632593f5765c3744895f79db4a36e
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Dec 22 20:23:51 2022 -0700
+
+    Create .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..b6e4761
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,129 @@
++# Byte-compiled / optimized / DLL files
++__pycache__/
++*.py[cod]
++*$py.class
++
++# C extensions
++*.so
++
++# Distribution / packaging
++.Python
++build/
++develop-eggs/
++dist/
++downloads/
++eggs/
++.eggs/
++lib/
++lib64/
++parts/
++sdist/
++var/
++wheels/
++pip-wheel-metadata/
++share/python-wheels/
++*.egg-info/
++.installed.cfg
++*.egg
++MANIFEST
++
++# PyInstaller
++#  Usually these files are written by a python script from a template
++#  before PyInstaller builds the exe, so as to inject date/other infos into it.
++*.manifest
++*.spec
++
++# Installer logs
++pip-log.txt
++pip-delete-this-directory.txt
++
++# Unit test / coverage reports
++htmlcov/
++.tox/
++.nox/
++.coverage
++.coverage.*
++.cache
++nosetests.xml
++coverage.xml
++*.cover
++*.py,cover
++.hypothesis/
++.pytest_cache/
++
++# Translations
++*.mo
++*.pot
++
++# Django stuff:
++*.log
++local_settings.py
++db.sqlite3
++db.sqlite3-journal
++
++# Flask stuff:
++instance/
++.webassets-cache
++
++# Scrapy stuff:
++.scrapy
++
++# Sphinx documentation
++docs/_build/
++
++# PyBuilder
++target/
++
++# Jupyter Notebook
++.ipynb_checkpoints
++
++# IPython
++profile_default/
++ipython_config.py
++
++# pyenv
++.python-version
++
++# pipenv
++#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
++#   However, in case of collaboration, if having platform-specific dependencies or dependencies
++#   having no cross-platform support, pipenv may install dependencies that don't work, or not
++#   install all needed dependencies.
++#Pipfile.lock
++
++# PEP 582; used by e.g. github.com/David-OConnor/pyflow
++__pypackages__/
++
++# Celery stuff
++celerybeat-schedule
++celerybeat.pid
++
++# SageMath parsed files
++*.sage.py
++
++# Environments
++.env
++.venv
++env/
++venv/
++ENV/
++env.bak/
++venv.bak/
++
++# Spyder project settings
++.spyderproject
++.spyproject
++
++# Rope project settings
++.ropeproject
++
++# mkdocs documentation
++/site
++
++# mypy
++.mypy_cache/
++.dmypy.json
++dmypy.json
++
++# Pyre type checker
++.pyre/
+
+commit b945af8bd5c219d16b08c0c99e9e25e39ffc97de
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Thu Dec 22 20:22:37 2022 -0700
+
+    Update requirements.txt
+
+diff --git a/requirements.txt b/requirements.txt
+index 9f5fc15..f351d74 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,2 +1,3 @@
+-matplotlib~=3.5.2
+-numpy~=1.22.3
+\ No newline at end of file
++matplotlib
++numpy
++PyQt5
+\ No newline at end of file
+
+commit 00c1e3b4ec5dab59ef9c6b6a6bb98cd76301d42b
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Sep 9 11:53:45 2022 -0700
+
+    some fix to math and edits
+
+diff --git a/calculus/calc_plane_def.py b/calculus/calc_plane_def.py
+index 307c27e..4c2dc14 100644
+--- a/calculus/calc_plane_def.py
++++ b/calculus/calc_plane_def.py
+@@ -67,5 +67,6 @@ vectorn_z = vector1_x * vector2_y - vector1_y * vector2_x
+ a = vectorn_x
+ b = vectorn_y
+ c = vectorn_z
++d = a * point1_x + b * point1_y + c * point1_z
+ 
+-print(f"Equation of the plane is: {a}*x + {b}*y + {c}*z = 0")
+\ No newline at end of file
++print(f"Equation of the plane is: {a} * X + {b} * Y + {c} * Z = {d}")
+
+commit 4ceb7ab55f5e798563277757eb6a5731df2fa789
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Sep 9 11:50:41 2022 -0700
+
+    made basic plane calculator from 3 points
+
+diff --git a/calculus/calc_plane_def.py b/calculus/calc_plane_def.py
+new file mode 100644
+index 0000000..307c27e
+--- /dev/null
++++ b/calculus/calc_plane_def.py
+@@ -0,0 +1,71 @@
++from time import sleep
++import numpy as np
++
++print("This program will find the equation of a plane given three points.")
++sleep(1)
++
++point1_x = 0
++point1_y = 0
++point1_z = 0
++point2_x = 0
++point2_y = 0
++point2_z = 0
++point3_x = 0
++point3_y = 0
++point3_z = 0
++
++while True:
++    try: point1_x = float(input("Point 1's x: "))
++    except: continue
++    break
++while True:
++    try: point1_y = float(input("Point 1's y: "))
++    except: continue
++    break
++while True:
++    try: point1_z = float(input("Point 1's z: "))
++    except: continue
++    break
++
++while True:
++    try: point2_x = float(input("Point 2's x: "))
++    except: continue
++    break
++while True:
++    try: point2_y = float(input("Point 2's y: "))
++    except: continue
++    break
++while True:
++    try: point2_z = float(input("Point 2's z: "))
++    except: continue
++    break
++
++while True:
++    try: point3_x = float(input("Point 3's x: "))
++    except: continue
++    break
++while True:
++    try: point3_y = float(input("Point 3's y: "))
++    except: continue
++    break
++while True:
++    try: point3_z = float(input("Point 3's z: "))
++    except: continue
++    break
++
++print(f"Points: ({point1_x}, {point1_y}, {point1_z}), ({point2_x}, {point2_y}, {point2_z}), ({point3_x}, {point3_y}, {point3_z})")
++
++vector1_x = point1_x - point2_x
++vector1_y = point1_y - point2_y
++vector1_z = point1_z - point2_z
++vector2_x = point1_x - point3_x
++vector2_y = point1_y - point3_y
++vector2_z = point1_z - point3_z
++vectorn_x = vector1_y * vector2_z - vector1_z * vector2_y
++vectorn_y = vector1_x * vector2_z - vector1_z * vector2_x
++vectorn_z = vector1_x * vector2_y - vector1_y * vector2_x
++a = vectorn_x
++b = vectorn_y
++c = vectorn_z
++
++print(f"Equation of the plane is: {a}*x + {b}*y + {c}*z = 0")
+\ No newline at end of file
+
+commit 85a542f28b548de03d2ca45d36c6c74ab8750ea9
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 24 10:41:42 2022 -0700
+
+    added calculus folder
+
+diff --git a/calc_maclaurin_cosx.py b/calculus/calc_maclaurin_cosx.py
+similarity index 100%
+rename from calc_maclaurin_cosx.py
+rename to calculus/calc_maclaurin_cosx.py
+diff --git a/calc_maclaurin_e2x.py b/calculus/calc_maclaurin_e2x.py
+similarity index 100%
+rename from calc_maclaurin_e2x.py
+rename to calculus/calc_maclaurin_e2x.py
+diff --git a/calc_maclaurin_sinx.py b/calculus/calc_maclaurin_sinx.py
+similarity index 100%
+rename from calc_maclaurin_sinx.py
+rename to calculus/calc_maclaurin_sinx.py
+diff --git a/calc_numerical_integration.py b/calculus/calc_numerical_integration.py
+similarity index 100%
+rename from calc_numerical_integration.py
+rename to calculus/calc_numerical_integration.py
+diff --git a/calc_pi_maclaurin.py b/calculus/calc_pi_maclaurin.py
+similarity index 100%
+rename from calc_pi_maclaurin.py
+rename to calculus/calc_pi_maclaurin.py
+diff --git a/calc_pi_monte_carlo.py b/calculus/calc_pi_monte_carlo.py
+similarity index 100%
+rename from calc_pi_monte_carlo.py
+rename to calculus/calc_pi_monte_carlo.py
+diff --git a/calc_problem_2008_bc_6.py b/calculus/calc_problem_2008_bc_6.py
+similarity index 100%
+rename from calc_problem_2008_bc_6.py
+rename to calculus/calc_problem_2008_bc_6.py
+diff --git a/calculus.py b/calculus/calculus.py
+similarity index 100%
+rename from calculus.py
+rename to calculus/calculus.py
+diff --git a/maclaurin.py b/calculus/maclaurin.py
+similarity index 100%
+rename from maclaurin.py
+rename to calculus/maclaurin.py
+
+commit cf92aebc66efb20f4f9af2c210be9e69c1d46dd5
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 10:54:57 2022 -0700
+
+    small optimization
+
+diff --git a/calculus.py b/calculus.py
+index c324856..ef2a635 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -2,8 +2,6 @@ from __future__ import annotations
+ from typing import Callable
+ 
+ 
+-
+-
+ class Function:
+     function: Callable[[float], float]
+ 
+@@ -103,7 +101,11 @@ class Polynomial(Function):
+     def true_integral(self, x1: float, x2: float) -> float:
+         integral = 0
+         for power, coefficient in zip(self.powers, self.coefficients):
+-            integral += (coefficient / power) * x2 ** (power + 1)
+-        for power, coefficient in zip(self.powers, self.coefficients):
+-            integral -= (coefficient / power) * x1 ** (power + 1)
++            integral += (coefficient / power) * (x2 ** (power + 1) - x1 ** (power + 1))
+         return integral
++
++
++if __name__ == "__main__":
++    from time import sleep
++    print("This is just a library, you might want to try the other files.")
++    sleep(5)
+diff --git a/maclaurin.py b/maclaurin.py
+index 67ac0e1..42c3770 100644
+--- a/maclaurin.py
++++ b/maclaurin.py
+@@ -70,7 +70,8 @@ def nth_derivative_cos_0(n: int) -> float:
+     # assumes n >= 0
+     return nth_derivative_sin_0(n + 1)
+ 
++
+ if __name__ == "__main__":
+     from time import sleep
+-    print("This is just a library, you might wanna try the other files.")
+-    sleep(5)
+\ No newline at end of file
++    print("This is just a library, you might want to try the other files.")
++    sleep(5)
+
+commit 3bc95d59fdc3e3cf8aecce0a81ce0913eedabec3
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 10:15:19 2022 -0700
+
+    fixed integral derivative and limit methods
+
+diff --git a/calculus.py b/calculus.py
+index 9c464a6..c324856 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -90,11 +90,20 @@ class Polynomial(Function):
+             return y
+         super().__init__(function)
+ 
+-    def true_limit(self, x: float) -> None:
++    def true_limit(self, x: float) -> float:
+         limit = self.value(x)
+         return limit
+ 
+-    def true_derivative(self, x: float) -> None:
++    def true_derivative(self, x: float) -> float:
+         derivative = 0
+         for power, coefficient in zip(self.powers, self.coefficients):
+-            derivative += power * coefficient * x ** (power - 1)
+\ No newline at end of file
++            derivative += (coefficient * power) * x ** (power - 1)
++        return derivative
++
++    def true_integral(self, x1: float, x2: float) -> float:
++        integral = 0
++        for power, coefficient in zip(self.powers, self.coefficients):
++            integral += (coefficient / power) * x2 ** (power + 1)
++        for power, coefficient in zip(self.powers, self.coefficients):
++            integral -= (coefficient / power) * x1 ** (power + 1)
++        return integral
+
+commit 0a9f463c8e98010db7eee507837eca1b5735247c
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 10:11:15 2022 -0700
+
+    added more polynomial methods and constructor
+
+diff --git a/calculus.py b/calculus.py
+index b43a14e..9c464a6 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -2,6 +2,8 @@ from __future__ import annotations
+ from typing import Callable
+ 
+ 
++
++
+ class Function:
+     function: Callable[[float], float]
+ 
+@@ -73,4 +75,26 @@ class Function:
+             yl = self.value(xl)
+             yr = self.value(xr)
+             integral += (yl + yr) / 2
+-        return integral
+\ No newline at end of file
++        return integral
++
++
++class Polynomial(Function):
++    powers: list[int]
++    coefficients: list[float]
++
++    def __init__(self, powers: list[int], coefficients: list[float]) -> None:
++        def function(x: float) -> float:
++            y = 0
++            for n in range(len(powers)):
++                y += coefficients[n] * x ** powers[n]
++            return y
++        super().__init__(function)
++
++    def true_limit(self, x: float) -> None:
++        limit = self.value(x)
++        return limit
++
++    def true_derivative(self, x: float) -> None:
++        derivative = 0
++        for power, coefficient in zip(self.powers, self.coefficients):
++            derivative += power * coefficient * x ** (power - 1)
+\ No newline at end of file
+
+commit 309579889b6a09a0e069cf8d0216fe888f28d428
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 09:47:36 2022 -0700
+
+    added limit methods
+
+diff --git a/calculus.py b/calculus.py
+index fb586a6..b43a14e 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -11,6 +11,20 @@ class Function:
+     def value(self, x: float) -> float:
+         return self.function(x)
+ 
++    def limit_left(self, x: float, xl: float) -> float:
++        yl = self.value(xl)
++        for n in range(100):
++            try:
++                yl = self.value(xl + (x - xl) * ((n + 1) / 100))
++            except ValueError:
++                break
++        limit = yl
++        return limit
++
++    def limit_right(self, x: float, xr: float) -> float:
++        limit = self.limit_left(x, xr)
++        return limit
++
+     def derivative_range(self, x1: float, x2: float) -> float:
+         y1 = self.value(x1)
+         y2 = self.value(x2)
+
+commit 35269a47dee8fc5298ec5db42f8b3009d134ac73
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 09:30:48 2022 -0700
+
+    added trapezoidal integration
+
+diff --git a/calculus.py b/calculus.py
+index fdec330..fb586a6 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -49,3 +49,14 @@ class Function:
+         step = (x2 - x1) / steps
+         integral = self.integral_riemann_left(x1 + step / 2, x2 + step / 2, steps)
+         return integral
++
++    def integral_trapezoid(self, x1: float, x2: float, steps: int) -> float:
++        step = (x2 - x1) / steps
++        integral = 0
++        for n in range(steps):
++            xl = x1 + n * step
++            xr = x1 + (n + 1) * step
++            yl = self.value(xl)
++            yr = self.value(xr)
++            integral += (yl + yr) / 2
++        return integral
+\ No newline at end of file
+
+commit fae315d40da3bfaef0845c80a7aa0983ef94662e
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 09:25:35 2022 -0700
+
+    added 2 more integral methods
+
+diff --git a/calculus.py b/calculus.py
+index 4440027..fdec330 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -38,4 +38,14 @@ class Function:
+             x = x1 + n * step
+             y = self.value(x)
+             integral += y * step
++        return integral
+ 
++    def integral_riemann_right(self, x1: float, x2: float, steps: int) -> float:
++        step = (x2 - x1) / steps
++        integral = self.integral_riemann_left(x1 + step, x2 + step, steps)
++        return integral
++
++    def integral_riemann_center(self, x1: float, x2: float, steps: int) -> float:
++        step = (x2 - x1) / steps
++        integral = self.integral_riemann_left(x1 + step / 2, x2 + step / 2, steps)
++        return integral
+
+commit e55f5c720d15185f5659ba6ec4c1fc90073e9a6f
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 09:22:26 2022 -0700
+
+    added integral method
+
+diff --git a/calculus.py b/calculus.py
+index 38a2bfa..4440027 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -30,3 +30,12 @@ class Function:
+     def derivative_backward(self, xl: float, step: float) -> float:
+         derivative = self.derivative(xl - step / 2, step)
+         return derivative
++
++    def integral_riemann_left(self, x1: float, x2: float, steps: int) -> float:
++        step = (x2 - x1) / steps
++        integral = 0
++        for n in range(steps):
++            x = x1 + n * step
++            y = self.value(x)
++            integral += y * step
++
+
+commit a680b5bff115a5575d1ad644779808b18b25d0e4
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 09:14:33 2022 -0700
+
+    added derivative methods
+
+diff --git a/calculus.py b/calculus.py
+index 83bfc32..38a2bfa 100644
+--- a/calculus.py
++++ b/calculus.py
+@@ -17,4 +17,16 @@ class Function:
+         derivative = (y2 - y1) / (x2 - x1)
+         return derivative
+ 
+-    def derivative_left(self, x: float, d: ):
+\ No newline at end of file
++    def derivative(self, xc: float, step: float) -> float:
++        x1 = xc - step / 2
++        x2 = xc + step / 2
++        derivative = self.derivative_range(x1, x2)
++        return derivative
++
++    def derivative_forward(self, xl: float, step: float) -> float:
++        derivative = self.derivative(xl + step / 2, step)
++        return derivative
++
++    def derivative_backward(self, xl: float, step: float) -> float:
++        derivative = self.derivative(xl - step / 2, step)
++        return derivative
+
+commit 9889bdaa820a14dbaf60ed45517335f301cc5c29
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue May 31 09:08:53 2022 -0700
+
+    added calculus program
+
+diff --git a/calculus.py b/calculus.py
+new file mode 100644
+index 0000000..83bfc32
+--- /dev/null
++++ b/calculus.py
+@@ -0,0 +1,20 @@
++from __future__ import annotations
++from typing import Callable
++
++
++class Function:
++    function: Callable[[float], float]
++
++    def __init__(self, function: Callable[[float], float]) -> None:
++        self.function = function
++
++    def value(self, x: float) -> float:
++        return self.function(x)
++
++    def derivative_range(self, x1: float, x2: float) -> float:
++        y1 = self.value(x1)
++        y2 = self.value(x2)
++        derivative = (y2 - y1) / (x2 - x1)
++        return derivative
++
++    def derivative_left(self, x: float, d: ):
+\ No newline at end of file
+
+commit 2d9eb73b647923be23910d2e72e58e9a1dca6127
+Author: Daxonus <elias@dobrin.net>
+Date:   Wed May 11 14:22:13 2022 -0700
+
+    Update requirements.txt
+
+diff --git a/requirements.txt b/requirements.txt
+index ac5bee0..9f5fc15 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,10 +1,2 @@
+-cycler==0.11.0
+-fonttools==4.31.2
+-kiwisolver==1.4.2
+-matplotlib==3.5.1
+-numpy==1.22.3
+-packaging==21.3
+-Pillow==9.1.0
+-pyparsing==3.0.7
+-python-dateutil==2.8.2
+-six==1.16.0
+\ No newline at end of file
++matplotlib~=3.5.2
++numpy~=1.22.3
+\ No newline at end of file
+
+commit 57101e9e4f249fb9e94264b046294ff2eb44d66c
+Author: Elixonus <elias@dobrin.net>
+Date:   Wed May 11 13:48:01 2022 -0700
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index 488a358..ba4cde8 100644
+--- a/README.md
++++ b/README.md
+@@ -2,6 +2,8 @@
+ Small python and calculus experiments.
+ 
+ ## Usage
++```pip install -r requirements.txt```
++
+ Run any python file starting with calc_, the other files are just library dependencies for the project.
+ 
+ ```python calc_[program_name]```
+
+commit b4c7271d2c4e04f0853e922e9a82ccf7eb27bf5d
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 6 19:03:32 2022 -0700
+
+    removed trash
+
+diff --git a/.idea/calculus.iml b/.idea/calculus.iml
+deleted file mode 100644
+index d0876a7..0000000
+--- a/.idea/calculus.iml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="PYTHON_MODULE" version="4">
+-  <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-</module>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+deleted file mode 100644
+index 212a436..0000000
+--- a/.idea/inspectionProfiles/Project_Default.xml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <profile version="1.0">
+-    <option name="myName" value="Project Default" />
+-    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+-      <option name="ignoredErrors">
+-        <list>
+-          <option value="E501" />
+-        </list>
+-      </option>
+-    </inspection_tool>
+-  </profile>
+-</component>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+deleted file mode 100644
+index 105ce2d..0000000
+--- a/.idea/inspectionProfiles/profiles_settings.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <settings>
+-    <option name="USE_PROJECT_PROFILE" value="false" />
+-    <version value="1.0" />
+-  </settings>
+-</component>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+index dc9ea49..0000000
+--- a/.idea/misc.xml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
+-</project>
+\ No newline at end of file
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+index a785720..0000000
+--- a/.idea/modules.xml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/calculus.iml" filepath="$PROJECT_DIR$/.idea/calculus.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+index 94a25f7..0000000
+--- a/.idea/vcs.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+deleted file mode 100644
+index 2608776..0000000
+--- a/.idea/workspace.xml
++++ /dev/null
+@@ -1,382 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="AutoImportSettings">
+-    <option name="autoReloadType" value="SELECTIVE" />
+-  </component>
+-  <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="added numerical integration file">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_cosx.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_e2x.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_sinx.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/numerical_integration.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pi_maclaurin.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pi_monte_carlo.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/problem_2008_bc_6.py" beforeDir="false" />
+-    </list>
+-    <option name="SHOW_DIALOG" value="false" />
+-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-    <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Python Script" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+-    <envs>
+-      <env key="FLASK_APP" value="app" />
+-    </envs>
+-    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+-    <option name="myEnvs">
+-      <map>
+-        <entry key="FLASK_APP" value="app" />
+-      </map>
+-    </option>
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="GitSEFilterConfiguration">
+-    <file-type-list>
+-      <filtered-out-file-type name="LOCAL_BRANCH" />
+-      <filtered-out-file-type name="REMOTE_BRANCH" />
+-      <filtered-out-file-type name="TAG" />
+-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+-    </file-type-list>
+-  </component>
+-  <component name="MarkdownSettingsMigration">
+-    <option name="stateVersion" value="1" />
+-  </component>
+-  <component name="ProjectId" id="27J7j3pMpQtGRc3jeuuxpVSyFY9" />
+-  <component name="ProjectLevelVcsManager">
+-    <ConfirmationsSetting value="2" id="Add" />
+-  </component>
+-  <component name="ProjectViewState">
+-    <option name="hideEmptyMiddlePackages" value="true" />
+-    <option name="showLibraryContents" value="true" />
+-  </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "last_opened_file_path": "C:/Users/elias_yszu6iy/Documents/GitHub/calculus",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)"
+-  }
+-}]]></component>
+-  <component name="RecentsManager">
+-    <key name="CopyFile.RECENT_KEYS">
+-      <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+-    </key>
+-  </component>
+-  <component name="RunManager" selected="Python.numerical_integration">
+-    <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="maclaurin_cosx" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_cosx.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="maclaurin_e2x" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_e2x.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="maclaurin_sinx" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_sinx.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="numerical_integration" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/numerical_integration.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="pi_maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pi_maclaurin.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="pi_monte_carlo" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pi_monte_carlo.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="problem_2008_bc_6" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="calculus" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problem_2008_bc_6.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <list>
+-      <item itemvalue="Python.maclaurin" />
+-      <item itemvalue="Python.maclaurin_cosx" />
+-      <item itemvalue="Python.maclaurin_e2x" />
+-      <item itemvalue="Python.maclaurin_sinx" />
+-      <item itemvalue="Python.problem_2008_bc_6" />
+-      <item itemvalue="Python.numerical_integration" />
+-      <item itemvalue="Python.pi_monte_carlo" />
+-      <item itemvalue="Python.pi_maclaurin" />
+-    </list>
+-  </component>
+-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-  <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="" />
+-      <created>1649026468552</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1649026468552</updated>
+-      <workItem from="1649026470409" duration="4125000" />
+-      <workItem from="1649039311785" duration="8346000" />
+-      <workItem from="1649095614374" duration="2192000" />
+-      <workItem from="1649098032901" duration="2737000" />
+-      <workItem from="1649100900244" duration="2001000" />
+-      <workItem from="1649111138404" duration="361000" />
+-      <workItem from="1650037875676" duration="908000" />
+-      <workItem from="1650043393684" duration="1979000" />
+-      <workItem from="1651349981847" duration="210000" />
+-    </task>
+-    <task id="LOCAL-00001" summary="clean code">
+-      <created>1649042016206</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1649042016206</updated>
+-    </task>
+-    <task id="LOCAL-00002" summary="first maclaurin series program">
+-      <created>1649043839998</created>
+-      <option name="number" value="00002" />
+-      <option name="presentableId" value="LOCAL-00002" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1649043839998</updated>
+-    </task>
+-    <task id="LOCAL-00003" summary="cosine maclaurin series">
+-      <created>1649044327449</created>
+-      <option name="number" value="00003" />
+-      <option name="presentableId" value="LOCAL-00003" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1649044327449</updated>
+-    </task>
+-    <task id="LOCAL-00004" summary="added e^(2x) program">
+-      <created>1649045556235</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1649045556235</updated>
+-    </task>
+-    <task id="LOCAL-00005" summary="did monte carlo pi approximation">
+-      <created>1649047745263</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1649047745263</updated>
+-    </task>
+-    <task id="LOCAL-00006" summary="pi circle much better visualization">
+-      <created>1649097442059</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1649097442060</updated>
+-    </task>
+-    <task id="LOCAL-00007" summary="finished pi circle program inputting">
+-      <created>1649097833586</created>
+-      <option name="number" value="00007" />
+-      <option name="presentableId" value="LOCAL-00007" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1649097833587</updated>
+-    </task>
+-    <task id="LOCAL-00008" summary="added numerical integration file">
+-      <created>1650038673847</created>
+-      <option name="number" value="00008" />
+-      <option name="presentableId" value="LOCAL-00008" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1650038673847</updated>
+-    </task>
+-    <option name="localTasksCounter" value="9" />
+-    <servers />
+-  </component>
+-  <component name="TypeScriptGeneratedFilesManager">
+-    <option name="version" value="3" />
+-  </component>
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State />
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <MESSAGE value="clean code" />
+-    <MESSAGE value="first maclaurin series program" />
+-    <MESSAGE value="cosine maclaurin series" />
+-    <MESSAGE value="added e^(2x) program" />
+-    <MESSAGE value="did monte carlo pi approximation" />
+-    <MESSAGE value="pi circle much better visualization" />
+-    <MESSAGE value="finished pi circle program inputting" />
+-    <MESSAGE value="added numerical integration file" />
+-    <option name="LAST_COMMIT_MESSAGE" value="added numerical integration file" />
+-  </component>
+-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/calculus$numerical_integration.coverage" NAME="numerical_integration Coverage Results" MODIFIED="1650044988290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100986309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$problem_2008_bc_6.coverage" NAME="problem_2008_bc_6 Coverage Results" MODIFIED="1649111470997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_sinx.coverage" NAME="maclaurin_sinx Coverage Results" MODIFIED="1649101775337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-  </component>
+-</project>
+\ No newline at end of file
+diff --git a/__pycache__/maclaurin.cpython-310.pyc b/__pycache__/maclaurin.cpython-310.pyc
+deleted file mode 100644
+index d628a8c..0000000
+Binary files a/__pycache__/maclaurin.cpython-310.pyc and /dev/null differ
+
+commit bf05fb4871fa4d613f6edabcac3ae18f7def9bc7
+Author: Elixonus <elias@dobrin.net>
+Date:   Fri May 6 19:01:41 2022 -0700
+
+    Create LICENSE
+
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..9fe37c5
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2022 Elias Dobrin
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
+
+commit 7220e557d81c2d65fcbea48f97fc04fc47512fa6
+Author: Elixonus <elias@dobrin.net>
+Date:   Fri May 6 19:01:13 2022 -0700
+
+    Create README.md
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..488a358
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,7 @@
++# calculus
++Small python and calculus experiments.
++
++## Usage
++Run any python file starting with calc_, the other files are just library dependencies for the project.
++
++```python calc_[program_name]```
+
+commit 6bf57d06edc07e9b95053d83884429ee362d8691
+Author: Elias <elias@dobrin.net>
+Date:   Sat Apr 30 13:23:25 2022 -0700
+
+    fixed bugs and changed naming
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index ebfde77..2608776 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -6,7 +6,14 @@
+   <component name="ChangeListManager">
+     <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="added numerical integration file">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/numerical_integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/numerical_integration.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_cosx.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_e2x.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_sinx.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/numerical_integration.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/pi_maclaurin.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/pi_monte_carlo.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/problem_2008_bc_6.py" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -58,7 +65,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "WebServerToolWindowFactoryState": "false",
+-    "last_opened_file_path": "C:/Users/daxon/Documents/GitHub/calculus",
++    "last_opened_file_path": "C:/Users/elias_yszu6iy/Documents/GitHub/calculus",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -274,6 +281,7 @@
+       <workItem from="1649111138404" duration="361000" />
+       <workItem from="1650037875676" duration="908000" />
+       <workItem from="1650043393684" duration="1979000" />
++      <workItem from="1651349981847" duration="210000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -360,14 +368,14 @@
+     <option name="LAST_COMMIT_MESSAGE" value="added numerical integration file" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/calculus$problem_2008_bc_6.coverage" NAME="problem_2008_bc_6 Coverage Results" MODIFIED="1649111470997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$numerical_integration.coverage" NAME="numerical_integration Coverage Results" MODIFIED="1650044988290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100986309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_sinx.coverage" NAME="maclaurin_sinx Coverage Results" MODIFIED="1649101775337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100986309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$problem_2008_bc_6.coverage" NAME="problem_2008_bc_6 Coverage Results" MODIFIED="1649111470997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_sinx.coverage" NAME="maclaurin_sinx Coverage Results" MODIFIED="1649101775337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+diff --git a/__pycache__/maclaurin.cpython-310.pyc b/__pycache__/maclaurin.cpython-310.pyc
+index 35321e1..d628a8c 100644
+Binary files a/__pycache__/maclaurin.cpython-310.pyc and b/__pycache__/maclaurin.cpython-310.pyc differ
+diff --git a/maclaurin_cosx.py b/calc_maclaurin_cosx.py
+similarity index 100%
+rename from maclaurin_cosx.py
+rename to calc_maclaurin_cosx.py
+diff --git a/maclaurin_e2x.py b/calc_maclaurin_e2x.py
+similarity index 100%
+rename from maclaurin_e2x.py
+rename to calc_maclaurin_e2x.py
+diff --git a/maclaurin_sinx.py b/calc_maclaurin_sinx.py
+similarity index 100%
+rename from maclaurin_sinx.py
+rename to calc_maclaurin_sinx.py
+diff --git a/numerical_integration.py b/calc_numerical_integration.py
+similarity index 100%
+rename from numerical_integration.py
+rename to calc_numerical_integration.py
+diff --git a/pi_maclaurin.py b/calc_pi_maclaurin.py
+similarity index 100%
+rename from pi_maclaurin.py
+rename to calc_pi_maclaurin.py
+diff --git a/pi_monte_carlo.py b/calc_pi_monte_carlo.py
+similarity index 100%
+rename from pi_monte_carlo.py
+rename to calc_pi_monte_carlo.py
+diff --git a/problem_2008_bc_6.py b/calc_problem_2008_bc_6.py
+similarity index 98%
+rename from problem_2008_bc_6.py
+rename to calc_problem_2008_bc_6.py
+index d88ac57..271e101 100644
+--- a/problem_2008_bc_6.py
++++ b/calc_problem_2008_bc_6.py
+@@ -4,7 +4,7 @@ from matplotlib.colors import Normalize
+ 
+ while True:
+     try:
+-        do = int(input("Do: "))
++        do = int(input("Do [1-3]: "))
+     except:
+         print("Visualization number has to be either (1, 2, 3)")
+         continue
+diff --git a/maclaurin.py b/maclaurin.py
+index 0adfcea..67ac0e1 100644
+--- a/maclaurin.py
++++ b/maclaurin.py
+@@ -71,4 +71,6 @@ def nth_derivative_cos_0(n: int) -> float:
+     return nth_derivative_sin_0(n + 1)
+ 
+ if __name__ == "__main__":
+-    print("This is just a library, you might wanna try the other files.")
+\ No newline at end of file
++    from time import sleep
++    print("This is just a library, you might wanna try the other files.")
++    sleep(5)
+\ No newline at end of file
+
+commit a7824fbc8bc971196b110441b4ae5de2e768263e
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri Apr 15 10:56:58 2022 -0700
+
+    added trapezoid
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 5d07362..ebfde77 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,9 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="finished pi circle program inputting">
+-      <change afterPath="$PROJECT_DIR$/numerical_integration.py" afterDir="false" />
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="added numerical integration file">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/numerical_integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/numerical_integration.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -58,7 +58,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "WebServerToolWindowFactoryState": "false",
+-    "last_opened_file_path": "C:/Users/daxon/Documents/GitHub/calculus/numerical_integration.py",
++    "last_opened_file_path": "C:/Users/daxon/Documents/GitHub/calculus",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -272,7 +272,8 @@
+       <workItem from="1649098032901" duration="2737000" />
+       <workItem from="1649100900244" duration="2001000" />
+       <workItem from="1649111138404" duration="361000" />
+-      <workItem from="1650037875676" duration="772000" />
++      <workItem from="1650037875676" duration="908000" />
++      <workItem from="1650043393684" duration="1979000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -323,7 +324,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649097833587</updated>
+     </task>
+-    <option name="localTasksCounter" value="8" />
++    <task id="LOCAL-00008" summary="added numerical integration file">
++      <created>1650038673847</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1650038673847</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -348,11 +356,13 @@
+     <MESSAGE value="did monte carlo pi approximation" />
+     <MESSAGE value="pi circle much better visualization" />
+     <MESSAGE value="finished pi circle program inputting" />
+-    <option name="LAST_COMMIT_MESSAGE" value="finished pi circle program inputting" />
++    <MESSAGE value="added numerical integration file" />
++    <option name="LAST_COMMIT_MESSAGE" value="added numerical integration file" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$problem_2008_bc_6.coverage" NAME="problem_2008_bc_6 Coverage Results" MODIFIED="1649111470997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$numerical_integration.coverage" NAME="numerical_integration Coverage Results" MODIFIED="1650044988290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100986309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+diff --git a/numerical_integration.py b/numerical_integration.py
+index b259a12..b00b162 100644
+--- a/numerical_integration.py
++++ b/numerical_integration.py
+@@ -2,21 +2,35 @@ from math import sin
+ import numpy as np
+ import matplotlib.pyplot as plt
+ 
+-x = np.linspace(0, 1, 100)
++number_steps = 45
++end_x = 30
++
++x = np.linspace(0, end_x, 10000)
+ y = np.sin(x)
+ y_derivative = np.cos(x)
+ # integral of y(x) is -cos(x)
+-y_integral = -np.cos(x)
++y_integral = -np.cos(x) + 1
++
+ 
++x_numerical = np.linspace(0, end_x, number_steps)
+ 
+-number_steps = 100
+-y_integral_euler = np.empty(100)
++y_integral_euler = np.empty(number_steps)
+ last = 0
+ for n in range(number_steps):
+     y_integral_euler[n] = last
+-    last += 0.01 * y[n]
++    last += sin(x_numerical[n]) * (end_x / number_steps)
++
++y_integral_trapezoid = np.empty(number_steps)
++
++last = 0
++for n in range(number_steps - 1):
++    y_integral_trapezoid[n] = last
++    last += 0.5 * (sin(x_numerical[n]) + sin(x_numerical[n + 1])) * (end_x / number_steps)
++y_integral_trapezoid[-1] = last
++
+ 
+ fig, ax = plt.subplots()
+-ax.plot(x, y_integral_euler)
+ ax.plot(x, y_integral)
++ax.plot(x_numerical, y_integral_euler)
++ax.plot(x_numerical, y_integral_trapezoid)
+ plt.show()
+\ No newline at end of file
+
+commit 8fdfbfcc8b3db660fd04c05825cd0f6afefed82b
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri Apr 15 09:04:33 2022 -0700
+
+    added numerical integration file
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index a60bcd6..5d07362 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -5,6 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="finished pi circle program inputting">
++      <change afterPath="$PROJECT_DIR$/numerical_integration.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -52,23 +53,24 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">
+-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+-    <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/problem_2008_bc_6.py" />
+-    <property name="node.js.detected.package.eslint" value="true" />
+-    <property name="node.js.detected.package.tslint" value="true" />
+-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+-  </component>
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "WebServerToolWindowFactoryState": "false",
++    "last_opened_file_path": "C:/Users/daxon/Documents/GitHub/calculus/numerical_integration.py",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)"
++  }
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.problem_2008_bc_6">
++  <component name="RunManager" selected="Python.numerical_integration">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -157,6 +159,28 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
++    <configuration name="numerical_integration" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/numerical_integration.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
+     <configuration name="pi_maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -229,6 +253,7 @@
+       <item itemvalue="Python.maclaurin_e2x" />
+       <item itemvalue="Python.maclaurin_sinx" />
+       <item itemvalue="Python.problem_2008_bc_6" />
++      <item itemvalue="Python.numerical_integration" />
+       <item itemvalue="Python.pi_monte_carlo" />
+       <item itemvalue="Python.pi_maclaurin" />
+     </list>
+@@ -247,6 +272,7 @@
+       <workItem from="1649098032901" duration="2737000" />
+       <workItem from="1649100900244" duration="2001000" />
+       <workItem from="1649111138404" duration="361000" />
++      <workItem from="1650037875676" duration="772000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -326,13 +352,13 @@
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$problem_2008_bc_6.coverage" NAME="problem_2008_bc_6 Coverage Results" MODIFIED="1649111470997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_sinx.coverage" NAME="maclaurin_sinx Coverage Results" MODIFIED="1649101775337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100986309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_sinx.coverage" NAME="maclaurin_sinx Coverage Results" MODIFIED="1649101775337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git a/numerical_integration.py b/numerical_integration.py
+new file mode 100644
+index 0000000..b259a12
+--- /dev/null
++++ b/numerical_integration.py
+@@ -0,0 +1,22 @@
++from math import sin
++import numpy as np
++import matplotlib.pyplot as plt
++
++x = np.linspace(0, 1, 100)
++y = np.sin(x)
++y_derivative = np.cos(x)
++# integral of y(x) is -cos(x)
++y_integral = -np.cos(x)
++
++
++number_steps = 100
++y_integral_euler = np.empty(100)
++last = 0
++for n in range(number_steps):
++    y_integral_euler[n] = last
++    last += 0.01 * y[n]
++
++fig, ax = plt.subplots()
++ax.plot(x, y_integral_euler)
++ax.plot(x, y_integral)
++plt.show()
+\ No newline at end of file
+
+commit 9ccea8b0502157abf343f366e00e4f51de2ca55d
+Author: Daxonus <elias@dobrin.net>
+Date:   Tue Apr 5 22:05:05 2022 -0700
+
+    added requirements.txt
+
+diff --git a/requirements.txt b/requirements.txt
+new file mode 100644
+index 0000000..ac5bee0
+--- /dev/null
++++ b/requirements.txt
+@@ -0,0 +1,10 @@
++cycler==0.11.0
++fonttools==4.31.2
++kiwisolver==1.4.2
++matplotlib==3.5.1
++numpy==1.22.3
++packaging==21.3
++Pillow==9.1.0
++pyparsing==3.0.7
++python-dateutil==2.8.2
++six==1.16.0
+\ No newline at end of file
+
+commit 1ba0dd5a96e5bd63111ec924d771b00667bc1efe
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Apr 4 15:32:50 2022 -0700
+
+    added problem 2008 bc 6 py
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 3eed414..a60bcd6 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -6,7 +6,6 @@
+   <component name="ChangeListManager">
+     <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="finished pi circle program inputting">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pi_monte_carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/pi_monte_carlo.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -57,7 +56,7 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pi_maclaurin.py" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/problem_2008_bc_6.py" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+@@ -69,7 +68,7 @@
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.maclaurin_sinx">
++  <component name="RunManager" selected="Python.problem_2008_bc_6">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -149,7 +148,7 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="C:\Users\daxon\Documents\GitHub\calculus\maclaurin_sinx.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_sinx.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -202,11 +201,34 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
++    <configuration name="problem_2008_bc_6" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problem_2008_bc_6.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
+     <list>
+       <item itemvalue="Python.maclaurin" />
+       <item itemvalue="Python.maclaurin_cosx" />
+       <item itemvalue="Python.maclaurin_e2x" />
+       <item itemvalue="Python.maclaurin_sinx" />
++      <item itemvalue="Python.problem_2008_bc_6" />
+       <item itemvalue="Python.pi_monte_carlo" />
+       <item itemvalue="Python.pi_maclaurin" />
+     </list>
+@@ -224,6 +246,7 @@
+       <workItem from="1649095614374" duration="2192000" />
+       <workItem from="1649098032901" duration="2737000" />
+       <workItem from="1649100900244" duration="2001000" />
++      <workItem from="1649111138404" duration="361000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -302,6 +325,7 @@
+     <option name="LAST_COMMIT_MESSAGE" value="finished pi circle program inputting" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/calculus$problem_2008_bc_6.coverage" NAME="problem_2008_bc_6 Coverage Results" MODIFIED="1649111470997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_sinx.coverage" NAME="maclaurin_sinx Coverage Results" MODIFIED="1649101775337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+diff --git a/problem_2008_bc_6.py b/problem_2008_bc_6.py
+new file mode 100644
+index 0000000..d88ac57
+--- /dev/null
++++ b/problem_2008_bc_6.py
+@@ -0,0 +1,79 @@
++import matplotlib.pyplot as plt
++import numpy as np
++from matplotlib.colors import Normalize
++
++while True:
++    try:
++        do = int(input("Do: "))
++    except:
++        print("Visualization number has to be either (1, 2, 3)")
++        continue
++    if do >= 1 and do <= 3:
++        break
++    else:
++        print("Visualization number has to be either (1, 2, 3)")
++
++# make a stream function:
++X, Y = np.meshgrid(np.linspace(-1, 9, 256), np.linspace(-1, 9, 256))
++# make U and V out of the streamfunction:
++U = np.ones(shape=(256, 256))
++V = np.empty(shape=(256, 256))
++
++specialY = np.empty(256)
++
++lin = np.linspace(-1, 9, 256)
++for z in range(256):
++    theX = lin[z]
++    specialY[z] = 8 - 2*theX + (5/4)*theX**2
++
++for a in range(256):
++    for b in range(256):
++        V[a][b] = Y[a][b]/8 * (6-Y[a][b])
++
++x, y = np.meshgrid(np.linspace(-1, 9, 20), np.linspace(-1, 9, 20))
++# make U and V out of the streamfunction:
++u = np.ones(shape=(20, 20))
++v = np.empty(shape=(20, 20))
++
++for a in range(20):
++    for b in range(20):
++        v[a][b] = y[a][b]/8 * (6-y[a][b])
++        length = (u[a][b]**2 + v[a][b]**2)**0.5
++        v[a][b] /= length
++        u[a][b] /= length
++
++# plot:
++fig, ax = plt.subplots()
++
++stuff = abs(V / U)
++
++if do == 1:
++    ax.streamplot(X, Y, U, V,
++                  density=1,
++                  linewidth=1,
++                  color=stuff,
++                  cmap="jet",
++                  norm=Normalize(np.percentile(stuff, 10), np.percentile(stuff, 90)))
++    plt.title("Various solutions to the differential equation " + r"$\frac{dy}{dt} = \frac{y}{8} (6 - y)$")
++
++if do == 2 or do == 3:
++    ax.quiver(x, y, u, v)
++    ax.streamplot(X, Y, U, V,
++                  linewidth=3,
++                  color="black",
++                  norm=Normalize(np.percentile(stuff, 10), np.percentile(stuff, 90)),
++                  start_points=[(0, 8)])
++
++    if do == 3:
++        plt.title("Solution $f(t)$ to the differential equation with $f(0) = 8$ and\n2nd degree Taylor polynomial "
++                  "approximation around $x=0$")
++        ax.plot(np.linspace(-1, 9, 256), specialY, color="red", linewidth=3)
++    else:
++        plt.title("Solution $f(t)$ to the differential equation with $f(0) = 8$")
++
++plt.xlim(-1, 9)
++plt.ylim(-1, 9)
++plt.xlabel("$x$")
++plt.ylabel("$y$")
++
++plt.show()
+
+commit 2847c1b1e9915f5f2b80ff1e9798751e28141fa9
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Apr 4 13:47:32 2022 -0700
+
+    small change to visuals
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 7da041c..3eed414 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -5,9 +5,8 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="finished pi circle program inputting">
+-      <change afterPath="$PROJECT_DIR$/pi_maclaurin.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pi_circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/pi_monte_carlo.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pi_monte_carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/pi_monte_carlo.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -70,7 +69,7 @@
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.pi_maclaurin">
++  <component name="RunManager" selected="Python.maclaurin_sinx">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -224,6 +223,7 @@
+       <workItem from="1649039311785" duration="8346000" />
+       <workItem from="1649095614374" duration="2192000" />
+       <workItem from="1649098032901" duration="2737000" />
++      <workItem from="1649100900244" duration="2001000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -304,9 +304,10 @@
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_sinx.coverage" NAME="maclaurin_sinx Coverage Results" MODIFIED="1649101775337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100701814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100986309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+diff --git a/pi_monte_carlo.py b/pi_monte_carlo.py
+index 8e33752..5f9dd6e 100644
+--- a/pi_monte_carlo.py
++++ b/pi_monte_carlo.py
+@@ -28,7 +28,7 @@ ratio = len(points_inside) / (len(points_inside) + len(points_outside))
+ pi_approx = 4 * ratio
+ 
+ fig, ax = plt.subplots()
+-ax.add_patch(plt.Rectangle((-1, -1), 2, 2, color="green", alpha=0.2, hatch="x"))
++ax.add_patch(plt.Rectangle((-1, -1), 2, 2, color="green", alpha=0.2))
+ ax.add_patch(plt.Circle((0, 0), 1, color="red", alpha=0.2, hatch="x"))
+ ax.scatter([p[0] for p in points_inside], [p[1] for p in points_inside], color="red")
+ ax.scatter([p[0] for p in points_outside], [p[1] for p in points_outside], color="green")
+
+commit 61b773f599a37d622b6e211d6fd02a25ee3498d5
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Apr 4 12:34:16 2022 -0700
+
+    renamed pi approx file
+
+diff --git a/pi_circle.py b/pi_monte_carlo.py
+similarity index 100%
+rename from pi_circle.py
+rename to pi_monte_carlo.py
+
+commit fefd7f6b47e64cbfd5deb67e621e2fb4febddcd9
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Apr 4 12:33:57 2022 -0700
+
+    finished pi approximation program with maclaurin series
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index b9dcad0..7da041c 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,9 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="pi circle much better visualization">
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="finished pi circle program inputting">
++      <change afterPath="$PROJECT_DIR$/pi_maclaurin.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pi_circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/pi_circle.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pi_circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/pi_monte_carlo.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -20,6 +21,17 @@
+       </list>
+     </option>
+   </component>
++  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
++    <envs>
++      <env key="FLASK_APP" value="app" />
++    </envs>
++    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
++    <option name="myEnvs">
++      <map>
++        <entry key="FLASK_APP" value="app" />
++      </map>
++    </option>
++  </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+@@ -46,18 +58,19 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pi_circle.py" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/pi_maclaurin.py" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+     <property name="node.js.selected.package.tslint" value="(autodetect)" />
++    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+   </component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.pi_circle">
++  <component name="RunManager" selected="Python.pi_maclaurin">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -146,7 +159,29 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="pi_circle" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++    <configuration name="pi_maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pi_maclaurin.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="pi_monte_carlo" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -159,7 +194,7 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pi_circle.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pi_monte_carlo.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -172,8 +207,9 @@
+       <item itemvalue="Python.maclaurin" />
+       <item itemvalue="Python.maclaurin_cosx" />
+       <item itemvalue="Python.maclaurin_e2x" />
+-      <item itemvalue="Python.pi_circle" />
+       <item itemvalue="Python.maclaurin_sinx" />
++      <item itemvalue="Python.pi_monte_carlo" />
++      <item itemvalue="Python.pi_maclaurin" />
+     </list>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+@@ -186,7 +222,8 @@
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
+       <workItem from="1649039311785" duration="8346000" />
+-      <workItem from="1649095614374" duration="2137000" />
++      <workItem from="1649095614374" duration="2192000" />
++      <workItem from="1649098032901" duration="2737000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -230,7 +267,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649097442060</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="finished pi circle program inputting">
++      <created>1649097833586</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1649097833587</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -254,13 +298,15 @@
+     <MESSAGE value="added e^(2x) program" />
+     <MESSAGE value="did monte carlo pi approximation" />
+     <MESSAGE value="pi circle much better visualization" />
+-    <option name="LAST_COMMIT_MESSAGE" value="pi circle much better visualization" />
++    <MESSAGE value="finished pi circle program inputting" />
++    <option name="LAST_COMMIT_MESSAGE" value="finished pi circle program inputting" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$pi_maclaurin.coverage" NAME="pi_maclaurin Coverage Results" MODIFIED="1649100701814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+diff --git a/__pycache__/maclaurin.cpython-310.pyc b/__pycache__/maclaurin.cpython-310.pyc
+new file mode 100644
+index 0000000..35321e1
+Binary files /dev/null and b/__pycache__/maclaurin.cpython-310.pyc differ
+diff --git a/pi_maclaurin.py b/pi_maclaurin.py
+new file mode 100644
+index 0000000..6ed7e73
+--- /dev/null
++++ b/pi_maclaurin.py
+@@ -0,0 +1,40 @@
++from math import pi
++from time import sleep
++import matplotlib.pyplot as plt
++import numpy as np
++
++print("This program will approximate the value of pi with the Maclaurin series")
++sleep(1)
++print("for arctan(x) at x=1, which we know is pi/4.")
++sleep(1)
++print("Therefore, the Maclaurin series at x=1 multiplied by 4 gives us pi.")
++sleep(1)
++print("Enter the number of summation terms you wish to use in the calculation (>= 2 please).")
++sleep(0.5)
++
++terms = 2
++while True:
++    try: terms = int(input("Terms: "))
++    except: continue
++    if terms >= 2: break
++
++
++x = list(range(terms))
++y = []
++
++total = 0
++for n in range(terms):
++    if n % 2 == 0:
++        total += 1 / (2*n+1)
++    else:
++        total -= 1 / (2*n+1)
++    y.append(4 * total)
++
++fig, ax = plt.subplots()
++ax.plot(x, y, label="Maclauren series x 4")
++ax.plot(x, np.full(terms, pi), label=r"$\pi$, Truth")
++ax.legend()
++ax.set(xlim=(0, terms-1))
++ax.set_xlabel("Summation Terms")
++ax.set_title("Showing the summation of 25 terms of the Maclauren\nseries for arctan(x) at x=1 (multiplied by 4) since arctan(1) is $\pi /4$.")
++plt.show()
+\ No newline at end of file
+
+commit 0e4e5c26f1dcdf460623230bc12ca0252b98a54f
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Apr 4 11:43:53 2022 -0700
+
+    finished pi circle program inputting
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index f2743be..b9dcad0 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,7 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="did monte carlo pi approximation">
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="pi circle much better visualization">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/pi_circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/pi_circle.py" afterDir="false" />
+     </list>
+@@ -186,7 +186,7 @@
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
+       <workItem from="1649039311785" duration="8346000" />
+-      <workItem from="1649095614374" duration="1745000" />
++      <workItem from="1649095614374" duration="2137000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -223,7 +223,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649047745263</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="pi circle much better visualization">
++      <created>1649097442059</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1649097442060</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -246,11 +253,12 @@
+     <MESSAGE value="cosine maclaurin series" />
+     <MESSAGE value="added e^(2x) program" />
+     <MESSAGE value="did monte carlo pi approximation" />
+-    <option name="LAST_COMMIT_MESSAGE" value="did monte carlo pi approximation" />
++    <MESSAGE value="pi circle much better visualization" />
++    <option name="LAST_COMMIT_MESSAGE" value="pi circle much better visualization" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097382389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097799677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+diff --git a/pi_circle.py b/pi_circle.py
+index 1cae2ac..8e33752 100644
+--- a/pi_circle.py
++++ b/pi_circle.py
+@@ -1,10 +1,23 @@
+ from random import random
+ from math import pi, hypot
++from time import sleep
+ import matplotlib.pyplot as plt
+ 
++print("This program will approximate the value of pi using Monte Carlo method.")
++sleep(2)
++print("Below, enter the number of points you wish to use in the calculation.")
++sleep(1.5)
++
++total_points = 1
++while True:
++    try: total_points = int(input("Number: "))
++    except: continue
++    if total_points >= 1:
++        break
++
+ points_inside: list[tuple[float, float]] = []
+ points_outside: list[tuple[float, float]] = []
+-for n in range(100):
++for n in range(total_points):
+     point = (2 * random() - 1, 2 * random() - 1)
+     if hypot(point[0], point[1]) < 1:
+         points_inside.append(point)
+@@ -20,6 +33,6 @@ ax.add_patch(plt.Circle((0, 0), 1, color="red", alpha=0.2, hatch="x"))
+ ax.scatter([p[0] for p in points_inside], [p[1] for p in points_inside], color="red")
+ ax.scatter([p[0] for p in points_outside], [p[1] for p in points_outside], color="green")
+ ax.set(xlim=(-1, 1), ylim=(-1, 1))
+-ax.set_title(r"$\pi \approx " + f"{pi_approx}$, Relative Error = {((pi_approx - pi) / pi):.5f}")
++ax.set_title(r"$\pi \approx " + f"{pi_approx:.6f}$, Relative Error = {((pi_approx - pi) / pi):.5f}")
+ ax.set_aspect("equal")
+ plt.show()
+\ No newline at end of file
+
+commit 6411254d1ec4aaf31535f9709245a1e957cb6ce3
+Author: Daxonus <elias@dobrin.net>
+Date:   Mon Apr 4 11:37:21 2022 -0700
+
+    pi circle much better visualization
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 4d5dcc0..f2743be 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,10 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="added e^(2x) program">
+-      <change afterPath="$PROJECT_DIR$/pi_circle.py" afterDir="false" />
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="did monte carlo pi approximation">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_e2x.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_e2x.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pi_circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/pi_circle.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,6 +23,14 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitSEFilterConfiguration">
++    <file-type-list>
++      <filtered-out-file-type name="LOCAL_BRANCH" />
++      <filtered-out-file-type name="REMOTE_BRANCH" />
++      <filtered-out-file-type name="TAG" />
++      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
++    </file-type-list>
++  </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
+@@ -178,7 +185,8 @@
+       <option name="presentableId" value="Default" />
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
+-      <workItem from="1649039311785" duration="8304000" />
++      <workItem from="1649039311785" duration="8346000" />
++      <workItem from="1649095614374" duration="1745000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -208,7 +216,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649045556235</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="did monte carlo pi approximation">
++      <created>1649047745263</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1649047745263</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -230,11 +245,12 @@
+     <MESSAGE value="first maclaurin series program" />
+     <MESSAGE value="cosine maclaurin series" />
+     <MESSAGE value="added e^(2x) program" />
+-    <option name="LAST_COMMIT_MESSAGE" value="added e^(2x) program" />
++    <MESSAGE value="did monte carlo pi approximation" />
++    <option name="LAST_COMMIT_MESSAGE" value="did monte carlo pi approximation" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649047686996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649097382389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+diff --git a/pi_circle.py b/pi_circle.py
+index 961ae20..1cae2ac 100644
+--- a/pi_circle.py
++++ b/pi_circle.py
+@@ -1,20 +1,25 @@
+ from random import random
+-from math import hypot
++from math import pi, hypot
++import matplotlib.pyplot as plt
+ 
++points_inside: list[tuple[float, float]] = []
++points_outside: list[tuple[float, float]] = []
++for n in range(100):
++    point = (2 * random() - 1, 2 * random() - 1)
++    if hypot(point[0], point[1]) < 1:
++        points_inside.append(point)
++    else:
++        points_outside.append(point)
+ 
+-def approximate_pi(points_count: int) -> float:
+-    """Simulate pi with Monte Carlo Method
+-    by placing points randomly in a square
+-    and checking if they are inside the
+-    inscribed circle (Warning: Extremely Inefficient)"""
+-    inside = 0
+-    outside = 0
+-    for p in range(points_count):
+-        if hypot(2 * random() - 1, 2 * random() - 1) < 1:
+-            inside += 1
+-        else:
+-            outside += 1
+-    ratio = inside / (inside + outside)
+-    return 4 * ratio
++ratio = len(points_inside) / (len(points_inside) + len(points_outside))
++pi_approx = 4 * ratio
+ 
+-print(approximate_pi(1000))
+\ No newline at end of file
++fig, ax = plt.subplots()
++ax.add_patch(plt.Rectangle((-1, -1), 2, 2, color="green", alpha=0.2, hatch="x"))
++ax.add_patch(plt.Circle((0, 0), 1, color="red", alpha=0.2, hatch="x"))
++ax.scatter([p[0] for p in points_inside], [p[1] for p in points_inside], color="red")
++ax.scatter([p[0] for p in points_outside], [p[1] for p in points_outside], color="green")
++ax.set(xlim=(-1, 1), ylim=(-1, 1))
++ax.set_title(r"$\pi \approx " + f"{pi_approx}$, Relative Error = {((pi_approx - pi) / pi):.5f}")
++ax.set_aspect("equal")
++plt.show()
+\ No newline at end of file
+
+commit 10956c4bad841f248d886ab0254ff57123de1fff
+Author: Daxonus <elias@dobrin.net>
+Date:   Sun Apr 3 21:49:05 2022 -0700
+
+    did monte carlo pi approximation
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index e733774..4d5dcc0 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,11 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="cosine maclaurin series">
+-      <change afterPath="$PROJECT_DIR$/maclaurin_sinx.py" afterDir="false" />
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="added e^(2x) program">
++      <change afterPath="$PROJECT_DIR$/pi_circle.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_cos.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_cosx.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_sin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_e2x.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_e2x.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_e2x.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -40,7 +39,7 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/maclaurin_e2x.py" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/pi_circle.py" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+@@ -51,7 +50,7 @@
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.maclaurin_e2x">
++  <component name="RunManager" selected="Python.pi_circle">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -140,10 +139,33 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
++    <configuration name="pi_circle" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pi_circle.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
+     <list>
+       <item itemvalue="Python.maclaurin" />
+       <item itemvalue="Python.maclaurin_cosx" />
+       <item itemvalue="Python.maclaurin_e2x" />
++      <item itemvalue="Python.pi_circle" />
+       <item itemvalue="Python.maclaurin_sinx" />
+     </list>
+   </component>
+@@ -156,7 +178,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
+-      <workItem from="1649039311785" duration="6038000" />
++      <workItem from="1649039311785" duration="8304000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -179,7 +201,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649044327449</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="added e^(2x) program">
++      <created>1649045556235</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1649045556235</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -200,12 +229,14 @@
+     <MESSAGE value="clean code" />
+     <MESSAGE value="first maclaurin series program" />
+     <MESSAGE value="cosine maclaurin series" />
+-    <option name="LAST_COMMIT_MESSAGE" value="cosine maclaurin series" />
++    <MESSAGE value="added e^(2x) program" />
++    <option name="LAST_COMMIT_MESSAGE" value="added e^(2x) program" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$pi_circle.coverage" NAME="pi_circle Coverage Results" MODIFIED="1649047686996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649045408362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649046174696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+diff --git a/maclaurin_e2x.py b/maclaurin_e2x.py
+index c68dc65..c7df718 100644
+--- a/maclaurin_e2x.py
++++ b/maclaurin_e2x.py
+@@ -31,7 +31,7 @@ for i in range(len(x)):
+ 
+ fig, ax = plt.subplots()
+ ax.plot(x, y, linewidth=3)
+-ax.plot(x, y_maclaurin, linewidth=3)
++ax.plot(x, y_maclaurin, linewidth=3, color="green")
+ ax.legend(["e^(2x)", f"Maclaurin Series {degree}th degree"])
+ ax.fill_between(x, y, y_maclaurin, alpha=0.3)
+ plt.xlim((0, 2))
+diff --git a/pi_circle.py b/pi_circle.py
+new file mode 100644
+index 0000000..961ae20
+--- /dev/null
++++ b/pi_circle.py
+@@ -0,0 +1,20 @@
++from random import random
++from math import hypot
++
++
++def approximate_pi(points_count: int) -> float:
++    """Simulate pi with Monte Carlo Method
++    by placing points randomly in a square
++    and checking if they are inside the
++    inscribed circle (Warning: Extremely Inefficient)"""
++    inside = 0
++    outside = 0
++    for p in range(points_count):
++        if hypot(2 * random() - 1, 2 * random() - 1) < 1:
++            inside += 1
++        else:
++            outside += 1
++    ratio = inside / (inside + outside)
++    return 4 * ratio
++
++print(approximate_pi(1000))
+\ No newline at end of file
+
+commit fa8b2c9e0ccf2d637722c7632c2131c8750336be
+Author: Daxonus <elias@dobrin.net>
+Date:   Sun Apr 3 21:12:36 2022 -0700
+
+    added e^(2x) program
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 6ce9b83..e733774 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,10 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="first maclaurin series program">
+-      <change afterPath="$PROJECT_DIR$/maclaurin_cos.py" afterDir="false" />
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="cosine maclaurin series">
++      <change afterPath="$PROJECT_DIR$/maclaurin_sinx.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_sin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_sin.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_cos.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_cosx.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_sin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_e2x.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -39,7 +40,7 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/maclaurin_cos.py" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/maclaurin_e2x.py" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+@@ -50,7 +51,7 @@
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.maclaurin_cos">
++  <component name="RunManager" selected="Python.maclaurin_e2x">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -73,7 +74,7 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="maclaurin_cos" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++    <configuration name="maclaurin_cosx" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -86,7 +87,7 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_cos.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_cosx.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -95,7 +96,7 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="maclaurin_sin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++    <configuration name="maclaurin_e2x" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -108,7 +109,29 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_sin.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_e2x.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="maclaurin_sinx" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="C:\Users\daxon\Documents\GitHub\calculus\maclaurin_sinx.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -119,8 +142,9 @@
+     </configuration>
+     <list>
+       <item itemvalue="Python.maclaurin" />
+-      <item itemvalue="Python.maclaurin_sin" />
+-      <item itemvalue="Python.maclaurin_cos" />
++      <item itemvalue="Python.maclaurin_cosx" />
++      <item itemvalue="Python.maclaurin_e2x" />
++      <item itemvalue="Python.maclaurin_sinx" />
+     </list>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+@@ -132,7 +156,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
+-      <workItem from="1649039311785" duration="4910000" />
++      <workItem from="1649039311785" duration="6038000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -148,7 +172,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649043839998</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="cosine maclaurin series">
++      <created>1649044327449</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1649044327449</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -168,11 +199,13 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="clean code" />
+     <MESSAGE value="first maclaurin series program" />
+-    <option name="LAST_COMMIT_MESSAGE" value="first maclaurin series program" />
++    <MESSAGE value="cosine maclaurin series" />
++    <option name="LAST_COMMIT_MESSAGE" value="cosine maclaurin series" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044272669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044297618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_e2x.coverage" NAME="maclaurin_e2x Coverage Results" MODIFIED="1649045408362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+diff --git a/maclaurin_cos.py b/maclaurin_cosx.py
+similarity index 100%
+rename from maclaurin_cos.py
+rename to maclaurin_cosx.py
+diff --git a/maclaurin_e2x.py b/maclaurin_e2x.py
+new file mode 100644
+index 0000000..c68dc65
+--- /dev/null
++++ b/maclaurin_e2x.py
+@@ -0,0 +1,39 @@
++from time import sleep
++import matplotlib.pyplot as plt
++import numpy as np
++from maclaurin import Maclaurin
++
++
++def nth_derivative_e2x_0(n: int) -> float:
++    return 2**n
++
++
++print("This program will show the Maclaurin series for e^(2x).")
++sleep(2)
++print("Here, enter the degree of the finite polynomial.")
++sleep(1)
++degree = 0
++while True:
++       try: degree = int(input("Degree: "))
++       except: continue
++       if degree >= 0: break
++
++
++polynomial = Maclaurin(nth_derivative_e2x_0).polynomial(degree)
++
++x = np.linspace(0, 2, 100)
++y = np.exp(2*x)
++y_maclaurin = np.empty(100)
++for i in range(len(x)):
++    y_maclaurin[i] = polynomial.evaluate(x[i])
++
++
++
++fig, ax = plt.subplots()
++ax.plot(x, y, linewidth=3)
++ax.plot(x, y_maclaurin, linewidth=3)
++ax.legend(["e^(2x)", f"Maclaurin Series {degree}th degree"])
++ax.fill_between(x, y, y_maclaurin, alpha=0.3)
++plt.xlim((0, 2))
++plt.ylim((0, 11))
++plt.show()
+\ No newline at end of file
+diff --git a/maclaurin_sin.py b/maclaurin_sinx.py
+similarity index 100%
+rename from maclaurin_sin.py
+rename to maclaurin_sinx.py
+
+commit 8f643afe44b279053ae4c3958bfb316451d62740
+Author: Daxonus <elias@dobrin.net>
+Date:   Sun Apr 3 20:52:07 2022 -0700
+
+    cosine maclaurin series
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index b4b4e2a..6ce9b83 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,9 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="clean code">
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="first maclaurin series program">
++      <change afterPath="$PROJECT_DIR$/maclaurin_cos.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_1.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_sin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_sin.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -38,7 +39,7 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/maclaurin_1.py" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/maclaurin_cos.py" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+@@ -49,7 +50,7 @@
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.maclaurin_sin">
++  <component name="RunManager" selected="Python.maclaurin_cos">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -72,6 +73,28 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
++    <configuration name="maclaurin_cos" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_cos.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
+     <configuration name="maclaurin_sin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -85,7 +108,7 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="C:\Users\daxon\Documents\GitHub\calculus\maclaurin_sin.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin_sin.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -97,6 +120,7 @@
+     <list>
+       <item itemvalue="Python.maclaurin" />
+       <item itemvalue="Python.maclaurin_sin" />
++      <item itemvalue="Python.maclaurin_cos" />
+     </list>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+@@ -108,7 +132,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
+-      <workItem from="1649039311785" duration="4396000" />
++      <workItem from="1649039311785" duration="4910000" />
+     </task>
+     <task id="LOCAL-00001" summary="clean code">
+       <created>1649042016206</created>
+@@ -117,7 +141,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649042016206</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="first maclaurin series program">
++      <created>1649043839998</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1649043839998</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -136,11 +167,13 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="clean code" />
+-    <option name="LAST_COMMIT_MESSAGE" value="clean code" />
++    <MESSAGE value="first maclaurin series program" />
++    <option name="LAST_COMMIT_MESSAGE" value="first maclaurin series program" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_cos.coverage" NAME="maclaurin_cos Coverage Results" MODIFIED="1649044272669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_1 Coverage Results" MODIFIED="1649043736506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_sin Coverage Results" MODIFIED="1649044192366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git a/maclaurin_cos.py b/maclaurin_cos.py
+new file mode 100644
+index 0000000..0f35e8d
+--- /dev/null
++++ b/maclaurin_cos.py
+@@ -0,0 +1,34 @@
++from time import sleep
++import matplotlib.pyplot as plt
++import numpy as np
++from maclaurin import Maclaurin, nth_derivative_cos_0
++
++print("This program will show the Maclaurin series for cos(x).")
++sleep(2)
++print("Here, enter the degree of the finite polynomial.")
++sleep(1)
++degree = 0
++while True:
++       try: degree = int(input("Degree: "))
++       except: continue
++       if degree >= 0: break
++
++
++polynomial = Maclaurin(nth_derivative_cos_0).polynomial(degree)
++
++x = np.linspace(0, 10, 100)
++y = np.cos(x)
++y_maclaurin = np.empty(100)
++for i in range(len(x)):
++    y_maclaurin[i] = polynomial.evaluate(x[i])
++
++
++
++fig, ax = plt.subplots()
++ax.plot(x, y, linewidth=3)
++ax.plot(x, y_maclaurin, linewidth=3, color="violet")
++ax.legend([r"$\cos(x)$", f"Maclaurin Series {degree}th degree"])
++ax.fill_between(x, y, y_maclaurin, alpha=0.3)
++plt.xlim((0, 10))
++plt.ylim((-2, 2))
++plt.show()
+\ No newline at end of file
+diff --git a/maclaurin_sin.py b/maclaurin_sin.py
+index 3f32ba2..e0f7c9a 100644
+--- a/maclaurin_sin.py
++++ b/maclaurin_sin.py
+@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
+ import numpy as np
+ from maclaurin import Maclaurin, nth_derivative_sin_0
+ 
+-sleep(1)
+ print("This program will show the Maclaurin series for sin(x).")
+ sleep(2)
+ print("Here, enter the degree of the finite polynomial.")
+
+commit 0e672c0173c5c9af62896bc8e7af90c139af29a8
+Author: Daxonus <elias@dobrin.net>
+Date:   Sun Apr 3 20:43:59 2022 -0700
+
+    first maclaurin series program
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 8466982..b4b4e2a 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,9 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="">
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="clean code">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/maclaurin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin_1.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -38,7 +38,7 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/taylor.py" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/maclaurin_1.py" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+@@ -49,7 +49,7 @@
+       <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
+     </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Python.maclaurin_sin">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -72,6 +72,32 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
++    <configuration name="maclaurin_sin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="C:\Users\daxon\Documents\GitHub\calculus\maclaurin_sin.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <list>
++      <item itemvalue="Python.maclaurin" />
++      <item itemvalue="Python.maclaurin_sin" />
++    </list>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -82,8 +108,16 @@
+       <option name="presentableId" value="Default" />
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
+-      <workItem from="1649039311785" duration="2608000" />
++      <workItem from="1649039311785" duration="4396000" />
+     </task>
++    <task id="LOCAL-00001" summary="clean code">
++      <created>1649042016206</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1649042016206</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -100,8 +134,13 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="clean code" />
++    <option name="LAST_COMMIT_MESSAGE" value="clean code" />
++  </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041936790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041959120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+     <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin_1.coverage" NAME="maclaurin_1 Coverage Results" MODIFIED="1649043736506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git a/maclaurin_1.py b/maclaurin_1.py
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/maclaurin_sin.py b/maclaurin_sin.py
+new file mode 100644
+index 0000000..3f32ba2
+--- /dev/null
++++ b/maclaurin_sin.py
+@@ -0,0 +1,35 @@
++from time import sleep
++import matplotlib.pyplot as plt
++import numpy as np
++from maclaurin import Maclaurin, nth_derivative_sin_0
++
++sleep(1)
++print("This program will show the Maclaurin series for sin(x).")
++sleep(2)
++print("Here, enter the degree of the finite polynomial.")
++sleep(1)
++degree = 0
++while True:
++       try: degree = int(input("Degree: "))
++       except: continue
++       if degree >= 0: break
++
++
++polynomial = Maclaurin(nth_derivative_sin_0).polynomial(degree)
++
++x = np.linspace(0, 10, 100)
++y = np.sin(x)
++y_maclaurin = np.empty(100)
++for i in range(len(x)):
++    y_maclaurin[i] = polynomial.evaluate(x[i])
++
++
++
++fig, ax = plt.subplots()
++ax.plot(x, y, linewidth=3)
++ax.plot(x, y_maclaurin, linewidth=3)
++ax.legend([r"$\sin(x)$", f"Maclaurin Series {degree}th degree"])
++ax.fill_between(x, y, y_maclaurin, alpha=0.3)
++plt.xlim((0, 10))
++plt.ylim((-2, 2))
++plt.show()
+\ No newline at end of file
+
+commit 3e36e5047b3a7b07c9092448fd2e240ca243e5ee
+Author: Daxonus <elias@dobrin.net>
+Date:   Sun Apr 3 20:13:35 2022 -0700
+
+    clean code
+
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 54ed76c..8466982 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -4,7 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="" />
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/maclaurin.py" beforeDir="false" afterPath="$PROJECT_DIR$/maclaurin.py" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -24,6 +27,9 @@
+     <option name="stateVersion" value="1" />
+   </component>
+   <component name="ProjectId" id="27J7j3pMpQtGRc3jeuuxpVSyFY9" />
++  <component name="ProjectLevelVcsManager">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -38,6 +44,11 @@
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+   </component>
++  <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\daxon\Documents\GitHub\calculus" />
++    </key>
++  </component>
+   <component name="RunManager">
+     <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="calculus" />
+@@ -52,7 +63,7 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="C:\Users\daxon\Documents\GitHub\calculus\maclaurin.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maclaurin.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -71,13 +82,26 @@
+       <option name="presentableId" value="Default" />
+       <updated>1649026468552</updated>
+       <workItem from="1649026470409" duration="4125000" />
++      <workItem from="1649039311785" duration="2608000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649030595257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$maclaurin.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649041936790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="taylor Coverage Results" MODIFIED="1649040908766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git a/maclaurin.py b/maclaurin.py
+index 8d403df..0adfcea 100644
+--- a/maclaurin.py
++++ b/maclaurin.py
+@@ -1,5 +1,4 @@
+-from math import pi, tau
+-from typing import TypeAlias, Callable
++from typing import Callable
+ 
+ 
+ def factorial(n) -> int:
+@@ -33,9 +32,9 @@ class Polynomial:
+         self.terms = terms
+ 
+     def __repr__(self) -> str:
+-        string = ""
+-        for term in self.terms:
+-            string += str(term) + " "
++        string = str(self.terms[0])[2:]
++        for term in self.terms[1:]:
++            string += " " + str(term)
+         return string
+ 
+     def evaluate(self, x: float) -> float:
+@@ -50,12 +49,11 @@ class Maclaurin:
+ 
+     def polynomial(self, degree: int) -> Polynomial:
+         terms: list[Monomial] = []
+-        for n in range(degree, -1, -1):
++        for n in reversed(range(0, degree + 1)):
+             terms.append(Monomial(n, self.nth_derivative(n) / factorial(n)))
+         return Polynomial(terms)
+ 
+ 
+-
+ def nth_derivative_sin_0(n: int) -> float:
+     # assumes n >= 0
+     if n % 4 == 0:
+@@ -68,5 +66,9 @@ def nth_derivative_sin_0(n: int) -> float:
+         return -1
+ 
+ 
+-maclaurin = Maclaurin(nth_derivative_sin_0)
+-print(maclaurin.polynomial(100))
+\ No newline at end of file
++def nth_derivative_cos_0(n: int) -> float:
++    # assumes n >= 0
++    return nth_derivative_sin_0(n + 1)
++
++if __name__ == "__main__":
++    print("This is just a library, you might wanna try the other files.")
+\ No newline at end of file
+diff --git a/maclaurin_1.py b/maclaurin_1.py
+new file mode 100644
+index 0000000..e69de29
+
+commit 6464c9e5be5b954e597ff4fa4da6775a036113dc
+Author: Daxonus <elias@dobrin.net>
+Date:   Sun Apr 3 17:05:56 2022 -0700
+
+    did maclaurin polynomial and monomial structure and maclaurin
+
+diff --git a/.idea/calculus.iml b/.idea/calculus.iml
+new file mode 100644
+index 0000000..d0876a7
+--- /dev/null
++++ b/.idea/calculus.iml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+index 0000000..212a436
+--- /dev/null
++++ b/.idea/inspectionProfiles/Project_Default.xml
+@@ -0,0 +1,12 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
++      <option name="ignoredErrors">
++        <list>
++          <option value="E501" />
++        </list>
++      </option>
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+index 0000000..105ce2d
+--- /dev/null
++++ b/.idea/inspectionProfiles/profiles_settings.xml
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+index 0000000..dc9ea49
+--- /dev/null
++++ b/.idea/misc.xml
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+index 0000000..a785720
+--- /dev/null
++++ b/.idea/modules.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/calculus.iml" filepath="$PROJECT_DIR$/.idea/calculus.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+index 0000000..94a25f7
+--- /dev/null
++++ b/.idea/vcs.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+new file mode 100644
+index 0000000..54ed76c
+--- /dev/null
++++ b/.idea/workspace.xml
+@@ -0,0 +1,83 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="" />
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Python Script" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="ProjectId" id="27J7j3pMpQtGRc3jeuuxpVSyFY9" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">
++    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
++    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
++    <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/taylor.py" />
++    <property name="node.js.detected.package.eslint" value="true" />
++    <property name="node.js.detected.package.tslint" value="true" />
++    <property name="node.js.selected.package.eslint" value="(autodetect)" />
++    <property name="node.js.selected.package.tslint" value="(autodetect)" />
++  </component>
++  <component name="RunManager">
++    <configuration name="maclaurin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++      <module name="calculus" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="C:\Program Files\Python310\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="C:\Users\daxon\Documents\GitHub\calculus\maclaurin.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="d79b8ea0-4f5e-4047-ac01-a984ec2524e4" name="Changes" comment="" />
++      <created>1649026468552</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1649026468552</updated>
++      <workItem from="1649026470409" duration="4125000" />
++    </task>
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/calculus$taylor.coverage" NAME="maclaurin Coverage Results" MODIFIED="1649030595257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/maclaurin.py b/maclaurin.py
+new file mode 100644
+index 0000000..8d403df
+--- /dev/null
++++ b/maclaurin.py
+@@ -0,0 +1,72 @@
++from math import pi, tau
++from typing import TypeAlias, Callable
++
++
++def factorial(n) -> int:
++    if n == 0:
++        return 1
++    return factorial(n - 1) * n
++
++
++class Monomial:
++    power: int
++    coefficient: float
++
++    def __init__(self, power: int, coefficient: float) -> None:
++        self.power = power
++        self.coefficient = coefficient
++
++    def __repr__(self) -> str:
++        if self.coefficient >= 0:
++            return f"+ {self.coefficient}x^{self.power}"
++        elif self.coefficient < 0:
++            return f"- {-self.coefficient}x^{self.power}"
++
++    def evaluate(self, x: float) -> float:
++        return self.coefficient * x ** self.power
++
++
++class Polynomial:
++    terms: list[Monomial]
++
++    def __init__(self, terms: list[Monomial]) -> None:
++        self.terms = terms
++
++    def __repr__(self) -> str:
++        string = ""
++        for term in self.terms:
++            string += str(term) + " "
++        return string
++
++    def evaluate(self, x: float) -> float:
++        return sum(term.evaluate(x) for term in self.terms)
++
++
++class Maclaurin:
++    nth_derivative: Callable[[int], float]
++
++    def __init__(self, nth_derivative: Callable[[int], float]) -> None:
++        self.nth_derivative = nth_derivative
++
++    def polynomial(self, degree: int) -> Polynomial:
++        terms: list[Monomial] = []
++        for n in range(degree, -1, -1):
++            terms.append(Monomial(n, self.nth_derivative(n) / factorial(n)))
++        return Polynomial(terms)
++
++
++
++def nth_derivative_sin_0(n: int) -> float:
++    # assumes n >= 0
++    if n % 4 == 0:
++        return 0
++    if n % 4 == 1:
++        return 1
++    if n % 4 == 2:
++        return 0
++    if n % 4 == 3:
++        return -1
++
++
++maclaurin = Maclaurin(nth_derivative_sin_0)
++print(maclaurin.polynomial(100))
+\ No newline at end of file
+
+commit 77b8796f390b68e4e2547bd98bec5b6d682f0803
+Author: Daxonus <elias@dobrin.net>
+Date:   Sun Apr 3 15:45:08 2022 -0700
+
+    Initial commit
+
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000..dfe0770
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,2 @@
++# Auto detect text files and perform LF normalization
++* text=auto
