@@ -1,0 +1,927 @@
+commit 2880fddedebd6587149df73adf171e1bb3754f62
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Sat Jun 25 11:54:44 2022 -0700
+
+    fix formatting
+
+diff --git a/README.md b/README.md
+index 35c6212..1d14803 100644
+--- a/README.md
++++ b/README.md
+@@ -1,20 +1,20 @@
+-# trolldirectory :clown_face:
++# trolldirectory 🤡
++
+ Command line utility to replace all images in a directory with troll faces.
+ 
+ ## Usage
++
+ ```
+ pip install -r requirements.txt
+ ```
+-
+ Run the following command from the working directory you intend to troll.
+-
+ ```
+ python path/to/trolldirectory.py
+ ```
+-
+ It is also possible to add the `trolldirectory` folder to path for easier usage.
+ 
+ ## Information
++
+ Will mess up images so be make sure to make a copy.
+ 
+ Runs recursively through every image in the folders.
+
+commit f4ea9dc86fca6e72246b5d5324567ee0c664823a
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 24 12:57:39 2022 -0700
+
+    replace title
+
+diff --git a/README.md b/README.md
+index dc8bb2a..35c6212 100644
+--- a/README.md
++++ b/README.md
+@@ -1,5 +1,5 @@
+ # trolldirectory :clown_face:
+-Command line utility to replace all images with faces in a directory with troll faces.
++Command line utility to replace all images in a directory with troll faces.
+ 
+ ## Usage
+ ```
+
+commit 632f98e15a8e95debe331e5ae150defd27197b2d
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 24 10:35:57 2022 -0700
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index 696ee59..dc8bb2a 100644
+--- a/README.md
++++ b/README.md
+@@ -9,7 +9,7 @@ pip install -r requirements.txt
+ Run the following command from the working directory you intend to troll.
+ 
+ ```
+-python trolldirectory.py
++python path/to/trolldirectory.py
+ ```
+ 
+ It is also possible to add the `trolldirectory` folder to path for easier usage.
+
+commit bac7250e87b5a5fa9ac3db548c2242252e79820d
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 24 10:33:30 2022 -0700
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index 943d6ec..696ee59 100644
+--- a/README.md
++++ b/README.md
+@@ -2,15 +2,21 @@
+ Command line utility to replace all images with faces in a directory with troll faces.
+ 
+ ## Usage
+-```pip install -r requirements.txt```
++```
++pip install -r requirements.txt
++```
+ 
+-Run the following command in which working directory you intend to troll.
++Run the following command from the working directory you intend to troll.
+ 
+-```python trolldirectory.py```
++```
++python trolldirectory.py
++```
++
++It is also possible to add the `trolldirectory` folder to path for easier usage.
+ 
+ ## Information
+ Will mess up images so be make sure to make a copy.
+ 
+ Runs recursively through every image in the folders.
+ 
+-No liabilities for any damages this program may cause.
++No liabilities for any damages resulting from this program.
+
+commit 19d7f66c71b56e7bddca125ff95203808842ecfd
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri Jun 24 10:28:28 2022 -0700
+
+    added trolldirectory folder
+
+diff --git a/__main__.py b/trolldirectory/__main__.py
+similarity index 100%
+rename from __main__.py
+rename to trolldirectory/__main__.py
+diff --git a/trolldirectory.py b/trolldirectory/trolldirectory.py
+similarity index 100%
+rename from trolldirectory.py
+rename to trolldirectory/trolldirectory.py
+
+commit 13bc4278bad1d205eb9f75df82f0080c82a1804f
+Author: Elias <elias@dobrin.net>
+Date:   Wed Jun 22 21:13:24 2022 -0700
+
+    typo
+
+diff --git a/trolldirectory.py b/trolldirectory.py
+index 2d393fc..a6ff5d6 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -66,7 +66,7 @@ print(r"""
+ directory = input("Directory to troll: ")
+ print(f"You sure you want to troll directory? {os.path.abspath(directory)}")
+ while True:
+-    do = input("Sure? [Y][N]: ")
++    do = input("Sure? (Y/N): ")
+     if do.upper() == "YES" or do.upper() == "Y":
+         break
+     elif do.upper() == "NO" or do.upper() == "N":
+
+commit 2f77de63a4a2bffce9dee195fc46cae48d7f3529
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Wed Jun 22 11:08:43 2022 -0700
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index 01040b0..943d6ec 100644
+--- a/README.md
++++ b/README.md
+@@ -1,5 +1,5 @@
+ # trolldirectory :clown_face:
+-A command line utility to replace all images with faces in a directory with troll faces.
++Command line utility to replace all images with faces in a directory with troll faces.
+ 
+ ## Usage
+ ```pip install -r requirements.txt```
+
+commit f1cb9f3c90272535b80815a0b92acbfe8fd92006
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri May 20 11:47:49 2022 -0700
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index 4b101be..01040b0 100644
+--- a/README.md
++++ b/README.md
+@@ -8,7 +8,9 @@ Run the following command in which working directory you intend to troll.
+ 
+ ```python trolldirectory.py```
+ 
+-## Dangers
++## Information
+ Will mess up images so be make sure to make a copy.
+ 
+ Runs recursively through every image in the folders.
++
++No liabilities for any damages this program may cause.
+
+commit 995a3989b571061c9ea1a0e61a2010204ef7679f
+Merge: 612a837 90463bd
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 11:45:40 2022 -0700
+
+    Merge branch 'main' of https://github.com/Elixonus/trolldirectory
+
+commit 612a837785f2a1d9048f4489ca568311de9810f1
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 11:45:25 2022 -0700
+
+    no logging
+
+diff --git a/trolldirectory.py b/trolldirectory.py
+index 5396e27..2d393fc 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -1,4 +1,5 @@
+ import os
++os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
+ import glob
+ import random
+ import cv2
+
+commit 90463bdb00c8d5d7d63bfc3a64e1ee2e17bc9481
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri May 20 11:41:35 2022 -0700
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index d05ef64..4b101be 100644
+--- a/README.md
++++ b/README.md
+@@ -4,4 +4,11 @@ A command line utility to replace all images with faces in a directory with trol
+ ## Usage
+ ```pip install -r requirements.txt```
+ 
++Run the following command in which working directory you intend to troll.
++
+ ```python trolldirectory.py```
++
++## Dangers
++Will mess up images so be make sure to make a copy.
++
++Runs recursively through every image in the folders.
+
+commit d2ba56bfdd6a094dccf574ec9e3f0f7d5f403c9e
+Author: Elias Dobrin <elias@dobrin.net>
+Date:   Fri May 20 11:36:28 2022 -0700
+
+    Create README.md
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..d05ef64
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,7 @@
++# trolldirectory :clown_face:
++A command line utility to replace all images with faces in a directory with troll faces.
++
++## Usage
++```pip install -r requirements.txt```
++
++```python trolldirectory.py```
+
+commit d6521ea5fe615c2f41fba89b24fe9ac5a8de5d51
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 11:29:24 2022 -0700
+
+    added requirements updated license
+
+diff --git a/LICENSE b/LICENSE
+index 7c12efc..9fe37c5 100644
+--- a/LICENSE
++++ b/LICENSE
+@@ -1,6 +1,6 @@
+ MIT License
+ 
+-Copyright (c) 2022 Daxonus
++Copyright (c) 2022 Elias Dobrin
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+diff --git a/requirements.txt b/requirements.txt
+new file mode 100644
+index 0000000..8e8e7f7
+--- /dev/null
++++ b/requirements.txt
+@@ -0,0 +1,46 @@
++absl-py~=1.0.0
++astunparse~=1.6.3
++cachetools~=5.1.0
++certifi~=2022.5.18.1
++charset-normalizer~=2.0.12
++cvlib~=0.2.7
++flatbuffers~=1.12
++gast~=0.4.0
++google-auth~=2.6.6
++google-auth-oauthlib~=0.4.6
++google-pasta~=0.2.0
++grpcio~=1.46.1
++h5py~=3.6.0
++idna~=3.3
++imageio~=2.19.2
++imutils~=0.5.4
++keras~=2.9.0
++Keras-Preprocessing~=1.1.2
++libclang~=14.0.1
++Markdown~=3.3.7
++numpy~=1.22.3
++oauthlib~=3.2.0
++opencv-python~=4.5.5.64
++opt-einsum~=3.3.0
++packaging~=21.3
++Pillow~=9.1.1
++progressbar~=2.5
++protobuf~=3.20.1
++pyasn1~=0.4.8
++pyasn1-modules~=0.2.8
++pyparsing~=3.0.9
++requests~=2.27.1
++requests-oauthlib~=1.3.1
++rsa~=4.8
++six~=1.16.0
++tensorboard~=2.9.0
++tensorboard-data-server~=0.6.1
++tensorboard-plugin-wit~=1.8.1
++tensorflow~=2.9.0
++tensorflow-estimator~=2.9.0
++tensorflow-io-gcs-filesystem~=0.26.0
++termcolor~=1.1.0
++typing_extensions~=4.2.0
++urllib3~=1.26.9
++Werkzeug~=2.1.2
++wrapt~=1.14.1
+\ No newline at end of file
+
+commit bee472fbdf1f6872f90fe2f6085661c0a063f44e
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 11:20:41 2022 -0700
+
+    added images
+
+diff --git a/images/lolface.png b/images/lolface.png
+new file mode 100644
+index 0000000..4b2ce46
+Binary files /dev/null and b/images/lolface.png differ
+diff --git a/images/megustaface.png b/images/megustaface.png
+new file mode 100644
+index 0000000..c8a7f5d
+Binary files /dev/null and b/images/megustaface.png differ
+diff --git a/images/sombreroface.png b/images/sombreroface.png
+new file mode 100644
+index 0000000..fc9d455
+Binary files /dev/null and b/images/sombreroface.png differ
+
+commit db415ccf277e7e08b07e57fd40731698b4509276
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 11:19:59 2022 -0700
+
+    almost done
+
+diff --git a/trolldirectory.py b/trolldirectory.py
+index a60f31c..5396e27 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -1,7 +1,7 @@
+ import os
+ import glob
++import random
+ import cv2
+-import matplotlib.pyplot as plt
+ import cvlib as cv
+ from PIL import Image
+ 
+@@ -30,15 +30,23 @@ def troll_image(image_path: str) -> bool:
+     faces, confidences = cv.detect_face(image, threshold=0.2)
+     image = Image.fromarray(image)
+     for face in faces:
+-        dx = int(0.2 * (face[2] - face[0]))
+-        dy = int(0 * (face[3] - face[1]))
++        meme = random.choices(
++            ["trollface.png", "megustaface.png", "lolface.png", "sombreroface.png"],
++            weights=[1, 0.4, 0.4, 0.4]
++        )[0]
++        meme_face = Image.open(os.path.join(dirname, f"images/{meme}"))
++        dx = int(0.4 * (face[2] - face[0]))
++        dy = int(0.2 * (face[3] - face[1]))
++        if meme == "sombreroface.png":
++            dx = int(0.8 * (face[2] - face[0]))
++            dy = int(0.4 * (face[3] - face[1]))
+         sx, sy = face[0] - dx, face[1] - dy
+         ex, ey = face[2] + dx, face[3] + dy
+-        troll_face = Image.open(os.path.join(dirname, "images/trollface.png"))
+-        troll_face = troll_face.resize((ex - sx, ey - sy))
+-        image.paste(troll_face, (sx, sy), mask=troll_face)
++        meme_face = meme_face.resize((ex - sx, ey - sy))
++        print(meme)
++        image.paste(meme_face, (sx, sy), mask=meme_face)
+     if len(faces) > 0:
+-        image.save(image_path + "trolled")
++        image.save(image_path)
+         return True
+     else:
+         return False
+@@ -65,5 +73,5 @@ while True:
+     else:
+         continue
+ print()
+-
+ troll_directory(directory)
++print("It's done boss.")
+\ No newline at end of file
+
+commit a16b91151d99efaa4caf087d703fe568b93f1422
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 10:56:31 2022 -0700
+
+    saving feature
+
+diff --git a/__main__.py b/__main__.py
+new file mode 100644
+index 0000000..d911934
+--- /dev/null
++++ b/__main__.py
+@@ -0,0 +1 @@
++import trolldirectory
+diff --git a/trolldirectory.py b/trolldirectory.py
+index 582467a..a60f31c 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -27,7 +27,7 @@ def troll_directory(directory_path: str) -> None:
+ 
+ def troll_image(image_path: str) -> bool:
+     image = cv2.imread(image_path)
+-    faces, confidences = cv.detect_face(image, threshold=0.1)
++    faces, confidences = cv.detect_face(image, threshold=0.2)
+     image = Image.fromarray(image)
+     for face in faces:
+         dx = int(0.2 * (face[2] - face[0]))
+@@ -38,8 +38,7 @@ def troll_image(image_path: str) -> bool:
+         troll_face = troll_face.resize((ex - sx, ey - sy))
+         image.paste(troll_face, (sx, sy), mask=troll_face)
+     if len(faces) > 0:
+-        plt.imshow(image)
+-        plt.show()
++        image.save(image_path + "trolled")
+         return True
+     else:
+         return False
+@@ -67,4 +66,4 @@ while True:
+         continue
+ print()
+ 
+-troll_directory(directory)
+\ No newline at end of file
++troll_directory(directory)
+
+commit c3b70a4cd6b26aac90343c03ac2fec6d21905e10
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 10:50:01 2022 -0700
+
+    fix bugs
+
+diff --git a/trolldirectory.py b/trolldirectory.py
+index ffa03af..582467a 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -18,14 +18,16 @@ def troll_directory(directory_path: str) -> None:
+         image_paths.append(file_path)
+     for file_path in glob.iglob(directory_path + "**/*.gif", recursive=True):
+         image_paths.append(file_path)
++    counter = 0
+     for i, image_path in enumerate(image_paths):
+-        troll_image(image_path)
+-        print(f"Trolled {(i + 1)} out of {len(image_paths)}")
++        if troll_image(image_path):
++            counter += 1
++            print(f"Trolled {counter}")
+ 
+ 
+-def troll_image(image_path: str) -> None:
++def troll_image(image_path: str) -> bool:
+     image = cv2.imread(image_path)
+-    faces, confidences = cv.detect_face(image)
++    faces, confidences = cv.detect_face(image, threshold=0.1)
+     image = Image.fromarray(image)
+     for face in faces:
+         dx = int(0.2 * (face[2] - face[0]))
+@@ -35,8 +37,12 @@ def troll_image(image_path: str) -> None:
+         troll_face = Image.open(os.path.join(dirname, "images/trollface.png"))
+         troll_face = troll_face.resize((ex - sx, ey - sy))
+         image.paste(troll_face, (sx, sy), mask=troll_face)
+-    plt.imshow(image)
+-    plt.show()
++    if len(faces) > 0:
++        plt.imshow(image)
++        plt.show()
++        return True
++    else:
++        return False
+ 
+ 
+ print(r"""
+
+commit f919dd3091e6d9d209928a70879e98388e2ba02f
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 10:39:42 2022 -0700
+
+    image and bug fixes
+
+diff --git a/images/trollface.png b/images/trollface.png
+new file mode 100644
+index 0000000..502b3e3
+Binary files /dev/null and b/images/trollface.png differ
+diff --git a/trolldirectory.py b/trolldirectory.py
+index 2f7dd72..ffa03af 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -20,7 +20,7 @@ def troll_directory(directory_path: str) -> None:
+         image_paths.append(file_path)
+     for i, image_path in enumerate(image_paths):
+         troll_image(image_path)
+-        print(f"Trolled {(i + 1)} out of {len(image_paths)}\r")
++        print(f"Trolled {(i + 1)} out of {len(image_paths)}")
+ 
+ 
+ def troll_image(image_path: str) -> None:
+
+commit de308115cc9c16edb057cda734b3d070cf6eb58d
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 10:32:31 2022 -0700
+
+    ascii art and bug fixes
+
+diff --git a/trolldirectory.py b/trolldirectory.py
+index f6c0c9e..2f7dd72 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -18,8 +18,10 @@ def troll_directory(directory_path: str) -> None:
+         image_paths.append(file_path)
+     for file_path in glob.iglob(directory_path + "**/*.gif", recursive=True):
+         image_paths.append(file_path)
+-    for image_path in image_paths:
++    for i, image_path in enumerate(image_paths):
+         troll_image(image_path)
++        print(f"Trolled {(i + 1)} out of {len(image_paths)}\r")
++
+ 
+ def troll_image(image_path: str) -> None:
+     image = cv2.imread(image_path)
+@@ -37,8 +39,18 @@ def troll_image(image_path: str) -> None:
+     plt.show()
+ 
+ 
+-directory_path = input("Directory to troll: ")
+-print(f"You sure you want to troll directory? {os.path.abspath(directory_path)}")
++print(r"""
++  _____    ____    U  ___ u   _       _      
++ |_ " _|U |  _"\ u  \/"_ \/  |"|     |"|     
++   | |   \| |_) |/  | | | |U | | u U | | u   
++  /| |\   |  _ <.-,_| |_| | \| |/__ \| |/__  
++ u |_|U   |_| \_\\_)-\___/   |_____| |_____| 
++ _// \\_  //   \\_    \\     //  \\  //  \\  
++(__) (__)(__)  (__)  (__)   (_")("_)(_")("_) 
++""")
++
++directory = input("Directory to troll: ")
++print(f"You sure you want to troll directory? {os.path.abspath(directory)}")
+ while True:
+     do = input("Sure? [Y][N]: ")
+     if do.upper() == "YES" or do.upper() == "Y":
+@@ -47,6 +59,6 @@ while True:
+         quit()
+     else:
+         continue
++print()
+ 
+-
+-troll_directory(directory_path)
+\ No newline at end of file
++troll_directory(directory)
+\ No newline at end of file
+
+commit 5d9f3b9729a8b98bbfbd4418df6c09cb4aea78ea
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 10:17:25 2022 -0700
+
+    tui done somewhat
+
+diff --git a/trolldirectory.py b/trolldirectory.py
+index b29a7ca..f6c0c9e 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -10,9 +10,16 @@ dirname = os.path.dirname(__file__)
+ 
+ def troll_directory(directory_path: str) -> None:
+     image_paths = []
+-    for filename in glob.iglob(directory_path + "**/*.png", recursive=True):
+-        image_paths.append()
+-
++    for file_path in glob.iglob(directory_path + "**/*.png", recursive=True):
++        image_paths.append(file_path)
++    for file_path in glob.iglob(directory_path + "**/*.jpg", recursive=True):
++        image_paths.append(file_path)
++    for file_path in glob.iglob(directory_path + "**/*.jpeg", recursive=True):
++        image_paths.append(file_path)
++    for file_path in glob.iglob(directory_path + "**/*.gif", recursive=True):
++        image_paths.append(file_path)
++    for image_path in image_paths:
++        troll_image(image_path)
+ 
+ def troll_image(image_path: str) -> None:
+     image = cv2.imread(image_path)
+@@ -30,4 +37,16 @@ def troll_image(image_path: str) -> None:
+     plt.show()
+ 
+ 
+-troll_directory("")
++directory_path = input("Directory to troll: ")
++print(f"You sure you want to troll directory? {os.path.abspath(directory_path)}")
++while True:
++    do = input("Sure? [Y][N]: ")
++    if do.upper() == "YES" or do.upper() == "Y":
++        break
++    elif do.upper() == "NO" or do.upper() == "N":
++        quit()
++    else:
++        continue
++
++
++troll_directory(directory_path)
+\ No newline at end of file
+
+commit 61947dcf7602655ea0bc9363cac5dbd341a54488
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 10:01:57 2022 -0700
+
+    troll program working i think
+
+diff --git a/trolldirectory.py b/trolldirectory.py
+index cc40683..b29a7ca 100644
+--- a/trolldirectory.py
++++ b/trolldirectory.py
+@@ -1,25 +1,33 @@
+ import os
++import glob
+ import cv2
+ import matplotlib.pyplot as plt
+ import cvlib as cv
++from PIL import Image
+ 
+ dirname = os.path.dirname(__file__)
+-trollface - cv2.imread(os.path.join(dirname, "images/trollface.png"))
++
++
++def troll_directory(directory_path: str) -> None:
++    image_paths = []
++    for filename in glob.iglob(directory_path + "**/*.png", recursive=True):
++        image_paths.append()
++
+ 
+ def troll_image(image_path: str) -> None:
+     image = cv2.imread(image_path)
+-    plt.imshow(image)
+-    plt.show()
+-
+     faces, confidences = cv.detect_face(image)
+-    # loop through detected faces and add bounding box
++    image = Image.fromarray(image)
+     for face in faces:
+-        startX, startY = face[0], face[1]
+-        endX, endY = face[2], face[3]
+-        # draw rectangle over face
+-        cv2.rectangle(image, (startX, startY), (endX, endY), (0, 255, 0), 2)
+-    # display output
++        dx = int(0.2 * (face[2] - face[0]))
++        dy = int(0 * (face[3] - face[1]))
++        sx, sy = face[0] - dx, face[1] - dy
++        ex, ey = face[2] + dx, face[3] + dy
++        troll_face = Image.open(os.path.join(dirname, "images/trollface.png"))
++        troll_face = troll_face.resize((ex - sx, ey - sy))
++        image.paste(troll_face, (sx, sy), mask=troll_face)
+     plt.imshow(image)
+     plt.show()
+ 
+-trollimage("couple.jpeg")
+\ No newline at end of file
++
++troll_directory("")
+
+commit 5512f6dfca0aa6ef3a6825f15e392abf676bf5cb
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 09:00:23 2022 -0700
+
+    project setup necessary libraries found
+
+diff --git a/.gitignore b/.gitignore
+index d9005f2..3eb56cb 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -149,4 +149,4 @@ cython_debug/
+ #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+ #  and can be added to the global gitignore or merged into this file.  For a more nuclear
+ #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+-#.idea/
++.idea/
+diff --git a/trolldirectory.py b/trolldirectory.py
+new file mode 100644
+index 0000000..cc40683
+--- /dev/null
++++ b/trolldirectory.py
+@@ -0,0 +1,25 @@
++import os
++import cv2
++import matplotlib.pyplot as plt
++import cvlib as cv
++
++dirname = os.path.dirname(__file__)
++trollface - cv2.imread(os.path.join(dirname, "images/trollface.png"))
++
++def troll_image(image_path: str) -> None:
++    image = cv2.imread(image_path)
++    plt.imshow(image)
++    plt.show()
++
++    faces, confidences = cv.detect_face(image)
++    # loop through detected faces and add bounding box
++    for face in faces:
++        startX, startY = face[0], face[1]
++        endX, endY = face[2], face[3]
++        # draw rectangle over face
++        cv2.rectangle(image, (startX, startY), (endX, endY), (0, 255, 0), 2)
++    # display output
++    plt.imshow(image)
++    plt.show()
++
++trollimage("couple.jpeg")
+\ No newline at end of file
+
+commit 15fe4cf6b2553f01edb35dde244ca2afdd2687ee
+Author: Daxonus <elias@dobrin.net>
+Date:   Fri May 20 08:39:40 2022 -0700
+
+    Initial commit
+
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000..dfe0770
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,2 @@
++# Auto detect text files and perform LF normalization
++* text=auto
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..d9005f2
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,152 @@
++# Byte-compiled / optimized / DLL files
++__pycache__/
++*.py[cod]
++*$py.class
++
++# C extensions
++*.so
++
++# Distribution / packaging
++.Python
++build/
++develop-eggs/
++dist/
++downloads/
++eggs/
++.eggs/
++lib/
++lib64/
++parts/
++sdist/
++var/
++wheels/
++share/python-wheels/
++*.egg-info/
++.installed.cfg
++*.egg
++MANIFEST
++
++# PyInstaller
++#  Usually these files are written by a python script from a template
++#  before PyInstaller builds the exe, so as to inject date/other infos into it.
++*.manifest
++*.spec
++
++# Installer logs
++pip-log.txt
++pip-delete-this-directory.txt
++
++# Unit test / coverage reports
++htmlcov/
++.tox/
++.nox/
++.coverage
++.coverage.*
++.cache
++nosetests.xml
++coverage.xml
++*.cover
++*.py,cover
++.hypothesis/
++.pytest_cache/
++cover/
++
++# Translations
++*.mo
++*.pot
++
++# Django stuff:
++*.log
++local_settings.py
++db.sqlite3
++db.sqlite3-journal
++
++# Flask stuff:
++instance/
++.webassets-cache
++
++# Scrapy stuff:
++.scrapy
++
++# Sphinx documentation
++docs/_build/
++
++# PyBuilder
++.pybuilder/
++target/
++
++# Jupyter Notebook
++.ipynb_checkpoints
++
++# IPython
++profile_default/
++ipython_config.py
++
++# pyenv
++#   For a library or package, you might want to ignore these files since the code is
++#   intended to run in multiple environments; otherwise, check them in:
++# .python-version
++
++# pipenv
++#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
++#   However, in case of collaboration, if having platform-specific dependencies or dependencies
++#   having no cross-platform support, pipenv may install dependencies that don't work, or not
++#   install all needed dependencies.
++#Pipfile.lock
++
++# poetry
++#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
++#   This is especially recommended for binary packages to ensure reproducibility, and is more
++#   commonly ignored for libraries.
++#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
++#poetry.lock
++
++# PEP 582; used by e.g. github.com/David-OConnor/pyflow
++__pypackages__/
++
++# Celery stuff
++celerybeat-schedule
++celerybeat.pid
++
++# SageMath parsed files
++*.sage.py
++
++# Environments
++.env
++.venv
++env/
++venv/
++ENV/
++env.bak/
++venv.bak/
++
++# Spyder project settings
++.spyderproject
++.spyproject
++
++# Rope project settings
++.ropeproject
++
++# mkdocs documentation
++/site
++
++# mypy
++.mypy_cache/
++.dmypy.json
++dmypy.json
++
++# Pyre type checker
++.pyre/
++
++# pytype static type analyzer
++.pytype/
++
++# Cython debug symbols
++cython_debug/
++
++# PyCharm
++#  JetBrains specific template is maintainted in a separate JetBrains.gitignore that can
++#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
++#  and can be added to the global gitignore or merged into this file.  For a more nuclear
++#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
++#.idea/
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..7c12efc
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2022 Daxonus
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
